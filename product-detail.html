@@ -2,20 +2,18 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Chi tiết sản phẩm</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
     <link rel="stylesheet" href="./assets/css/base.css">
-    <link rel="stylesheet" href="./assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/product-detail.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./assets/fonts/fontawesome-free-6.6.0/css/all.min.css">
 </head>
 <body>
-    <div class="product-detail">
-        <header class="header">
-
-        </header>
-
-        <div class="container">
+<div class="product-detail">
+    <header class="header"></header>
+    <div class="container">
+        <div class="top-content">
             <div class="product-slide-show">
                 <div class="product-image">
                     <img src="./assets/img/product-img/0.png" alt="Nhìn từ đằng trước">
@@ -42,16 +40,36 @@
                     <div class="index-item index-item-7"></div>
                 </div>
             </div>
-            <div class="product-info">
-
+            <div class="rental-information">
+                <div class="info">
+                    <h1 class="name-moto">Honda Wave-RSX 2024</h1>
+                    <h2 class="cost">Giá thuê theo ngày: 100.000đ</h2>
+                    <h2 class="cost">Giá thuê theo tuần: 665.000đ</h2>
+                    <h2 class="cost">Giá thuê theo tháng: 2.850.000đ</h2>
+                    <p class="note">*Giá thuê chưa bao gồm: Xăng phục vụ suốt chuyến đi, Bảo hiểm hành khách, Thuế VAT, Phụ thu dịp Lễ Tết.</p>
+                </div>
+                <div class="fill-in-info">
+                    <div class="fill-in-item">
+                        <label for="delivery-location">Địa điểm giao xe</label>
+                        <input type="text" id="delivery-location">
+                        <label for="return-location">Địa điểm trả xe</label>
+                        <input type="text" id="return-location"><br>
+                        <label for="delivery-time">Thời gian nhận xe</label>
+                        <input type="datetime-local" id="delivery-time">
+                        <label for="return-time">Thời gian trả xe</label>
+                        <input type="datetime-local" id="return-time">
+                    </div>
+                    <div class="button">
+                        <button type="button" onclick="alert('Bạn đã đặt xe thành công.')">Đặt xe</button>
+                        <button type="button" onclick="alert('Bạn đã thêm vào giỏ hàng thành công.')">Thêm vào giỏ hàng</button>
+                    </div>
+                </div>
             </div>
-
         </div>
-
-        <footer class="footer">
-            
-        </footer>
-        <script src="product-detail.js"></script>
+        <div class="product-info"></div>
     </div>
+    <footer class="footer"></footer>
+    <script src="assets/js/product-detail.js"></script>
+</div>
 </body>
 </html>
