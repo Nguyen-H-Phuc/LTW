@@ -1,0 +1,186 @@
+.container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;  /* Align child elements to the left and right */
+    flex-wrap: wrap;                 /* Allow wrapping for smaller screens */
+}
+
+.top-content{
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: wrap;  /* Cho phép các phần tử quấn xuống nếu không đủ không gian */
+    gap: 10px;
+
+}
+
+/* Product Slide Show */
+.product-slide-show {
+    width: 60vw;
+    max-width: 860px;
+    height: 90vh;
+    max-height: 574px;
+    overflow: hidden;
+    position: relative;
+    margin: 0 10px;
+}
+
+/* Product Image */
+.product-image {
+    display: flex;
+    transition: transform 0.5s;
+}
+
+.product-image img {
+    width: 100%;          /* Ensure the image takes the full width of the container */
+    height: 100%;         /* Ensure the image takes the full height of the container */
+    object-fit: contain;  /* Scale the image without cropping */
+    display: block;
+    margin: 0 auto;       /* Center the image if it is smaller than the container */
+}
+
+/* Button Hover Effects */
+.btn:hover {
+    color: #000;
+    cursor: pointer;
+}
+
+.btn {
+    font-size: 2rem;
+    color: #999;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: color 0.5s;
+}
+
+.btn-left {
+    left: 0;
+}
+
+.btn-right {
+    right: 0;
+}
+
+/* Image Index Indicators */
+.index-images {
+    position: absolute;
+    bottom: 10px;
+    display: flex;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.index-item {
+    border: 2px solid #999;
+    padding: 3px;
+    margin: 3px;
+    border-radius: 50%;
+}
+
+.active {
+    background-color: #999;
+}
+
+/* Rental Information */
+.rental-information {
+    width: 35vw;
+    max-width: 600px;
+    height: auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin: 0 20px;
+}
+
+/* Fill-in Information Form */
+.fill-in-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 600px;
+}
+
+.fill-in-item {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.fill-in-item label {
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: #333;
+    margin-top: 10px;
+    display: block;
+}
+
+.fill-in-item input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1.6rem;
+    transition: border-color 0.3s ease;
+}
+
+.fill-in-item input:focus {
+    border-color: #FA442B; /* Focus color */
+    outline: none;
+}
+
+/* Button Styling */
+.button {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    gap: 10px;
+}
+
+.button button {
+    width: 48%;
+    padding: 12px;
+    font-size: 1.6rem;
+    color: white;
+    background-color: #FA442B;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s;
+}
+
+.button button:hover {
+    background-color: #e63946;
+    transform: translateY(-3px); /* Hover effect */
+}
+
+.button button:active {
+    transform: translateY(1px);  /* Active button effect */
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .fill-in-info {
+        padding: 15px;
+    }
+
+    .button {
+        flex-direction: column;
+    }
+
+    .button button {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .product-slide-show {
+        width: 100vw;
+        height: auto;
+    }
+
+    .rental-information {
+        width: 100vw;
+    }
+}
