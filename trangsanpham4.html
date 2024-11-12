@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang san pham 4</title>
+    <link rel="stylesheet" href="csssp.css">
+</head>
+<body>
+<!-- boc loc san pham-->
+<div class="hom-filter">
+    <span class="hom-filter-label">Sap xep theo</span>
+    <button class="btn">Pho bien </button>
+    <button class="btn">Moi nhat </button>
+    <button class="btn">Ban chay </button>
+    <div class="filter-group">
+        <label for="price-filter">Sắp xếp giá:</label>
+        <select id="price-filter" onchange="applyFilters()">
+            <option value="default">Mặc định</option>
+            <option value="asc">Thấp đến cao</option>
+            <option value="desc">Cao đến thấp</option>
+        </select>
+    </div>
+</div>
+<!-- boc loc san pham-->
+<div id="wrapper">
+
+    <div class="headline">
+
+        <ul class="products">
+            <li>
+                <div class="product-item">
+                    <div class="product-top">
+                        <a href="" class="product-thumb">
+                            <img src="anh/product/28.png" alt="">
+                        </a>
+                        <!--Mua ngay-->
+                        <a href="" class="buy-now">Mua ngay</a>
+                    </div>
+                    <div class="product-info">
+                        <a href="" class="product-cat"> Xe tay ga</a>
+                        <a href="" class="product-name"> Joyride</a>
+                        <div class="product-price">Giá: 80.000 VND</div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+ </div >
+<div class="pagination">
+    <a href="#" class="page">1</a>
+    <a href="#" class="page">2</a>
+    <a href="#" class="page">3</a>
+    <a href="#" class="page">4</a>
+
+    <!-- More pagination links if needed -->
+</div>
+</body>
+</html>
