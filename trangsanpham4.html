@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trang san pham 4</title>
     <link rel="stylesheet" href="csssp.css">
+    <script src="locsanphamgiathapdencao.js"></script>
 </head>
 <body>
 <!-- boc loc san pham-->
@@ -13,10 +14,10 @@
     <span class="hom-filter-label">Sap xep theo</span>
     <button class="btn">Pho bien </button>
     <button class="btn">Moi nhat </button>
-    <button class="btn">Ban chay </button>
+    <button class="btn" onclick="filterBestSellers()">Ban chay </button>
     <div class="filter-group">
         <label for="price-filter">Sắp xếp giá:</label>
-        <select id="price-filter" onchange="applyFilters()">
+        <select id="price-filter" onchange="sortProducts()">
             <option value="default">Mặc định</option>
             <option value="asc">Thấp đến cao</option>
             <option value="desc">Cao đến thấp</option>

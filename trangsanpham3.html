@@ -14,10 +14,10 @@
     <span class="hom-filter-label">Sap xep theo</span>
     <button class="btn">Pho bien </button>
     <button class="btn">Moi nhat </button>
-    <button class="btn">Ban chay </button>
+    <button class="btn" onclick="filterBestSellers()" >Ban chay </button>
     <div class="filter-group">
         <label for="price-filter">Sắp xếp giá:</label>
-        <select id="price-filter" onchange="applyFilters()">
+        <select id="price-filter" onchange="sortProducts()">
             <option value="default">Mặc định</option>
             <option value="asc">Thấp đến cao</option>
             <option value="desc">Cao đến thấp</option>
@@ -30,7 +30,7 @@
     <div class="headline">
 
         <ul class="products">
-            <li>
+            <li data-best-seller="true">
                 <div class="product-item">
                     <div class="product-top">
                         <a href="" class="product-thumb">
@@ -46,7 +46,7 @@
                     </div>
                 </div>
             </li>
-            <li>
+            <li data-best-seller="true">
                 <div class="product-item">
                     <div class="product-top">
                         <a href="" class="product-thumb">
@@ -62,7 +62,7 @@
                     </div>
                 </div>
             </li>
-            <li>
+            <li data-best-seller="true">
                 <div class="product-item">
                     <div class="product-top">
                         <a href="" class="product-thumb">

@@ -1,7 +1,8 @@
+/*loc san pham tuwf cao den thap tu hyhap den cao*/
 function sortProducts() {
-    const filter = document.getElementById("price-filter").value; // Lấy giá trị từ select box
-    const productList = document.querySelector(".products"); // Chọn danh sách sản phẩm
-    const products = Array.from(productList.children); // Chuyển danh sách sản phẩm thành mảng
+    const sortType = document.getElementById("price-filter").value;
+    const productList = document.querySelector(".products");
+    const products = Array.from(productList.children);
 
     // Hàm lấy giá từ chuỗi "Giá: xx.xxx VND"
     function getPrice(product) {
@@ -11,11 +12,34 @@ function sortProducts() {
 
     // Sắp xếp dựa trên giá
     products.sort((a, b) => {
-        const priceA = getPrice(a);
-        const priceB = getPrice(b);
-        return filter === "asc" ? priceA - priceB : priceB - priceA;
+        // Lấy giá sản phẩm
+        const priceA = parseInt(a.querySelector(".product-price").textContent.replace(/\D/g, ''));
+        const priceB = parseInt(b.querySelector(".product-price").textContent.replace(/\D/g, ''));
+
+        // Sắp xếp theo giá
+        return sortType === "asc" ? priceA - priceB : priceB - priceA;
     });
 
-    // Xóa và thêm lại các sản phẩm đã sắp xếp
+    // Gỡ các sản phẩm cũ và thêm các sản phẩm đã sắp xếp
+    productList.innerHTML = "";
     products.forEach(product => productList.appendChild(product));
 }
+/*End loc san pham tu cao den thap, tu thap den cao*/
+
+/*loc san pham ban chay*/
+function filterBestSellers() {
+    const productList = document.querySelector(".products");
+    const products = Array.from(productList.children);
+
+    // Hiển thị các sản phẩm có data-best-seller = true
+    products.forEach(product => {
+        if (product.getAttribute("data-best-seller") === "true") {
+            product.style.display = "block"; // Hiển thị
+        } else {
+            product.style.display = "none"; // Ẩn
+        }
+    });
+}
+
+
+/*End loc san pham ban chay*/
