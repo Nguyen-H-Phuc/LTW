@@ -4,15 +4,30 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Title</title>
+    <title>Trang san pham ban chay</title>
     <link rel="stylesheet" href="csssp.css">
 </head>
 <body>
-
-
+<!-- boc loc san pham-->
+<div class="hom-filter">
+    <span class="hom-filter-label">Sap xep theo</span>
+    <button class="btn">Pho bien </button>
+    <button class="btn">Moi nhat </button>
+    <button class="btn">Ban chay </button>
+    <div class="filter-group">
+        <label for="price-filter">Sắp xếp giá:</label>
+        <select id="price-filter" onchange="applyFilters()">
+            <option value="default">Mặc định</option>
+            <option value="asc">Thấp đến cao</option>
+            <option value="desc">Cao đến thấp</option>
+        </select>
+    </div>
+</div>
+<!-- boc loc san pham-->
 <div id="wrapper">
+
     <div class="headline">
-        <h3>Sản phẩm bán chạy</h3>
+
         <ul class="products">
             <li>
                 <div class="product-item">
@@ -142,6 +157,14 @@
                 </div>
             </li>
         </ul>
+    </div>
+    <div class="pagination">
+        <a href="#" class="page">1</a>
+        <a href="#" class="page">2</a>
+        <a href="#" class="page">3</a>
+        <a href="#" class="page">4</a>
+        <a href="#" class="page">5</a>
+        <!-- More pagination links if needed -->
     </div>
 </div>
 </body>

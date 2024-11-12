@@ -8,7 +8,48 @@ body {
     color: #111;
     line-height: 1.15;
 }
+/* thanh loc */
 
+.hom-filter {
+    display: flex;
+    align-items: center; /* Căn giữa theo chiều dọc */
+    justify-content: center; /* Căn giữa theo chiều ngang */
+    gap: 10px; /* Khoảng cách giữa các phần tử */
+    margin: 0 auto; /* Giữ đoạn ở giữa trang */
+    padding: 10px;
+    flex-wrap: wrap; /* Đảm bảo không tràn khi màn hình nhỏ */
+}
+
+.hom-filter-label {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.btn {
+    padding: 8px 12px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #e0e0e0;
+}
+
+.filter-group {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+#price-filter {
+    padding: 5px;
+    font-size: 14px;
+}
+/* end thanh loc */
+
+/* san pham*/
 #wrapper {
     max-width: 1170px;
     margin: 0 auto;
@@ -19,16 +60,6 @@ body {
     margin: 40px 0px;
 }
 
-h3 {
-    font-size: 18px;
-    color: #111;
-    padding: 10px 20px;
-    text-transform: uppercase;
-    border: 1 px solid #bebebe;
-    display: inline-block;
-    color: #555;
-    font-weight: 600;
-}
 ul.products{
     list-style: none;
     display: flex;
@@ -106,3 +137,43 @@ ul.products li .product-item:hover {
     transform: scale(1.05); /* Phóng to nhẹ khi hover */
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Tăng hiệu ứng bóng */
 }
+/* End san pham*/
+
+/* chuyen doi trang page*/
+/* Đặt container pagination */
+.pagination {
+    display: flex; /* Sử dụng Flexbox để dễ căn chỉnh */
+    justify-content: center; /* Căn giữa theo chiều ngang */
+    align-items: center; /* Căn giữa theo chiều dọc */
+    gap: 10px; /* Khoảng cách giữa các nút */
+    padding: 10px;
+    margin: 0 auto;
+}
+
+/* Định dạng các liên kết phân trang */
+.page {
+    display: inline-block;
+    padding: 8px 12px;
+    text-decoration: none;
+    color: #007bff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: all 0.3s ease; /* Hiệu ứng chuyển động */
+}
+
+/* Hiệu ứng khi hover */
+.page:hover {
+    background-color: #007bff;
+    color: #fff;
+    border-color: #007bff;
+}
+
+/* Thêm trạng thái active nếu cần */
+.page.active {
+    background-color: #0056b3;
+    color: #fff;
+    border-color: #0056b3;
+}
+
+/* Endchuyen doi trang page*/
