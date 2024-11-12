@@ -40,6 +40,10 @@ function filterBestSellers() {
         }
     });
 }
-
-
 /*End loc san pham ban chay*/
+
+/* san pham moi*/
+
+
+
+/* End san pham moi*/
