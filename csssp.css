@@ -10,42 +10,64 @@ body {
 }
 /* thanh loc */
 
+/* Đặt container filter */
 .hom-filter {
-    display: flex;
+    display: flex; /* Sử dụng Flexbox */
     align-items: center; /* Căn giữa theo chiều dọc */
     justify-content: center; /* Căn giữa theo chiều ngang */
     gap: 10px; /* Khoảng cách giữa các phần tử */
-    margin: 0 auto; /* Giữ đoạn ở giữa trang */
-    padding: 10px;
-    flex-wrap: wrap; /* Đảm bảo không tràn khi màn hình nhỏ */
+    padding: 15px;
+    margin: 0 auto;
+    border-radius: 20px; /* Bo tròn góc toàn bộ thanh */
+    background-color: #f9f9f9; /* Màu nền nhẹ nhàng */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Bóng đổ nhẹ */
+    transition: all 0.3s ease; /* Hiệu ứng mượt */
 }
 
-.hom-filter-label {
-    font-size: 16px;
-    font-weight: bold;
-}
-
+/* Định dạng các nút */
 .btn {
-    padding: 8px 12px;
+    padding: 10px 15px;
     font-size: 14px;
-    border: 1px solid #ccc;
-    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 20px; /* Bo tròn góc nút */
+    background-color: #ffffff; /* Màu nền trắng */
+    color: #007bff;
     cursor: pointer;
+    transition: all 0.3s ease; /* Hiệu ứng mượt */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Bóng đổ nhẹ */
 }
 
+/* Hiệu ứng khi rê chuột vào nút */
 .btn:hover {
-    background-color: #e0e0e0;
+    background-color: #007bff; /* Màu nền xanh lam */
+    color: #ffffff; /* Màu chữ trắng */
+    border-color: #007bff; /* Màu viền xanh lam */
+    transform: scale(1.05); /* Phóng to nhẹ */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Bóng đổ mạnh hơn */
 }
 
+/* Định dạng nhóm lọc */
 .filter-group {
     display: flex;
     align-items: center;
     gap: 5px;
 }
 
+/* Định dạng dropdown */
 #price-filter {
-    padding: 5px;
+    padding: 8px 12px;
     font-size: 14px;
+    border-radius: 20px; /* Bo tròn góc dropdown */
+    border: 1px solid #ddd;
+    background-color: #ffffff;
+    transition: all 0.3s ease; /* Hiệu ứng mượt */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Bóng đổ nhẹ */
+}
+
+/* Hiệu ứng khi rê chuột vào dropdown */
+#price-filter:hover {
+    border-color: #007bff; /* Đổi màu viền */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Bóng đổ mạnh hơn */
 }
 /* end thanh loc */
 
