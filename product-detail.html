@@ -42,7 +42,7 @@
             </div>
             <div class="rental-information">
                 <div class="info">
-                    <h1 class="name-moto">Honda Wave-RSX 2024</h1>
+                    <h1 class="name-moto" style="text-align: center" >Honda Wave-RSX</h1>
                     <h2 class="cost">Giá thuê theo ngày: 100.000đ</h2>
                     <h2 class="cost">Giá thuê theo tuần: 665.000đ</h2>
                     <h2 class="cost">Giá thuê theo tháng: 2.850.000đ</h2>
@@ -55,18 +55,39 @@
                         <label for="return-location">Địa điểm trả xe</label>
                         <input type="text" id="return-location"><br>
                         <label for="delivery-time">Thời gian nhận xe</label>
-                        <input type="datetime-local" id="delivery-time">
+                        <input type="date" id="delivery-time">
                         <label for="return-time">Thời gian trả xe</label>
-                        <input type="datetime-local" id="return-time">
+                        <input type="date" id="return-time">
                     </div>
                     <div class="button">
                         <button type="button" onclick="alert('Bạn đã đặt xe thành công.')">Đặt xe</button>
                         <button type="button" onclick="alert('Bạn đã thêm vào giỏ hàng thành công.')">Thêm vào giỏ hàng</button>
                     </div>
                 </div>
+
+
             </div>
         </div>
-        <div class="product-info"></div>
+
+        <div class="product-summary">
+            <div>
+                <i class="fa-solid fa-gauge-simple-high"></i>
+                <p>Quãng đường <span>45Km/1L</span></p>
+            </div>
+            <div>
+                <i class="fa-solid fa-gas-pump"></i>
+                <p>Dung tích xăng <span>4,2L</span></p>
+            </div>
+            <div>
+                <i class="fa-solid fa-gears"></i>
+                <p>Động cơ <span> Blue Core, 4 kỳ, 2 van, SOHC, Làm mát bằng không khí cưỡng bức</span></p>
+            </div>
+            <div>
+                <i class="fa-solid fa-cart-flatbed-suitcase"></i>
+                <p>Ngăn chứa đồ <span>25L</span></p>
+            </div>
+        </div>
+
     </div>
     <footer class="footer"></footer>
     <script src="assets/js/product-detail.js"></script>

@@ -184,3 +184,46 @@
         width: 100vw;
     }
 }
+/* product sumary*/
+.product-summary {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 2rem;
+    padding: 10px 20px;
+    margin: 10rem auto;
+    width: fit-content;
+}
+
+.product-summary div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 1.8rem;
+    color: #333;
+    text-align: center;
+    max-width: 20rem;
+}
+
+.product-summary div i {
+    font-size: 30px;
+    color: #4a90e2;
+    margin-bottom: 5px;
+}
+
+.product-summary div p {
+    margin: 0;
+    font-weight: bold;
+}
+
+.product-summary div p span {
+    display: block; /* Hiển thị dưới dạng block để xuống dòng */
+    color: #333;
+    font-weight: lighter;
+    text-align: center; /* Căn giữa văn bản */
+    margin-top: 5px; /* Khoảng cách nhỏ giữa nội dung trước và sau */
+}
+
+
+
+
