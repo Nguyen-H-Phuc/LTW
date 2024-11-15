@@ -1,5 +1,5 @@
 const productImage = document.querySelector('.product-image');
-const imgs = document.getElementsByTagName('img');
+const imgs = document.querySelectorAll('img.Wave-RSX-img');
 const btnLeft = document.querySelector('.btn-left');
 const btnRight = document.querySelector('.btn-right');
 const length = imgs.length;
