@@ -71,6 +71,14 @@
     cursor: pointer;
 }
 
+.auth-form__switch-b{
+    font-size: 1.6rem;
+    font-weight: 400;
+    color: var(--primary--color);
+    cursor: pointer;
+    text-decoration: none;
+}
+
 .auth-form__form{
 
 }

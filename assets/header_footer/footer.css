@@ -3,6 +3,9 @@
 .footer{
     padding-top: 16px;
     border-top: 4px solid var(--primary--color);
+    display: flex;
+    flex-direction: column;
+    clear: both;
 }
 
 .footer_heading{
