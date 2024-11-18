@@ -3,23 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <title>Liên hệ</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
-    <link rel="stylesheet" href="./assets/css/base.css">
-    <link rel="stylesheet" href="assets/css/product-detail.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/base.css">
     <link rel="stylesheet" href="assets/css/ContractUS.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <header id="header"></header>
 
     <div class="container">
-        <form action="">
+        <form action="" method="post">
             <label for="fname">Họ tên</label>
-            <input type="text" id="fname" name="firstname" placeholder="Họ tên của bạn..">
+            <input type="text" id="fname" name="firstname" placeholder="Họ tên của bạn.." aria-label="Họ tên" required>
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="Email" aria-label="Email" style="display: block; width: 100%" required>
 
             <label for="problem">Vấn đề gặp phải</label>
             <select id="problem" name="problem">
+                <option value="" disabled selected>Chọn vấn đề của bạn</option>
                 <option value="Tài khoản có vấn đề">Tài khoản có vấn đề</option>
                 <option value="Vấn đề về xe">Vấn đề về xe</option>
                 <option value="Chính sách thuê xe">Chính sách thuê xe</option>
@@ -28,17 +30,17 @@
             </select>
 
             <label for="subject">Chi tiết vấn đề</label>
-            <textarea id="subject" name="subject" placeholder="Vấn đề gặp phải" style="height:200px"></textarea>
+            <textarea id="subject" name="subject" placeholder="Vấn đề gặp phải" style="height:200px" required></textarea>
 
-            <input type="submit" value="Submit">
-
-            <div>
-                <h3>Hoặc liên hệ trực tiếp với chúng tôi</h3>
-                <i class="fa-solid fa-phone"><span>0908998888</span></i>
-                <i class="fa-solid fa-envelope"><span>nnp@email.com</span></i>
-            </div>
+            <input type="submit" value="Gửi thông tin">
 
         </form>
+
+        <div>
+            <h3>Hoặc liên hệ trực tiếp với chúng tôi</h3>
+            <i class="fa-solid fa-phone"><span>0908998888</span></i>
+            <i class="fa-solid fa-envelope"><span>nnp@email.com</span></i>
+        </div>
     </div>
 
     <footer id="footer"></footer>
@@ -53,6 +55,17 @@
         fetch('footer.html')
             .then(response => response.text())
             .then(data => document.getElementById('footer').innerHTML = data);
+    </script>
+
+    <script>
+        const form = document.querySelector('form');
+        form.addEventListener('submit', function (e) {
+            const problemSelect = document.getElementById('problem');
+            if (!problemSelect.value) {
+                e.preventDefault();
+                alert('Vui lòng chọn vấn đề trước khi gửi.');
+            }
+        });
     </script>
 </body>
 </html>
