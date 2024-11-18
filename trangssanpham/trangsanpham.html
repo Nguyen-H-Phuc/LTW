@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trang san pham 3</title>
-    <link rel="stylesheet" href="csssp.css">
-    <script src="locsanphamgiathapdencao.js"></script>
-    <script src="chuyentrangsanpham.js"></script>
+    <title>Trang san pham </title>
+    <link rel="stylesheet" href="../css/csssp.css">
+    <script src="../js/locsanphamgiathapdencao.js"></script>
+    <script src="../js/chuyentrangsanpham.js"></script>
 </head>
 <body>
 <!-- boc loc san pham-->
@@ -15,7 +15,7 @@
     <span class="hom-filter-label">Sap xep theo</span>
     <button class="btn">Pho bien </button>
     <button class="btn" onclick="redirectToNewPage()">Moi nhat </button>
-    <button class="btn" onclick="filterBestSellers()" >Ban chay </button>
+    <button class="btn" onclick="filterBestSellers()">Ban chay </button>
     <div class="filter-group">
         <label for="price-filter">Sắp xếp giá:</label>
         <select id="price-filter" onchange="sortProducts()">
@@ -31,130 +31,131 @@
     <div class="headline">
 
         <ul class="products">
-            <li data-best-seller="true">
+            <li data-best-seller="true" >
                 <div class="product-item">
                     <div class="product-top">
                         <a href="" class="product-thumb">
-                            <img src="anh/product/20.jpg" alt="">
+                            <img src="../anh/product/1.jpg" alt="">
                         </a>
                         <!--Mua ngay-->
                         <a href="" class="buy-now">Mua ngay</a>
                     </div>
                     <div class="product-info">
                         <a href="" class="product-cat"> Xe tay ga</a>
-                        <a href="" class="product-name"> Nouvo 4 LX</a>
+                        <a href="" class="product-name"> Yamaha Nozza</a>
                         <div class="product-price">Giá: 80.000 VND</div>
                     </div>
                 </div>
             </li>
-            <li data-best-seller="true">
+            <li data-best-seller="true" >
                 <div class="product-item">
                     <div class="product-top">
                         <a href="" class="product-thumb">
-                            <img src="anh/product/21.jpg" alt="">
+                            <img src="../anh/product/2.jpg" alt="">
                         </a>
                         <!--Mua ngay-->
                         <a href="" class="buy-now">Mua ngay</a>
                     </div>
                     <div class="product-info">
                         <a href="" class="product-cat"> Xe tay ga</a>
-                        <a href="" class="product-name">Yamaha Grande</a>
+                        <a href="" class="product-name"> Honda Vison</a>
                         <div class="product-price">Giá: 90.000 VND</div>
                     </div>
                 </div>
             </li>
-            <li data-best-seller="true">
+            <li>
                 <div class="product-item">
                     <div class="product-top">
                         <a href="" class="product-thumb">
-                            <img src="anh/product/22.jpg" alt="">
+                            <img src="../anh/product/3.jpg" alt="">
                         </a>
                         <!--Mua ngay-->
                         <a href="" class="buy-now">Mua ngay</a>
                     </div>
                     <div class="product-info">
-                        <a href="" class="product-cat"> Xe tay ga</a>
-                        <a href="" class="product-name">Yamaha Janus</a>
-                        <div class="product-price">Giá: 90.000 VND</div>
+                        <a href="" class="product-cat"> Xe tay số</a>
+                        <a href="" class="product-name"> Honda Wave RSX</a>
+                        <div class="product-price">Giá: 50.000 VND</div>
                     </div>
                 </div>
-            </li><li>
+            </li>
+            <li>
             <div class="product-item">
                 <div class="product-top">
                     <a href="" class="product-thumb">
-                        <img src="anh/product/23.jpg" alt="">
+                        <img src="../anh/product/4.jpg" alt="">
                     </a>
                     <!--Mua ngay-->
                     <a href="" class="buy-now">Mua ngay</a>
                 </div>
                 <div class="product-info">
-                    <a href="" class="product-cat"> Xe tay ga</a>
-                    <a href="" class="product-name">Yamaha Janus</a>
-                    <div class="product-price">Giá: 90.000 VND</div>
+                    <a href="" class="product-cat"> Xe tay số</a>
+                    <a href="" class="product-name"> Sirius RC</a>
+                    <div class="product-price">Giá: 50.000 VND</div>
                 </div>
             </div>
         </li>
-            <li>
+            <li data-best-seller="true">
                 <div class="product-item">
                     <div class="product-top">
                         <a href="" class="product-thumb">
-                            <img src="anh/product/24.jpg" alt="">
+                            <img src="../anh/product/5.jpg" alt="">
                         </a>
                         <!--Mua ngay-->
                         <a href="" class="buy-now">Mua ngay</a>
                     </div>
                     <div class="product-info">
                         <a href="" class="product-cat"> Xe tay ga</a>
-                        <a href="" class="product-name"> Suzuki Hayate</a>
-                        <div class="product-price">Giá: 60.000 VND</div>
+                        <a href="" class="product-name"> Liberty</a>
+                        <div class="product-price">Giá: 90.000 VND</div>
                     </div>
                 </div>
             </li>
-            <li>
+            <li data-best-seller="true">
                 <div class="product-item">
                     <div class="product-top">
                         <a href="" class="product-thumb">
-                            <img src="anh/product/25.jpg" alt="">
+                            <img src="../anh/product/6.jpg" alt="">
                         </a>
                         <!--Mua ngay-->
                         <a href="" class="buy-now">Mua ngay</a>
                     </div>
                     <div class="product-info">
                         <a href="" class="product-cat"> Xe tay ga</a>
-                        <a href="" class="product-name">Elizabeth</a>
-                        <div class="product-price">Giá: 60.000</div>
+                        <a href="" class="product-name"> Piago Vespa</a>
+                        <div class="product-price">Giá: 90.000</div>
                     </div>
                 </div>
             </li>
-            <li>
+            <li data-best-seller="true">
                 <div class="product-item">
                     <div class="product-top">
                         <a href="" class="product-thumb">
-                            <img src="anh/product/26.jpg" alt="">
+                            <img src="../anh/product/7.jpg" alt="">
                         </a>
                         <!--Mua ngay-->
                         <a href="" class="buy-now">Mua ngay</a>
                     </div>
                     <div class="product-info">
                         <a href="" class="product-cat"> Xe tay ga</a>
-                        <a href="" class="product-name"> Shark mini 125 EFI</a>
+                        <a href="" class="product-name"> Honda SH</a>
+                        <div class="product-price">Giá:180.000 <VND></VND></div>
+                    </div>
+                </div>
+            </li>
+            <li >
+                <div class="product-item">
+                    <div class="product-top">
+                        <a href="" class="product-thumb">
+                            <img src="../anh/product/8.jpg" alt="">
+                        </a>
+                        <!--Mua ngay-->
+                        <a href="" class="buy-now">Mua ngay</a>
+                    </div>
+                    <div class="product-info">
+                        <a href="" class="product-cat"> Xe tay ga</a>
+                        <a href="" class="product-name"> Lead 125CC</a>
                         <div class="product-price">Giá: 80.000 VND</div>
-                    </div>
-                </div>
-            </li>
-            <li>
-                <div class="product-item">
-                    <div class="product-top">
-                        <a href="" class="product-thumb">
-                            <img src="anh/product/27.jpg" alt="">
-                        </a>
-                        <!--Mua ngay-->
-                        <a href="" class="buy-now">Mua ngay</a>
-                    </div>
-                    <div class="product-info">
-                        <a href="" class="product-cat"> Xe tay ga</a>
-                        <a href="" class="product-name"> Luvias GTX</a>
-                        <div class="product-price">Giá: 70.000 VND</div>
                     </div>
                 </div>
             </li>
@@ -167,7 +168,6 @@
         <a href="trangsanpham4.html" onclick="changePage(4)" class="page">4</a>
         <!-- More pagination links if needed -->
     </div>
-</div>
 </div>
 </body>
 </html>
