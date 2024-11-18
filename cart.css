@@ -1,0 +1,31 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* General body style */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f8f8;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+/* Cart item style */
+.row {
+    display: flex;
+}
+
+.col-left{
+    width: 65%;
+    margin-top: 20px;
+    margin-left: 170px;
+}
+
+.col-right{
+    width: 35%;
+    margin-top: 6px;
+    margin-right: 170px;
+}
