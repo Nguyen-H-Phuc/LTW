@@ -62,3 +62,37 @@ body {
     margin: 0 1rem;
     color: #555;
 }
+
+.cart-item input[type="number"] {
+    width: 60px;
+    padding: 0.5rem;
+    text-align: center;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin: 0 1rem;
+}
+
+.cart-icon {
+    cursor: pointer;
+    color: #ff5722;
+    margin: 0 1rem;
+}
+
+.cart-icon:hover {
+    color: #d9534f;
+}
+/* Cart footer style */
+.cart-footer {
+    padding: 1rem;
+    background-color: #dfdfdf;
+    border-radius: 8px;
+    margin-top: 2rem;
+}
+
+.cart-footer .form-control {
+    margin-bottom: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 1rem;
+    width: 100%;
+}
