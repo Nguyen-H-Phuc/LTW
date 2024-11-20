@@ -7,7 +7,7 @@
     /* Allow wrapping for smaller screens */
 }
 
-.top-content{
+.information-content{
     width: 100%;
     height: auto;
     display: flex;
@@ -19,7 +19,7 @@
 }
 
 /* Product Slide Show */
-.product-slide-show {
+.product-image {
     width: 60vw;
     max-width: 860px;
     height: 90vh;
@@ -42,48 +42,6 @@
     margin: 0 auto;       /* Center the image if it is smaller than the container */
 }
 
-/* Button Hover Effects */
-.btn:hover {
-    color: #000;
-    cursor: pointer;
-}
-
-.btn {
-    font-size: 2rem;
-    color: #999;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    transition: color 0.5s;
-}
-
-.btn-left {
-    left: 0;
-}
-
-.btn-right {
-    right: 0;
-}
-
-/* Image Index Indicators */
-.index-images {
-    position: absolute;
-    bottom: 10px;
-    display: flex;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-.index-item {
-    border: 2px solid #999;
-    padding: 3px;
-    margin: 3px;
-    border-radius: 50%;
-}
-
-.active {
-    background-color: #999;
-}
 
 /* Rental Information */
 .rental-information {
@@ -335,6 +293,8 @@
     color: #d9534f;
     font-weight: bold;
 }
+
+
 
 
 
