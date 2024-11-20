@@ -12,11 +12,9 @@
 <div class="product-detail">
     <header id="header"></header>
     <div class="container">
-        <div class="top-content">
-            <div class="product-slide-show">
-                <div class="product-image">
-                    <img src="assets/img/product-img/Wave-RSX.png" alt="Wave RSX">
-                </div>
+        <div class="information-content">
+            <div class="product-image">
+                <img src="assets/img/product-img/Wave-RSX.png" alt="Wave RSX">
             </div>
             <form class="rental-information" action="/submit-rental" method="post">
                 <div class="info">
@@ -43,7 +41,6 @@
                     </div>
                 </div>
             </form>
-
         </div>
 
         <div class="product-summary">
@@ -117,11 +114,8 @@
                 </div>
             </div>
         </div>
-
-
-
-
     </div>
+
     <div id="footer"></div>
 
     <script>
@@ -135,7 +129,6 @@
             .then(response => response.text())
             .then(data => document.getElementById('footer').innerHTML = data);
     </script>
-    <script src="assets/js/product-detail.js"></script>
 </div>
 </body>
 </html>
