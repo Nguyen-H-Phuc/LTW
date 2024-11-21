@@ -5,17 +5,28 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trang san pham 3</title>
-    <link rel="stylesheet" href="../CSS/csssp.css">
-    <script src="../js/locsanphamgiathapdencao.js"></script>
-    <script src="../js/chuyentrangsanpham.js"></script>
+    <link rel="stylesheet" href="../csssanpham/csssp.css">
+    <script src="../../js/locsanphamgiathapdencao.js"></script>
+    <script src="../../js/chuyentrangsanpham.js"></script>
+    <script>
+        // Chèn header
+        fetch('header.html')
+            .then(response => response.text())
+            .then(data => document.getElementById('header').innerHTML = data);
+
+        // Chèn footer
+        fetch('footer.html')
+            .then(response => response.text())
+            .then(data => document.getElementById('footer').innerHTML = data);
+    </script>
 </head>
 <body>
+<header id="header"></header>
 <!-- boc loc san pham-->
 <div class="hom-filter">
-    <span class="hom-filter-label">Sap xep theo</span>
-    <button class="btn">Pho bien </button>
-    <button class="btn" onclick="redirectToNewPage()">Moi nhat </button>
-    <button class="btn" onclick="filterBestSellers()" >Ban chay </button>
+    <span class="hom-filter-label">Sắp xêp theo</span>
+    <button class="btnloc" onclick="redirectToNewPage()">Mới nhât </button>
+    <button class="btnloc" onclick="filterBestSellers()" >Bán chạy </button>
     <div class="filter-group">
         <label for="price-filter">Sắp xếp giá:</label>
         <select id="price-filter" onchange="sortProducts()">
@@ -35,7 +46,7 @@
                 <div class="product-item">
                     <div class="product-top">
                         <a href="" class="product-thumb">
-                            <img src="../anh/product/20.jpg" alt="">
+                            <img src="../../anh/product/20.jpg" alt="">
                         </a>
                         <!--Mua ngay-->
                         <a href="" class="buy-now">Mua ngay</a>
@@ -51,7 +62,7 @@
                 <div class="product-item">
                     <div class="product-top">
                         <a href="" class="product-thumb">
-                            <img src="../anh/product/21.jpg" alt="">
+                            <img src="../../anh/product/21.jpg" alt="">
                         </a>
                         <!--Mua ngay-->
                         <a href="" class="buy-now">Mua ngay</a>
@@ -67,7 +78,7 @@
                 <div class="product-item">
                     <div class="product-top">
                         <a href="" class="product-thumb">
-                            <img src="../anh/product/22.jpg" alt="">
+                            <img src="../../anh/product/22.jpg" alt="">
                         </a>
                         <!--Mua ngay-->
                         <a href="" class="buy-now">Mua ngay</a>
@@ -82,7 +93,7 @@
             <div class="product-item">
                 <div class="product-top">
                     <a href="" class="product-thumb">
-                        <img src="../anh/product/23.jpg" alt="">
+                        <img src="../../anh/product/23.jpg" alt="">
                     </a>
                     <!--Mua ngay-->
                     <a href="" class="buy-now">Mua ngay</a>
@@ -98,7 +109,7 @@
                 <div class="product-item">
                     <div class="product-top">
                         <a href="" class="product-thumb">
-                            <img src="../anh/product/24.jpg" alt="">
+                            <img src="../../anh/product/24.jpg" alt="">
                         </a>
                         <!--Mua ngay-->
                         <a href="" class="buy-now">Mua ngay</a>
@@ -114,7 +125,7 @@
                 <div class="product-item">
                     <div class="product-top">
                         <a href="" class="product-thumb">
-                            <img src="../anh/product/25.jpg" alt="">
+                            <img src="../../anh/product/25.jpg" alt="">
                         </a>
                         <!--Mua ngay-->
                         <a href="" class="buy-now">Mua ngay</a>
@@ -130,7 +141,7 @@
                 <div class="product-item">
                     <div class="product-top">
                         <a href="" class="product-thumb">
-                            <img src="../anh/product/26.jpg" alt="">
+                            <img src="../../anh/product/26.jpg" alt="">
                         </a>
                         <!--Mua ngay-->
                         <a href="" class="buy-now">Mua ngay</a>
@@ -146,7 +157,7 @@
                 <div class="product-item">
                     <div class="product-top">
                         <a href="" class="product-thumb">
-                            <img src="../anh/product/27.jpg" alt="">
+                            <img src="../../anh/product/27.jpg" alt="">
                         </a>
                         <!--Mua ngay-->
                         <a href="" class="buy-now">Mua ngay</a>
@@ -167,6 +178,7 @@
         <a href="trangsanpham4.html" onclick="changePage(4)" class="page">4</a>
         <!-- More pagination links if needed -->
     </div>
+    <div id="footer"></div>
 </div>
 </div>
 </body>

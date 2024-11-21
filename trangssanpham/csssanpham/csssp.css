@@ -25,7 +25,7 @@ body {
 }
 
 /* Định dạng các nút */
-.btn {
+.btnloc {
     padding: 10px 15px;
     font-size: 14px;
     border: 1px solid #ddd;
@@ -38,7 +38,7 @@ body {
 }
 
 /* Hiệu ứng khi rê chuột vào nút */
-.btn:hover {
+.btnloc:hover {
     background-color: #007bff; /* Màu nền xanh lam */
     color: #ffffff; /* Màu chữ trắng */
     border-color: #007bff; /* Màu viền xanh lam */
