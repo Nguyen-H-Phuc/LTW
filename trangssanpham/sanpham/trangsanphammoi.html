@@ -5,16 +5,28 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trang san pham moi </title>
-    <link rel="stylesheet" href="../css/csssp.css">
-    <script src="../js/locsanphamgiathapdencao.js"></script>
+    <link rel="stylesheet" href="../csssanpham/csssp.css">
+    <script src="../../js/locsanphamgiathapdencao.js"></script>
+    <script>
+        // Chèn header
+        fetch('header.html')
+            .then(response => response.text())
+            .then(data => document.getElementById('header').innerHTML = data);
+
+        // Chèn footer
+        fetch('footer.html')
+            .then(response => response.text())
+            .then(data => document.getElementById('footer').innerHTML = data);
+    </script>
 </head>
 <body>
+<header id="header"></header>
 <!-- boc loc san pham-->
 <div class="hom-filter">
-    <span class="hom-filter-label">Sap xep theo</span>
-    <button class="btn">Pho bien </button>
-    <button class="btn" >Moi nhat </button>
-    <button class="btn" onclick="filterBestSellers()">Ban chay </button>
+    <span class="hom-filter-label">Sắp xếp theo</span>
+
+    <button class="btnloc" >Mới nhất </button>
+    <button class="btnloc" onclick="filterBestSellers()">Bán chạy </button>
     <div class="filter-group">
         <label for="price-filter">Sắp xếp giá:</label>
         <select id="price-filter" onchange="sortProducts()">
@@ -34,7 +46,7 @@
                 <div class="product-item">
                     <div class="product-top">
                         <a href="" class="product-thumb">
-                            <img src="../anh/product/1.jpg" alt="">
+                            <img src="../../anh/product/1.jpg" alt="">
                         </a>
                         <!--Mua ngay-->
                         <a href="" class="buy-now">Mua ngay</a>
@@ -50,7 +62,7 @@
                 <div class="product-item">
                     <div class="product-top">
                         <a href="" class="product-thumb">
-                            <img src="../anh/product/2.jpg" alt="">
+                            <img src="../../anh/product/2.jpg" alt="">
                         </a>
                         <!--Mua ngay-->
                         <a href="" class="buy-now">Mua ngay</a>
@@ -66,7 +78,7 @@
                 <div class="product-item">
                     <div class="product-top">
                         <a href="" class="product-thumb">
-                            <img src="../anh/product/21.jpg" alt="">
+                            <img src="../../anh/product/21.jpg" alt="">
                         </a>
                         <!--Mua ngay-->
                         <a href="" class="buy-now">Mua ngay</a>
@@ -82,7 +94,7 @@
                 <div class="product-item">
                     <div class="product-top">
                         <a href="" class="product-thumb">
-                            <img src="../anh/product/22.jpg" alt="">
+                            <img src="../../anh/product/22.jpg" alt="">
                         </a>
                         <!--Mua ngay-->
                         <a href="" class="buy-now">Mua ngay</a>
@@ -98,7 +110,7 @@
                 <div class="product-item">
                     <div class="product-top">
                         <a href="" class="product-thumb">
-                            <img src="../anh/product/5.jpg" alt="">
+                            <img src="../../anh/product/5.jpg" alt="">
                         </a>
                         <!--Mua ngay-->
                         <a href="" class="buy-now">Mua ngay</a>
@@ -114,7 +126,7 @@
                 <div class="product-item">
                     <div class="product-top">
                         <a href="" class="product-thumb">
-                            <img src="../anh/product/6.jpg" alt="">
+                            <img src="../../anh/product/6.jpg" alt="">
                         </a>
                         <!--Mua ngay-->
                         <a href="" class="buy-now">Mua ngay</a>
@@ -130,7 +142,7 @@
                 <div class="product-item">
                     <div class="product-top">
                         <a href="" class="product-thumb">
-                            <img src="../anh/product/7.jpg" alt="">
+                            <img src="../../anh/product/7.jpg" alt="">
                         </a>
                         <!--Mua ngay-->
                         <a href="" class="buy-now">Mua ngay</a>
@@ -146,7 +158,7 @@
                 <div class="product-item">
                     <div class="product-top">
                         <a href="" class="product-thumb">
-                            <img src="../anh/product/8.jpg" alt="">
+                            <img src="../../anh/product/8.jpg" alt="">
                         </a>
                         <!--Mua ngay-->
                         <a href="" class="buy-now">Mua ngay</a>
@@ -161,5 +173,6 @@
         </ul>
     </div>
 </div>
+<div id="footer"></div>
 </body>
 </html>

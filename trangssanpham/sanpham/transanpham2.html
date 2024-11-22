@@ -4,18 +4,30 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trang san pham 3</title>
-    <link rel="stylesheet" href="../css/csssp.css">
-    <script src="../js/locsanphamgiathapdencao.js"></script>
-    <script src="../js/chuyentrangsanpham.js"></script>
+    <title>Trang san pham 2</title>
+    <link rel="stylesheet" href="../csssanpham/csssp.css">
+    <script src="../../js/locsanphamgiathapdencao.js"></script>
+    <script src="../../js/chuyentrangsanpham.js"></script>
+    <script>
+        // Chèn header
+        fetch('header.html')
+            .then(response => response.text())
+            .then(data => document.getElementById('header').innerHTML = data);
+
+        // Chèn footer
+        fetch('footer.html')
+            .then(response => response.text())
+            .then(data => document.getElementById('footer').innerHTML = data);
+    </script>
 </head>
 <body>
+<header id="header"></header>
 <!-- boc loc san pham-->
 <div class="hom-filter">
-    <span class="hom-filter-label">Sap xep theo</span>
-    <button class="btn">Pho bien </button>
-    <button class="btn" onclick="redirectToNewPage()">Moi nhat </button>
-    <button class="btn" onclick="filterBestSellers()" >Ban chay </button>
+    <span class="hom-filter-label">Sắp xếp theo</span>
+    <button class="btnloc">Pho bien </button>
+    <button class="btnloc" onclick="redirectToNewPage()">Mới nhất </button>
+    <button class="btnloc" onclick="filterBestSellers()">Bán chạy </button>
     <div class="filter-group">
         <label for="price-filter">Sắp xếp giá:</label>
         <select id="price-filter" onchange="sortProducts()">
@@ -31,19 +43,19 @@
     <div class="headline">
 
         <ul class="products">
-            <li data-best-seller="true">
+            <li>
                 <div class="product-item">
                     <div class="product-top">
                         <a href="" class="product-thumb">
-                            <img src="../anh/product/20.jpg" alt="">
+                            <img src="../../anh/product/12.jpg" alt="">
                         </a>
                         <!--Mua ngay-->
                         <a href="" class="buy-now">Mua ngay</a>
                     </div>
                     <div class="product-info">
-                        <a href="" class="product-cat"> Xe tay ga</a>
-                        <a href="" class="product-name"> Nouvo 4 LX</a>
-                        <div class="product-price">Giá: 80.000 VND</div>
+                        <a href="" class="product-cat"> Xe tay số</a>
+                        <a href="" class="product-name"> SYM Elegant II 100</a>
+                        <div class="product-price">Giá: 50.000 VND</div>
                     </div>
                 </div>
             </li>
@@ -51,62 +63,64 @@
                 <div class="product-item">
                     <div class="product-top">
                         <a href="" class="product-thumb">
-                            <img src="../anh/product/21.jpg" alt="">
+                            <img src="../../anh/product/13.jpg" alt="">
                         </a>
                         <!--Mua ngay-->
                         <a href="" class="buy-now">Mua ngay</a>
                     </div>
                     <div class="product-info">
-                        <a href="" class="product-cat"> Xe tay ga</a>
-                        <a href="" class="product-name">Yamaha Grande</a>
-                        <div class="product-price">Giá: 90.000 VND</div>
+                        <a href="" class="product-cat"> Xe tay số</a>
+                        <a href="" class="product-name">Honda Dream</a>
+                        <div class="product-price">Giá: 50.000 VND</div>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="product-item">
+                    <div class="product-top">
+                        <a href="" class="product-thumb">
+                            <img src="../../anh/product/14.jpg" alt="">
+                        </a>
+                        <!--Mua ngay-->
+                        <a href="" class="buy-now">Mua ngay</a>
+                    </div>
+                    <div class="product-info">
+                        <a href="" class="product-cat"> Xe tay số</a>
+                        <a href="" class="product-name">Honda future</a>
+                        <div class="product-price">Giá: 50.000 VND</div>
                     </div>
                 </div>
             </li>
             <li data-best-seller="true">
-                <div class="product-item">
-                    <div class="product-top">
-                        <a href="" class="product-thumb">
-                            <img src="../anh/product/22.jpg" alt="">
-                        </a>
-                        <!--Mua ngay-->
-                        <a href="" class="buy-now">Mua ngay</a>
-                    </div>
-                    <div class="product-info">
-                        <a href="" class="product-cat"> Xe tay ga</a>
-                        <a href="" class="product-name">Yamaha Janus</a>
-                        <div class="product-price">Giá: 90.000 VND</div>
-                    </div>
-                </div>
-            </li><li>
             <div class="product-item">
                 <div class="product-top">
                     <a href="" class="product-thumb">
-                        <img src="../anh/product/23.jpg" alt="">
+                        <img src="../../anh/product/15.jpg" alt="">
                     </a>
                     <!--Mua ngay-->
                     <a href="" class="buy-now">Mua ngay</a>
                 </div>
                 <div class="product-info">
                     <a href="" class="product-cat"> Xe tay ga</a>
-                    <a href="" class="product-name">Yamaha Janus</a>
-                    <div class="product-price">Giá: 90.000 VND</div>
+                    <a href="" class="product-name">Honda Click</a>
+                    <div class="product-price">Giá: 80.000 VND</div>
                 </div>
             </div>
         </li>
-            <li>
+            <li
+                    data-best-seller="true">
                 <div class="product-item">
                     <div class="product-top">
                         <a href="" class="product-thumb">
-                            <img src="../anh/product/24.jpg" alt="">
+                            <img src="../../anh/product/16.jpg" alt="">
                         </a>
                         <!--Mua ngay-->
                         <a href="" class="buy-now">Mua ngay</a>
                     </div>
                     <div class="product-info">
                         <a href="" class="product-cat"> Xe tay ga</a>
-                        <a href="" class="product-name"> Suzuki Hayate</a>
-                        <div class="product-price">Giá: 60.000 VND</div>
+                        <a href="" class="product-name"> Air Blade 125cc</a>
+                        <div class="product-price">Giá: 90.000 VND</div>
                     </div>
                 </div>
             </li>
@@ -114,47 +128,47 @@
                 <div class="product-item">
                     <div class="product-top">
                         <a href="" class="product-thumb">
-                            <img src="../anh/product/25.jpg" alt="">
+                            <img src="../../anh/product/17.jpg" alt="">
                         </a>
                         <!--Mua ngay-->
                         <a href="" class="buy-now">Mua ngay</a>
                     </div>
                     <div class="product-info">
-                        <a href="" class="product-cat"> Xe tay ga</a>
-                        <a href="" class="product-name">Elizabeth</a>
-                        <div class="product-price">Giá: 60.000</div>
+                        <a href="" class="product-cat"> Xe tay số</a>
+                        <a href="" class="product-name">Blade 110cc</a>
+                        <div class="product-price">Giá: 50.000</div>
                     </div>
                 </div>
             </li>
-            <li>
+            <li data-best-seller="true">
                 <div class="product-item">
                     <div class="product-top">
                         <a href="" class="product-thumb">
-                            <img src="../anh/product/26.jpg" alt="">
+                            <img src="../../anh/product/18.jpg" alt="">
                         </a>
                         <!--Mua ngay-->
                         <a href="" class="buy-now">Mua ngay</a>
                     </div>
                     <div class="product-info">
-                        <a href="" class="product-cat"> Xe tay ga</a>
-                        <a href="" class="product-name"> Shark mini 125 EFI</a>
-                        <div class="product-price">Giá: 80.000 VND</div>
+                        <a href="" class="product-cat"> Xe tay số</a>
+                        <a href="" class="product-name"> Honda Winner</a>
+                        <div class="product-price">Giá: 150.000 VND</div>
                     </div>
                 </div>
             </li>
-            <li>
+            <li data-best-seller="true">
                 <div class="product-item">
                     <div class="product-top">
                         <a href="" class="product-thumb">
-                            <img src="../anh/product/27.jpg" alt="">
+                            <img src="../../anh/product/19.jpg" alt="">
                         </a>
                         <!--Mua ngay-->
                         <a href="" class="buy-now">Mua ngay</a>
                     </div>
                     <div class="product-info">
-                        <a href="" class="product-cat"> Xe tay ga</a>
-                        <a href="" class="product-name"> Luvias GTX</a>
-                        <div class="product-price">Giá: 70.000 VND</div>
+                        <a href="" class="product-cat"> Xe tay số</a>
+                        <a href="" class="product-name"> Exciter 150 RC</a>
+                        <div class="product-price">Giá: 150.000 VND</div>
                     </div>
                 </div>
             </li>
@@ -168,6 +182,6 @@
         <!-- More pagination links if needed -->
     </div>
 </div>
-</div>
+<div id="footer"></div>
 </body>
 </html>

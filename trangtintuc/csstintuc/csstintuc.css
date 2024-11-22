@@ -18,18 +18,21 @@ body {
     max-width: 1000px;
     margin: 30px auto;
     padding: 20px;
+    box-sizing: border-box;
+
 }
 
 /* Tiêu đề trang */
 .title {
+    font-size: 3rem; /* Kích thước chữ */
+    color: #ff4500; /* Màu chữ */
     text-align: center;
-    font-size: 32px;
-    color: #e63946;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    margin-bottom: 40px;
-    font-weight: bold;
+    text-transform: uppercase; /* Viết hoa toàn bộ */
+    animation: glow 2s infinite; /* Tên hiệu ứng, thời gian, lặp vô hạn */
+    font-family: 'Arial', sans-serif; /* Kiểu chữ */
+
 }
+
 
 /* Lưới tin tức */
 .news-grid {
@@ -71,6 +74,15 @@ body {
     margin: 15px 10px 5px;
     text-align: left;
 }
+.news-item a {
+    text-decoration: none; /* Xóa gạch chân */
+    color: inherit; /* Giữ màu chữ như nội dung */
+}
+
+.news-item a:hover {
+    color: #007bff; /* Màu khi hover (tùy chọn) */
+    text-decoration: none; /* Đảm bảo không có gạch chân khi hover */
+}
 
 /* Mô tả ngắn */
 .news-item p {
@@ -89,4 +101,7 @@ body {
 /* Định dạng phần chữ in đậm */
 strong {
     color: #e63946;
+}
+.slider{
+    width: 100%;
 }
