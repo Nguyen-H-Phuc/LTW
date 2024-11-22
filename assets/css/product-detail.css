@@ -2,7 +2,9 @@
     width: 100%;
     display: flex;
     justify-content: space-between;  /* Align child elements to the left and right */
-    flex-wrap: wrap;                 /* Allow wrapping for smaller screens */
+    flex-wrap: wrap;
+    z-index: 0;
+    /* Allow wrapping for smaller screens */
 }
 
 .top-content{
@@ -13,7 +15,7 @@
     align-content: center;
     flex-wrap: wrap;  /* Cho phép các phần tử quấn xuống nếu không đủ không gian */
     gap: 10px;
-
+    margin-top: 5rem;
 }
 
 /* Product Slide Show */
@@ -29,7 +31,6 @@
 
 /* Product Image */
 .product-image {
-    display: flex;
     transition: transform 0.5s;
 }
 
@@ -214,6 +215,7 @@
 .product-summary div p {
     margin: 0;
     font-weight: bold;
+    line-height: 1.6;
 }
 
 .product-summary div p span {
