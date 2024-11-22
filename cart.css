@@ -4,16 +4,6 @@
     box-sizing: border-box;
 }
 
-
-
-
-/*Header*/
-.header{
-    height: 100px;
-    background-color: var(--white-color);
-    width: 100%;
-
-=======
 /* General body style */
 body {
     font-family: 'Arial', sans-serif;
@@ -21,6 +11,7 @@ body {
     color: #333;
     margin: 0;
     padding: 0;
+    font-size: 0.9rem;
 
 }
 
@@ -32,13 +23,13 @@ body {
 .col-left{
     width: 65%;
     margin-top: 20px;
-    margin-left: 170px;
+    margin-left: 100px;
 }
 
 .col-right{
     width: 35%;
     margin-top: 6px;
-    margin-right: 170px;
+    margin-right: 100px;
 }
 
 .container h1{
@@ -64,7 +55,7 @@ body {
 }
 
 .cart-img {
-    max-width: 80px;
+    max-width: 50px;
     border-radius: 8px;
     margin-right: 1rem;
 }
@@ -127,5 +118,3 @@ body {
 .shop-btn:hover {
     background-color: #e64a19;
 }
-
-
