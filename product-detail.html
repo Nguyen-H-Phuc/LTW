@@ -12,15 +12,13 @@
 <div class="product-detail">
     <header id="header"></header>
     <div class="container">
-        <div class="top-content">
-            <div class="product-slide-show">
-                <div class="product-image">
-                    <img src="assets/img/product-img/Wave-RSX-7.png" alt="Wave RSX">
-                </div>
+        <div class="information-content">
+            <div class="product-image">
+                <img src="assets/img/product-img/Wave-RSX.png" alt="Wave RSX">
             </div>
-            <div class="rental-information">
+            <form class="rental-information" action="/submit-rental" method="post">
                 <div class="info">
-                    <h1 class="name-moto" style="text-align: center" >Honda Wave-RSX</h1>
+                    <h1 class="name-moto" style="text-align: center">Honda Wave-RSX</h1>
                     <h2 class="cost">Giá thuê theo ngày: 100.000đ</h2>
                     <h2 class="cost">Giá thuê theo tuần: 665.000đ</h2>
                     <h2 class="cost">Giá thuê theo tháng: 2.850.000đ</h2>
@@ -29,20 +27,20 @@
                 <div class="fill-in-info">
                     <div class="fill-in-item">
                         <label for="delivery-location">Địa điểm giao xe</label>
-                        <input type="text" id="delivery-location">
+                        <input type="text" id="delivery-location" name="delivery-location">
                         <label for="return-location">Địa điểm trả xe</label>
-                        <input type="text" id="return-location"><br>
+                        <input type="text" id="return-location" name="return-location"><br>
                         <label for="delivery-time">Thời gian nhận xe</label>
-                        <input type="date" id="delivery-time">
+                        <input type="date" id="delivery-time" name="delivery-time">
                         <label for="return-time">Thời gian trả xe</label>
-                        <input type="date" id="return-time">
+                        <input type="date" id="return-time" name="return-time">
                     </div>
                     <div class="button">
-                        <button type="button" onclick="alert('Bạn đã đặt xe thành công.')">Đặt xe</button>
+                        <button type="submit">Đặt xe</button>
                         <button type="button" onclick="alert('Bạn đã thêm vào giỏ hàng thành công.')">Thêm vào giỏ hàng</button>
                     </div>
                 </div>
-            </div>
+            </form>
         </div>
 
         <div class="product-summary">
@@ -116,11 +114,8 @@
                 </div>
             </div>
         </div>
-
-
-
-
     </div>
+
     <div id="footer"></div>
 
     <script>
@@ -134,7 +129,6 @@
             .then(response => response.text())
             .then(data => document.getElementById('footer').innerHTML = data);
     </script>
-    <script src="assets/js/product-detail.js"></script>
 </div>
 </body>
 </html>

@@ -7,7 +7,7 @@
     /* Allow wrapping for smaller screens */
 }
 
-.top-content{
+.information-content{
     width: 100%;
     height: auto;
     display: flex;
@@ -19,7 +19,7 @@
 }
 
 /* Product Slide Show */
-.product-slide-show {
+.product-image {
     width: 60vw;
     max-width: 860px;
     height: 90vh;
@@ -42,48 +42,6 @@
     margin: 0 auto;       /* Center the image if it is smaller than the container */
 }
 
-/* Button Hover Effects */
-.btn:hover {
-    color: #000;
-    cursor: pointer;
-}
-
-.btn {
-    font-size: 2rem;
-    color: #999;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    transition: color 0.5s;
-}
-
-.btn-left {
-    left: 0;
-}
-
-.btn-right {
-    right: 0;
-}
-
-/* Image Index Indicators */
-.index-images {
-    position: absolute;
-    bottom: 10px;
-    display: flex;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-.index-item {
-    border: 2px solid #999;
-    padding: 3px;
-    margin: 3px;
-    border-radius: 50%;
-}
-
-.active {
-    background-color: #999;
-}
 
 /* Rental Information */
 .rental-information {
@@ -200,31 +158,37 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center; /* Đảm bảo nội dung căn giữa cả chiều ngang và dọc */
     font-size: 1.8rem;
     color: #333;
     text-align: center;
     max-width: 20rem;
+    height: 10rem; /* Đặt chiều cao cố định để đồng đều */
 }
+
 
 .product-summary div i {
     font-size: 30px;
     color: #4a90e2;
-    margin-bottom: 5px;
+    margin-bottom: 10px; /* Khoảng cách đều giữa icon và văn bản */
 }
 
 .product-summary div p {
     margin: 0;
     font-weight: bold;
     line-height: 1.6;
+    text-align: center;
+    min-height: 4rem; /* Đặt chiều cao tối thiểu cho văn bản */
 }
 
 .product-summary div p span {
-    display: block; /* Hiển thị dưới dạng block để xuống dòng */
+    display: block;
     color: #333;
     font-weight: lighter;
-    text-align: center; /* Căn giữa văn bản */
-    margin-top: 5px; /* Khoảng cách nhỏ giữa nội dung trước và sau */
+    text-align: center;
+    margin-top: 5px;
 }
+
 
 /*product-detail*/
 .products-detailed-information {
@@ -335,6 +299,20 @@
     color: #d9534f;
     font-weight: bold;
 }
+
+.column {
+    float: left;
+    width: 33.33%;
+    padding: 15px;
+}
+
+/* Clear floats after the columns */
+.row::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
 
 
 
