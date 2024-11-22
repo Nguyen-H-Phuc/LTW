@@ -1,29 +1,43 @@
-body {
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
-    margin: 0;
-    padding: 0;
-    background-color: #f9f9f9;
-    color: #333;
+.accordion {
+    background-color: #fff;
+    color: #444;
+    cursor: pointer;
+    padding: 1.8rem;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 1.8rem;
+    font-weight: bolder;
+    transition: 0.4s;
 }
 
-
-main {
-    padding: 20px;
-    max-width: 800px;
-    margin: auto;
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+.active, .accordion:hover {
+    background-color: #ccc;
 }
 
-h1, h2 {
-    color: #4CAF50;
+.accordion:after {
+    content: '\002B';
+    color: #777;
+    font-weight: bold;
+    float: right;
+    margin-left: 5px;
 }
 
-ul {
-    margin: 10px 0;
-    padding-left: 20px;
+.active:after {
+    content: "\2212";
+}
+
+.panel {
+    padding: 0 18px;
+    background-color: white;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+}
+
+.panel li,p{
+    font-size: 1.6rem;
 }
 
 
