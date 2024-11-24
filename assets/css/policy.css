@@ -40,4 +40,23 @@
     font-size: 1.6rem;
 }
 
+.wrapper {
+    display: flex;           /* Kích hoạt Flexbox */
+    justify-content: center; /* Căn giữa theo chiều ngang */
+    align-items: center;     /* Căn giữa theo chiều dọc */
+    min-height: 100vh;       /* Đảm bảo wrapper chiếm toàn bộ chiều cao màn hình */
+}
+
+
+main {
+    margin: 2rem 0;
+    align-items: center;
+    padding: 20px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+}
+
+
 
