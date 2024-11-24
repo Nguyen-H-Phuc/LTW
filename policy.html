@@ -4,12 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Chính Sách Thuê Xe Máy</title>
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/policy.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-<header>
-  <h1>Chính Sách Thuê Xe Máy</h1>
-</header>
+<header id="header"></header>
+<div class="wrapper">
 <main>
+  <h1>Chính Sách Thuê Xe Máy</h1>
   <section>
     <button class="accordion">1. Điều Kiện Thuê Xe</button>
     <div class="panel">
@@ -112,17 +115,16 @@
       <div class="panel">
         <p>Nếu bạn cần hỗ trợ, vui lòng liên hệ qua:</p>
         <ul>
-          <li><strong>Số điện thoại:</strong> [Số điện thoại công ty]</li>
-          <li><strong>Email:</strong> [Email hỗ trợ]</li>
-          <li><strong>Địa chỉ:</strong> [Địa chỉ văn phòng]</li>
+          <li><strong>Số điện thoại:</strong> 0908889999</li>
+          <li><strong>Email:</strong> nnp@email.com</li>
+          <li><strong>Địa chỉ:</strong> Trường đại học Nông Lâm Hồ Chí Minh</li>
         </ul>
         <p>Chúng tôi cam kết cung cấp dịch vụ tốt nhất để chuyến đi của bạn trở nên an toàn và tiện lợi.</p>
       </div>
   </section>
 </main>
-<footer>
-  <p>&copy; 2024 Công Ty Thuê Xe Máy. Mọi quyền được bảo lưu.</p>
-</footer>
+</div>
+<footer id="footer"></footer>
 <script>
   var acc = document.getElementsByClassName("accordion");
   var i;
@@ -139,6 +141,16 @@
     });
   }
 </script>
+<script>
+  // Chèn header
+  fetch('header.html')
+          .then(response => response.text())
+          .then(data => document.getElementById('header').innerHTML = data);
 
+  // Chèn footer
+  fetch('footer.html')
+          .then(response => response.text())
+          .then(data => document.getElementById('footer').innerHTML = data);
+</script>
 </body>
 </html>
