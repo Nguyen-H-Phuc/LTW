@@ -13,7 +13,7 @@
     display: flex;
     justify-content: center;
     align-content: center;
-    flex-wrap: wrap;  /* Cho phép các phần tử quấn xuống nếu không đủ không gian */
+ /* Cho phép các phần tử quấn xuống nếu không đủ không gian */
     gap: 10px;
     margin-top: 5rem;
 }
@@ -120,79 +120,45 @@
 }
 
 /* Responsive Styles */
-@media (max-width: 768px) {
-    .fill-in-info {
-        padding: 15px;
+@media (max-width: 768px) { /* Áp dụng khi màn hình nhỏ hơn hoặc bằng 768px */
+    .product-image {
+        width: 100vw; /* Chiếm toàn bộ chiều rộng màn hình */
+        height: auto; /* Tự động điều chỉnh chiều cao theo tỉ lệ */
+        max-width: 100%; /* Đảm bảo không vượt quá 100% */
     }
 
-    .button {
-        flex-direction: column;
-    }
-
-    .button button {
-        width: 100%;
-        margin-bottom: 10px;
-    }
-
-    .product-slide-show {
-        width: 100vw;
-        height: auto;
+    .product-image img {
+        width: 100%; /* Chiếm toàn bộ chiều rộng của phần tử cha */
+        height: auto; /* Tự động điều chỉnh chiều cao theo tỉ lệ */
     }
 
     .rental-information {
+        width: 100vw; /* Chiếm toàn bộ chiều rộng màn hình */
+        max-width: 100%; /* Đảm bảo không vượt quá 100% */
+        margin: 0; /* Loại bỏ margin để không có khoảng cách dư thừa */
+    }
+
+    /* Đảm bảo khoảng cách giữa các thành phần */
+    .information-content {
+        flex-direction: column; /* Chuyển thành bố cục dọc */
+        gap: 20px; /* Tăng khoảng cách giữa các phần tử */
+    }
+
+    .fill-in-info{
+        width: 100vw; /* Chiếm toàn bộ chiều rộng màn hình */
+        max-width: 100%;
+    }
+
+    .products-detailed-information{
         width: 100vw;
+        max-width: 100%;
+        margin: 0;
     }
 }
-/* product sumary*/
-.product-summary {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    gap: 2rem;
-    padding: 10px 20px;
-    margin: 10rem auto;
-    width: fit-content;
-}
-
-.product-summary div {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center; /* Đảm bảo nội dung căn giữa cả chiều ngang và dọc */
-    font-size: 1.8rem;
-    color: #333;
-    text-align: center;
-    max-width: 20rem;
-    height: 10rem; /* Đặt chiều cao cố định để đồng đều */
-}
-
-
-.product-summary div i {
-    font-size: 30px;
-    color: #4a90e2;
-    margin-bottom: 10px; /* Khoảng cách đều giữa icon và văn bản */
-}
-
-.product-summary div p {
-    margin: 0;
-    font-weight: bold;
-    line-height: 1.6;
-    text-align: center;
-    min-height: 4rem; /* Đặt chiều cao tối thiểu cho văn bản */
-}
-
-.product-summary div p span {
-    display: block;
-    color: #333;
-    font-weight: lighter;
-    text-align: center;
-    margin-top: 5px;
-}
-
 
 /*product-detail*/
 .products-detailed-information {
-    width: 60%;
+    width: 100%;
     max-width: 1000px;
     margin: 0 auto;
     padding: 20px;
@@ -300,18 +266,8 @@
     font-weight: bold;
 }
 
-.column {
-    float: left;
-    width: 33.33%;
-    padding: 15px;
-}
 
-/* Clear floats after the columns */
-.row::after {
-    content: "";
-    display: table;
-    clear: both;
-}
+
 
 
 
