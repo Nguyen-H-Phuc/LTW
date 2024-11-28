@@ -68,7 +68,7 @@
 }
 
 .fill-in-item label {
-    font-size: 1.6rem;
+    font-size: 1.4rem;
     font-weight: bold;
     color: #333;
     margin-top: 10px;
@@ -81,7 +81,7 @@
     margin-bottom: 5px;
     border: 1px solid #ddd;
     border-radius: 4px;
-    font-size: 1.6rem;
+    font-size: 1.4rem;
     transition: border-color 0.3s ease;
 }
 
@@ -285,6 +285,11 @@
 
 #myBtn:hover {
     background-color: #555;
+}
+
+.info{
+    font-size: 1.4rem
+;
 }
 
 
