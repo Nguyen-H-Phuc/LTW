@@ -11,32 +11,41 @@
 <body>
     <header id="header"></header>
 
-    <div class="container">
-        <form action="" method="post">
-            <label for="fname">Họ tên</label>
-            <input type="text" id="fname" name="firstname" placeholder="Họ tên của bạn.." aria-label="Họ tên" required>
+    <div class="contact-container">
+        <div class="contact-info">
+            <h2>Liên Hệ Trực Tiếp Với Chúng Tôi</h2>
+            <div class="info-item">
+                <i class="fas fa-phone"></i>
+                <p><strong>Điện thoại:</strong> 0909999888</p>
+            </div>
+            <div class="info-item">
+                <i class="fas fa-envelope"></i>
+                <p><strong>Email:</strong> nnp@gmail.com</p>
+            </div>
+            <div class="info-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <p><strong>Địa chỉ:</strong> Trường đại học Nông Lâm TP.HCM</p>
+            </div>
+        </div>
+        <div class="contact-form">
+            <h2>Gửi Thông Tin Liên Hệ</h2>
+            <form action="" method="post">
+                <label for="name">Họ và Tên</label>
+                <input type="text" id="name" name="name" placeholder="Nhập họ và tên" required />
 
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" placeholder="Email" aria-label="Email" style="display: block; width: 100%" required>
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="Nhập địa chỉ email" required />
 
-            <label for="problem">Vấn đề gặp phải</label>
-            <select id="problem" name="problem">
-                <option value="" disabled selected>Chọn vấn đề của bạn</option>
-                <option value="Tài khoản có vấn đề">Tài khoản có vấn đề</option>
-                <option value="Vấn đề về xe">Vấn đề về xe</option>
-                <option value="Chính sách thuê xe">Chính sách thuê xe</option>
-                <option value="Góp ý">Góp ý</option>
-                <option value="Khác">Khác</option>
-            </select>
+                <label for="message">Tin nhắn</label>
+                <textarea id="message" name="message" placeholder="Nhập nội dung tin nhắn" required></textarea>
 
-            <label for="subject">Chi tiết vấn đề</label>
-            <textarea id="subject" name="subject" placeholder="Vấn đề gặp phải" style="height:200px; font-size: 1.6rem" required></textarea>
-
-            <input type="submit" value="Gửi thông tin">
-
-        </form>
-
+                <button type="submit">Gửi</button>
+            </form>
+        </div>
     </div>
+
+
+
 
     <footer id="footer"></footer>
 
@@ -52,15 +61,5 @@
             .then(data => document.getElementById('footer').innerHTML = data);
     </script>
 
-    <script>
-        const form = document.querySelector('form');
-        form.addEventListener('submit', function (e) {
-            const problemSelect = document.getElementById('problem');
-            if (!problemSelect.value) {
-                e.preventDefault();
-                alert('Vui lòng chọn vấn đề trước khi gửi.');
-            }
-        });
-    </script>
 </body>
 </html>
