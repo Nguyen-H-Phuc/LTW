@@ -36,7 +36,12 @@ body {
     transition: all 0.3s ease; /* Hiệu ứng mượt */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Bóng đổ nhẹ */
 }
+.btnloc.active {
+    background-color: #EE4D2D;
+    color: #fff;
+    border-color: #EE4D2D;
 
+}
 
 /* Hiệu ứng khi rê chuột vào nút */
 .btnloc:hover {
