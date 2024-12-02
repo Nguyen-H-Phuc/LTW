@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins :wght@300;400;500; 600&display=swap') ;
 
 :root {
-    --main-color: #DD2F6E;
+    --main-color: #fb6445;
     --color-dark: #1D2231;
     --text-grey: #8390A2;
 }
@@ -13,20 +13,23 @@
     text-decoration: none;
     font-family: 'Poppins', sans-serif;
 }
-.sidebar{
-    width: 345px;
+.sidebar {
+    width: 290px;
     position: fixed;
     left: 0;
     top: 0;
     height: 100%;
     background: var(--main-color);
     z-index: 100;
-    transition: width 300ms ;
-
+    transition: width 300ms;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 .sidebar-brand{
     height: 90px;
-    padding-left: 1rem 0rem 1rem 2rem;
+    padding: 1rem 0rem 1rem 2rem;
     color: #fff;
 }
 .sidebar-brand span{
@@ -35,6 +38,7 @@
 }
 .sidebar-menu{
     margin-top: 1rem;
+    overflow-y: scroll;
 }
 .sidebar-menu li{
     width: 100%;
@@ -47,13 +51,22 @@
     color: #fff;
     font-size: 1.1rem;
 }
-.sidebar-menu a.active{
+.sidebar-menu a.dashboard-active,
+.sidebar-menu a.customers-active,
+.sidebar-menu a.motorbikes-active,
+.sidebar-menu a.orders-active,
+.sidebar-menu a.feedback-active,
+.sidebar-menu a.stats_motor-active,
+.sidebar-menu a.stats_income-active,
+.sidebar-menu a.promotion-active
+{
     background: #fff;
     padding-top:1rem ;
     padding-bottom: 1rem;
     color: var(--main-color);
     border-radius: 30px 0px 0px 30px ;
 }
+
 .sidebar-menu a span:first-child{
     font-size: 1.5rem;
     padding-right: 1rem;
@@ -84,7 +97,7 @@
 }
 .main-content{
     transition: margin-left 300ms ;
-    margin-left: 345px;
+    margin-left: 290px;
 }
 header{
     background: #fff;
@@ -93,8 +106,8 @@ header{
     padding: 1rem 1.5rem;
     box-shadow: 2px 2px 5px rgb(0,0,0,0.2);
     position: fixed;
-    left: 345px;
-    width: calc(100% - 345px);
+    left: 290px;
+    width: calc(100% - 290px);
     top: 0;
     z-index: 100;
     transition: width 300ms ;
@@ -183,7 +196,7 @@ main{
     margin-top: 3.5rem;
     display: grid;
     grid-gap: 2rem;
-    grid-template-columns: 65% auto;
+    grid-template-columns: 100% auto;
 }
 .card{
     background: #fff;
@@ -205,6 +218,9 @@ main{
     font-size: .8rem;
     padding: .5rem 1rem;
     border: 1px solid var(--main-color);
+}
+.card-header-btn{
+    margin-left: -50%;
 }
 table{
     border-collapse: collapse;
@@ -233,10 +249,10 @@ tr td:last-child{
     align-items: center;
 }
 .status.purple{
-    background: rebeccapurple;
+    background: #fb6445;
 }
 .status.pink{
-    background: deeppink;
+    background: #fb6445;
 }
 .status.orange{
     background: orangered;
@@ -295,7 +311,7 @@ tr td:last-child{
         margin-left: 70px;
     }
     .main-content header{
-        width: calc(100% - 70px);
+        width: calc(100% - 50px);
         left: 70px;
     }
     .sidebar:hover{
@@ -345,4 +361,24 @@ tr td:last-child{
     .cards{
         grid-template-columns: 100%;
     }
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background-color: #fb6445;
+    color: white;
 }
