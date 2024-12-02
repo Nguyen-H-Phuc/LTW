@@ -10,7 +10,6 @@ body {
     color: #333;
     margin: 0;
     padding: 0;
-    font-size: 1.2rem;
 
 }
 
@@ -60,8 +59,10 @@ body {
 }
 
 .cart-item p {
-    margin: 0 1rem;
+    width: 150px;
+    margin: 0 2.5rem;
     color: #555;
+    font-size: 1.4rem;
 }
 
 .cart-item input[type="number"] {
@@ -70,13 +71,13 @@ body {
     text-align: center;
     border: 1px solid #ddd;
     border-radius: 4px;
-    margin: 0 1rem;
+    margin: 0 2.5rem;
 }
 
 .cart-icon {
     cursor: pointer;
     color: #ff5722;
-    margin: 0 1rem;
+    margin: 0 2.5rem;
 }
 
 .cart-icon:hover {
@@ -143,7 +144,7 @@ body {
 
 .fill-in-item label {
     font-size: 1.4rem;
-    font-weight: normal;
+    font-weight: bold;
     color: #333;
     margin-top: 10px;
     display: block;
