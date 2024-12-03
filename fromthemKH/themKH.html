@@ -3,6 +3,84 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+
+        /* Container cho toàn bộ trang */
+        .admin-container {
+            display: flex;
+            justify-content: center; /* Canh giữa theo chiều ngang */
+            align-items: center; /* Canh giữa theo chiều dọc */
+            height: 100vh; /* Chiều cao toàn màn hình */
+            background-color: #f4f4f9;
+        }
+
+        /* Container cho form */
+        .form-container {
+            width: 35%; /* Form vừa đủ rộng */
+            background-color: white;
+            padding: 20px 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            overflow-y: auto;
+        }
+
+        /* Tiêu đề Form */
+        .form-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 20px;
+            color: #333;
+        }
+
+        /* Các trường nhập liệu */
+        .promotion-form .form-group {
+            margin-bottom: 15px;
+        }
+
+        .promotion-form .form-group label {
+            display: block;
+            font-size: 14px;
+
+            margin-bottom: 5px;
+        }
+
+        .promotion-form .form-group input,
+        .promotion-form .form-group select,
+        .promotion-form .form-group textarea {
+            width: 100%;
+            padding: 8px;
+
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .promotion-form .form-group textarea {
+            resize: vertical;
+        }
+
+        /* Nút submit */
+        .submit-btn {
+            width: 100%;
+            padding: 10px;
+
+            color: white;
+            font-weight: bold;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
 <div class="admin-container">
