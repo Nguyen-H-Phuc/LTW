@@ -12,7 +12,7 @@
 
 <div class="sidebar">
   <div class="sidebar-brand">
-    <h2><span class="lab la-accusoft"></span><span>Accusoft</span></h2>
+    <h2><span>Rental Motorbike</span></h2>
 
   </div>
 
@@ -28,8 +28,8 @@
           <span>Quản lý khách hàng</span></a>
       </li>
       <li>
-        <a href="motorbikes.html"><span class="las la-clipboard-list"></span>
-          <span>Quản lý xe máy</span></a>
+        <a href="motorbikes.html"><span class="las la-motorcycle"></span>
+        <span>Quản lý xe máy</span></a>
       </li>
       <li>
         <a href="orders.html" class="orders-active"><span class="las la-shopping-bag"></span>
@@ -40,7 +40,7 @@
           <span>Phản hồi khách hàng</span></a>
       </li>
       <li>
-        <a href="promotion.html"><span class="las la-receipt"></span>
+        <a href="promotion.html"><span class="las la-ticket-alt"></span>
           <span>Quản lý khuyến mãi</span></a>
       </li>
       <li>
@@ -65,7 +65,7 @@
       <label for="nav-toggle" >
         <span class="las la-bars"></span>
       </label>
-      Dashboard
+      Đơn hàng
     </h2>
 
     <div class="search-wrapper">
@@ -74,7 +74,7 @@
     </div>
 
     <div class="user-wrapper">
-      <img src="../../anh/product/1.jpg" width="40px" height="40px" alt="">
+      <img src="../assets/img/home_img/user.png" height="40" width="40"/>
       <div>
         <h4>Admin</h4>
         <small>NNP</small>
@@ -87,8 +87,8 @@
       <div class="projects">
         <div class="card">
           <div class="card-header">
-            <h3>Recent Projects</h3>
-            <button> See all<span class="las la-arrow-right"></span> </button>
+            <h3>Đơn hàng</h3>
+            <button> Duyệt tất cả<span class="las la-arrow-right"></span> </button>
           </div>
 
           <div class="card-body">
@@ -100,7 +100,8 @@
                 <th>Địa chỉ</th>
                 <th>Ngày đặt hàng</th>
                 <th>Phương thức thanh toán</th>
-                <th>Tình trạng</th>
+                <th>Trạng thái</th>
+                <th>Hành động</th>
               </tr>
               </thead>
               <tbody>
@@ -110,7 +111,11 @@
                 <td>123 Đường ABC</td>
                 <td>15/11/2023</td>
                 <td>Chuyển khoản</td>
-                <td>Đang giao</td>
+                <td>Mới đặt</td>
+                <td>
+                  <button class="see-btn">Duyệt</button>
+                  <button class="see-btn">Xóa</button>
+                </td>
               </tr>
               <tr>
                 <td>DH002</td>
@@ -118,71 +123,107 @@
                 <td>456 Đường XYZ</td>
                 <td>14/11/2023</td>
                 <td>Thanh toán khi nhận hàng</td>
-                <td>Hoàn tất</td>
+                <td>Mới đặt</td>
+                <td>
+                  <button class="see-btn">Duyệt</button>
+                  <button class="see-btn">Xóa</button>
+                </td>
               </tr>
               <tr>
-                <td>DH001</td>
+                <td>DH003</td>
                 <td>Nguyễn Văn A</td>
                 <td>123 Đường ABC</td>
                 <td>15/11/2023</td>
                 <td>Chuyển khoản</td>
                 <td>Đang giao</td>
+                <td>
+                  <button class="see-btn">Xong</button>
+                  <button class="see-btn">Xóa</button>
+                </td>
               </tr>
               <tr>
-                <td>DH002</td>
+                <td>DH004</td>
                 <td>Trần Thị B</td>
                 <td>456 Đường XYZ</td>
                 <td>14/11/2023</td>
                 <td>Thanh toán khi nhận hàng</td>
-                <td>Hoàn tất</td>
+                <td>Đang giao</td>
+                <td>
+                  <button class="see-btn">Xong</button>
+                  <button class="see-btn">Xóa</button>
+                </td>
               </tr>
               <tr>
-                <td>DH001</td>
+                <td>DH005</td>
+                <td>Nguyễn Văn A</td>
+                <td>123 Đường ABC</td>
+                <td>15/11/2023</td>
+                <td>Chuyển khoản</td>
+                <td>Mới đặt</td>
+                <td>
+                  <button class="see-btn">Duyệt</button>
+                  <button class="see-btn">Xóa</button>
+                </td>
+              </tr>
+              <tr>
+                <td>DH006</td>
+                <td>Trần Thị B</td>
+                <td>456 Đường XYZ</td>
+                <td>14/11/2023</td>
+                <td>Thanh toán khi nhận hàng</td>
+                <td>Đã giao</td>
+                <td>
+                  <button class="see-btn">Xong</button>
+                  <button class="see-btn">Xóa</button>
+                </td>
+              </tr>
+              <tr>
+                <td>DH007</td>
                 <td>Nguyễn Văn A</td>
                 <td>123 Đường ABC</td>
                 <td>15/11/2023</td>
                 <td>Chuyển khoản</td>
                 <td>Đang giao</td>
+                <td>
+                  <button class="see-btn">Xong</button>
+                  <button class="see-btn">Xóa</button>
+                </td>
               </tr>
               <tr>
-                <td>DH002</td>
+                <td>DH008</td>
                 <td>Trần Thị B</td>
                 <td>456 Đường XYZ</td>
                 <td>14/11/2023</td>
                 <td>Thanh toán khi nhận hàng</td>
-                <td>Hoàn tất</td>
+                <td>Mới đặt</td>
+                <td>
+                  <button class="see-btn">Duyệt</button>
+                  <button class="see-btn">Xóa</button>
+                </td>
               </tr>
               <tr>
-                <td>DH001</td>
+                <td>DH009</td>
                 <td>Nguyễn Văn A</td>
                 <td>123 Đường ABC</td>
                 <td>15/11/2023</td>
                 <td>Chuyển khoản</td>
-                <td>Đang giao</td>
+                <td>Đã giao</td>
+                <td>
+                  <button class="see-btn">Xong</button>
+                  <button class="see-btn">Xóa</button>
+                </td>
               </tr>
               <tr>
-                <td>DH002</td>
+                <td>DH010</td>
                 <td>Trần Thị B</td>
                 <td>456 Đường XYZ</td>
                 <td>14/11/2023</td>
                 <td>Thanh toán khi nhận hàng</td>
-                <td>Hoàn tất</td>
-              </tr>
-              <tr>
-                <td>DH001</td>
-                <td>Nguyễn Văn A</td>
-                <td>123 Đường ABC</td>
-                <td>15/11/2023</td>
-                <td>Chuyển khoản</td>
-                <td>Đang giao</td>
-              </tr>
-              <tr>
-                <td>DH002</td>
-                <td>Trần Thị B</td>
-                <td>456 Đường XYZ</td>
-                <td>14/11/2023</td>
-                <td>Thanh toán khi nhận hàng</td>
-                <td>Hoàn tất</td>
+                <td>Đã giao</td>
+                <td>
+                  <button class="see-btn">Xong</button>
+                  <button class="see-btn">Xóa</button>
+                </td>
               </tr>
               </tbody>
             </table>
