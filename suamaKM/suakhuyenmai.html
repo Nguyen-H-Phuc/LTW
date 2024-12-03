@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        /* Hiệu ứng xuất hiện form */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Container cho toàn bộ trang */
+        .admin-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f9;
+        }
+
+        /* Container cho form */
+        .form-container {
+            width: 35%;
+            background-color: white;
+            padding: 20px 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            overflow-y: auto;
+            opacity: 0;
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        /* Tiêu đề Form */
+        .form-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 20px;
+            color: #333;
+        }
+
+        /* Các trường nhập liệu */
+        .promotion-form .form-group {
+            margin-bottom: 15px;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        .promotion-form .form-group:hover {
+            transform: translateX(10px);
+            opacity: 0.9;
+        }
+
+        .promotion-form .form-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .promotion-form .form-group input,
+        .promotion-form .form-group select,
+        .promotion-form .form-group textarea {
+            width: 100%;
+            padding: 8px;
+            font-size: 14px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .promotion-form .form-group textarea {
+            resize: vertical;
+        }
+
+        /* Hiệu ứng focus */
+        .promotion-form .form-group input:focus,
+        .promotion-form .form-group select:focus,
+        .promotion-form .form-group textarea:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
+        }
+
+        /* Nút submit */
+        .submit-btn {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            font-size: 14px;
+            font-weight: bold;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .form-container {
+                width: 90%;
+            }
+        }
+
+    </style>
+</head>
+<body>
+<div class="admin-container">
+    <div class="form-container">
+        <h2>Sửa Chữa Khuyến Mãi</h2>
+        <form action="#" method="post" class="promotion-form">
+            <div class="form-group">
+                <label for="promo-code">Mã Khuyến Mãi:</label>
+                <input type="text" id="promo-code" name="promo-code" placeholder="Nhập mã khuyến mãi" required />
+            </div>
+            <div class="form-group">
+                <label for="promo-name">Tên Khuyến Mãi:</label>
+                <input type="text" id="promo-name" name="promo-name"  placeholder="Nhập tên khuyến mãi" required />
+            </div>
+            <div class="form-group">
+                <label for="description">Mô Tả:</label>
+                <textarea id="description" name="description" rows="3" ></textarea>
+            </div>
+            <div class="form-group">
+                <label for="discount-value">Giá Trị Giảm:</label>
+                <input type="number" id="discount-value" name="discount-value"   required />
+            </div>
+            <div class="form-group">
+                <label for="time-period">Thời Gian:</label>
+                <input type="datetime-local" id="time-period" name="time-period"  required />
+            </div>
+            <div class="form-group">
+                <label for="actions">Hành Động:</label>
+                <select id="actions" name="actions" required>
+                    <option value="activate" selected>Kích Hoạt</option>
+                    <option value="deactivate">Vô Hiệu Hóa</option>
+                </select>
+            </div>
+            <button type="submit" class="submit-btn">Cập Nhật Khuyến Mãi</button>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>
