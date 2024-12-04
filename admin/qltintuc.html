@@ -103,7 +103,7 @@
           <span>Dashboard</span></a>
       </li>
       <li>
-        <a href="customers.html" class="customers-active"><span class="las la-users"></span>
+        <a href="customers.html"><span class="las la-users"></span>
           <span>Quản lý khách hàng</span></a>
       </li>
       <li>
@@ -115,7 +115,7 @@
           <span>Quản lý đơn hàng</span></a>
       </li>
       <li>
-        <a href="qltintuc.html"><span class="las la-newspaper"></span>
+        <a href="qltintuc.html" class="tintuc-active"><span class="las la-newspaper"></span>
           <span>Quản lý tin tức</span></a>
       </li>
       <li>
@@ -354,67 +354,10 @@
         </div>
       </div>
     </div>
-    <div id="configModal" class="modal">
-      <div class="modal-content">
-        <div class="invoice-modal">
-          <div class="invoice-header">
-            <h2>CHI TIẾT HÓA ĐỠ THUÊ XE</h2>
-            <span class="close-btn" onclick="closeConfig()">&times;</span>
-          </div>
-          <div class="invoice-info">
-            <p><strong>Tên:</strong> Nguyễn Bảo Nguyên</p>
-            <p><strong>Địa chỉ:</strong> 123 Đường ABC</p>
-            <p><strong>Số điện thoại:</strong> 0987654321</p>
-            <p><strong>Ngày mua:</strong> 12/11/2023</p>
-          </div>
-          <table class="invoice-table">
-            <thead>
-            <tr>
-              <th>ID xe</th>
-              <th>Tên xe</th>
-              <th>Loại xe</th>
-              <th>Giá thuê</th>
-              <th>Mô tả </th>
-              <th>Hãng sản xuất</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-              <td>1</td>
-              <td>Yamaha Nozza</td>
-              <td>Xe số</td>
-              <td>80.000 VND</td>
-              <td>	Dễ lái, tiết kiệm xăng</td>
-              <td>Yamaha</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Honda SH</td>
-              <td>Xe tay ga</td>
-              <td>180.000 VND</td>
-              <td>	Dễ lái, tiết kiệm xăng</td>
-              <td>Honda</td>
-            </tr>
-            </tbody>
-          </table>
-          <div class="invoice-total">
-            <strong>TỔNG TIỀN: 260,000 VND</strong>
-          </div>
-        </div>
-      </div>
-    </div>
+
   </main>
 
-  <script>
-    function openConfig() {
-      document.getElementById('configModal').style.display = 'flex';
-    }
 
-    function closeConfig() {
-      document.getElementById('configModal').style.display = 'none';
-    }
-
-  </script>
 </div>
 
 </body>
