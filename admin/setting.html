@@ -84,12 +84,49 @@
       background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
     }
 
+    /* Styles for the main container */
+    .menu-container {
+      display: flex;
+      justify-content: space-around;
+      margin: 20px;
+    }
+
+    .menu-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    .menu-item i {
+      font-size: 24px;
+    }
+
+    .menu-item p {
+      margin: 5px 0 0 0;
+    }
+
+    /* Modal styles */
+    .modal {
+      display: none; /* Hidden by default */
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgb(0,0,0); /* Fallback color */
+      background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    }
+
     .modal-content {
       background-color: #fefefe;
-      margin: 15% auto; /* 15% from the top and centered */
+      margin: auto; /* Centered */
       padding: 20px;
       border: 1px solid #888;
-      width: 80%; /* Could be more or less, depending on screen size */
+      width: 50%; /* Smaller size */
+      max-width: 500px; /* Ensures it doesn't get too wide */
     }
 
     .close-btn {
@@ -137,6 +174,7 @@
 
 
 
+
   </style>
 </head>
 <body>
@@ -144,7 +182,7 @@
 
 <div class="sidebar">
   <div class="sidebar-brand">
-    <h2><span class="lab la-accusoft"></span><span>Accusoft</span></h2>
+    <h2><span>Rental Motorbike</span></h2>
 
   </div>
 
@@ -156,11 +194,11 @@
           <span>Dashboard</span></a>
       </li>
       <li>
-        <a href="customers.html" class="customers-active"><span class="las la-users"></span>
+        <a href="customers.html" ><span class="las la-users"></span>
           <span>Quản lý khách hàng</span></a>
       </li>
       <li>
-        <a href="motorbikes.html"><span class="las la-clipboard-list"></span>
+        <a href="motorbikes.html"><span class="las la-motorcycle"></span>
           <span>Quản lý xe máy</span></a>
       </li>
       <li>
@@ -172,7 +210,7 @@
           <span>Phản hồi khách hàng</span></a>
       </li>
       <li>
-        <a href="promotion.html"><span class="las la-receipt"></span>
+        <a href="promotion.html"><span class="las la-ticket-alt"></span>
           <span>Quản lý khuyến mãi</span></a>
       </li>
       <li>
@@ -184,7 +222,7 @@
           <span>Thống kê doanh thu</span></a>
       </li>
       <li>
-        <a href="setting.html"><span class="las la-cog"></span>
+        <a href="setting.html" class="setting-active"><span class="las la-cog"></span>
           <span>Cài đặt</span></a>
       </li>
     </ul>
@@ -197,7 +235,7 @@
       <label for="nav-toggle" >
         <span class="las la-bars"></span>
       </label>
-      Khách hàng
+      Cài đặt
     </h2>
 
     <div class="search-wrapper">
@@ -206,7 +244,7 @@
     </div>
 
     <div class="user-wrapper">
-      <img src="../../anh/product/1.jpg" width="40px" height="40px" alt="">
+      <img src="../assets/img/home_img/user.png" height="40" width="40"/>
       <div>
         <h4>Admin</h4>
         <small>NNP</small>
