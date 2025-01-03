@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang chi tiết 4</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../csstintuc/csschitiettintuc.css">
+
+    <script>
+        // Chèn header
+        fetch('header.html')
+            .then(response => response.text())
+            .then(data => document.getElementById('header').innerHTML = data);
+
+        // Chèn footer
+        fetch('footer.html')
+            .then(response => response.text())
+            .then(data => document.getElementById('footer').innerHTML = data);
+    </script>
+</head>
+<body>
+<header id="header"></header>
+<div class="slider">
+    <div id="carouselExample" class="carousel slide mb-4">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="../../assets/img/anh/tintuc/11.jpg" class="d-block w-100" alt="Slide 1">
+                <div class="carousel-caption d-none d-md-block">
+
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="../../assets/img/anh/tintuc/12.jpg" class="d-block w-100" alt="Slide 2">
+                <div class="carousel-caption d-none d-md-block">
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="../../assets/img/anh/tintuc/12.jpg" class="d-block w-100" alt="Slide 3">
+                <div class="carousel-caption d-none d-md-block">
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</div>
+<!-- Kết thúc Slider -->
+<div class="container">
+    <div class="content">
+        <h1 class="title">Max Nhật huyền thoại</h1>
+        <p class="description">
+            <strong>Max Nhật huyền thoại</strong> được hãng Kawasaki đã sản xuất ra dòng xe Max với kiểu dáng ăn sâu vào tâm trí những cô cậu học sinh năm 99-2000.
+        </p>
+        <img src="../../assets/img/anh/tintuc/2.jpg" alt="KYMCO Like" class="main-image">
+        <ul class="features">
+
+            <li> Với kiểu dáng thời trang, khỏe khoắn kết hợp động cơ 4 thì vốn rất được ưa chuộng thời bấy giờ, Kawasaki mang đến nhiều ưu điểm như tiết kiệm xăng, bền bỉ và là biểu tượng của sự trẻ trung.</li>
+            <li>Nét nổi bật giúp<strong>Kawasaki Max</strong>“cưa đổ” các cô nàng chính là thiết kế giỏ trước nhỏ xinh, được khoác lên mình các lớp sơn trông thật bắt mắt</li>
+            <li> Đầu xe là một dàn đèn lớn hiện đại với lớp nhựa trong, phủ kín đèn pha và xi nhan, phía đuôi là một bộ đèn hậu vuông vắn.</li>
+            <li>Mặt bảng điều khiển của Max thuộc loại lớn, hiển thị đầy đủ tốc độ, hướng xi nhan, đèn số và báo xăng.</li>
+        </ul>
+    </div>
+    <div class="related-articles">
+        <h2>Các bài viết liên quan</h2>
+        <div class="article-list">
+            <div class="article-item">
+                <a href="../../chitiettintuc.html">
+                <img src="../../assets/img/anh/tintuc/1.jpg" alt="Bài viết 1">
+                <h3>KYMCO Like</h3>
+                <p>Xe máy, thông tin, bảng giá</p>
+                </a>
+            </div>
+            <div class="article-item">
+                <a href="chitiettintuc2.html">
+                <img src="../../assets/img/anh/tintuc/6.jpg" alt="Bài viết 2">
+                <h3>
+                    Bảo tàng Chứng tích Chiến tranh - TP HCM</h3>
+                <p>du lịch, tổng hợp, cẩm nang, Sài Gòn</p>
+                </a>
+            </div>
+            <div class="article-item">
+                <a href="chitiettintuc5.html">
+                <img src="https://chothuexemayhcm.com/upload/news/chao-mung-ngay-quoc-khanh-291725298440_385x205.jpg" alt="Bài viết 3">
+                <h3>Chào Mừng Ngày Quốc Khánh 2/9</h3>
+                <p>Xe máy, thông tin, bảng giá</p>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="footer"></div>
+</body>
+</html>

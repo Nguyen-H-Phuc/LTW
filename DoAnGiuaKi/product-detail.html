@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Wave RSX</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link rel="stylesheet" href="./assets/css/base.css">
+    <link rel="stylesheet" href="assets/css/product-detail.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="product-detail">
+    <header id="header"></header>
+    <div class="container">
+        <button onclick="topFunction()" id="myBtn" title="Go to top"><i class="fa-solid fa-arrow-up"></i></button>
+        <div class="information-content">
+            <div class="product-image">
+                <img src="assets/img/product-img/Wave-RSX.png" alt="Wave RSX">
+            </div>
+            <form class="rental-information" action="/submit-rental" method="post">
+                <div class="info">
+                    <h1 class="name-moto" style="text-align: center">Honda Wave-RSX 2024</h1>
+                    <h3 id="price-per-day">Giá thuê: 100.000đ/ngày</h3>
+                    <h3 id="manufacturer">Nhà sản xuất: Honda</h3>
+                    <h3 id="year-of-manufacture">Năm sản xuất: 2024</h3>
+                    <h3 id="type">Loại xe: Xe số</h3>
+                    <p class="note">* Giá thuê chưa bao gồm: Xăng phục vụ suốt chuyến đi, Bảo hiểm hành khách, Thuế VAT, Phụ thu dịp Lễ Tết.</p>
+                </div>
+                <div class="fill-in-info">
+                    <div class="fill-in-item">
+                        <label for="coupon">Mã giảm giá</label>
+                        <input type="text" id="coupon" name="coupon">
+                        <label for="delivery-location">Địa điểm giao xe</label>
+                        <input type="text" id="delivery-location" name="delivery-location" required>
+                        <label for="delivery-time">Thời gian nhận xe</label>
+                        <input type="date" id="delivery-time" name="delivery-time" required>
+                        <label for="return-time">Thời gian trả xe</label>
+                        <input type="date" id="return-time" name="return-time" required>
+                    </div>
+                    <div class="button">
+                        <button type="submit">Đặt xe</button>
+                        <button type="button" onclick="alert('Bạn đã thêm vào giỏ hàng thành công.')">Thêm vào giỏ hàng</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+
+        <div class="products-detailed-information">
+            <h1 class="product-title">Mô tả / Đánh giá chi tiết</h1>
+            <div class="product-description">
+                <p>Ngày 22/11, thương hiệu xe máy Nhật Bản Honda giới thiệu Wave RSX FI 2024 tại thị trường Việt Nam.
+                    Wave RSX FI phiên bản mới thiết kế lại ngoại hình thể thao hơn, phù hợp với giới trẻ.
+                    Động cơ Wave RSX FI 2024 giữ nguyên như bản cũ.</p>
+
+                <p>Wave RSX FI 2024 thay đổi diện mạo với những tinh chỉnh thiết kế tập trung ở đầu và thân xe.
+                    Mặt nạ mang kiểu dáng mới theo phong cách chữ V, kết hợp với đèn xi nhan mới.
+                    Cụm đồng hồ với mặt đồng hồ bố trí khoa học, hiển thị đầy đủ thông tin xe.</p>
+
+                <p>Hai bên thân trên Wave RSX FI 2024 thon gọn hơn bản cũ, với những đường cắt sắc nhọn kết hợp với yếm tạo hình dáng đầy đặn hơn.
+                    Cụm đèn hậu vuốt cao, ốp ống xả màu đen mới làm từ vật liệu cao cấp tăng tính thể thao và nam tính.
+                    Bên cạnh dàn áo màu trắng, xanh, đỏ, đen, Wave RSX FI 2024 còn có bộ tem thiết kế 3D góc cạnh hơn.</p>
+
+                <p>Tương tự như bản cũ, Wave RSX FI 2024 trang bị động cơ một xi-lanh dung tích 110 phân khối,
+                    làm mát bằng gió cưỡng bức, phun xăng điện tử, công suất 8,6 mã lực tại 7.500 vòng/phút,
+                    mô-men xoắn cực đại 8,7 Nm tại 6.000 vòng/phút.
+                    Hộp số tròn 4 cấp. Theo công bố của nhà sản xuất, Wave RSX FI có mức tiêu thụ 1,56 lít/100 km.</p>
+
+                <p>Các tiện ích khác của mẫu xe máy 110 phân khối như hộc đựng đồ dưới yên với sức chứa một mũ bảo hiểm nửa đầu cùng các vật dụng cá nhân.
+                    Wave RSX FI trang bị ổ khóa đa năng 4 trong 1. Cặp vành 17 inch với tùy chọn vành nan hoa hoặc vành đúc.
+                    Phanh đĩa trước hoặc phanh tang trống.</p>
+            </div>
+        </div>
+
+        <div class="cac-san-pham-khac">
+            <h1>Các sản phẩm tương tự</h1>
+            <div class="list-products">
+                <div class="list-product">
+                    <img src="/assets/img/product-img/Air-Blade.png" alt="Xe máy Air Blade, giá thuê từ 250.000đ/ngày">
+                    <div class="product-info">
+                        <h2>Air Blade</h2>
+                        <p>Giá từ <strong>250.000đ</strong><span>/ngày</span></p>
+                    </div>
+                </div>
+                <div class="list-product">
+                    <img src="/assets/img/product-img/Future-125.png" alt="Xe máy future 125, giá thuê từ 250.000đ/ngày">
+                    <div class="product-info">
+                        <h2>Future 125</h2>
+                        <p>Giá từ <strong>250.000đ</strong><span>/ngày</span></p>
+                    </div>
+                </div>
+                <div class="list-product">
+                    <img src="/assets/img/product-img/Winner-X.png" alt="Xe máy Winner X, giá thuê từ 250.000đ/ngày">
+                    <div class="product-info">
+                        <h2>Winner X</h2>
+                        <p>Giá từ <strong>250.000đ</strong><span>/ngày</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="footer"></div>
+
+    <script>
+        // Chèn header
+        fetch('header.html')
+            .then(response => response.text())
+            .then(data => document.getElementById('header').innerHTML = data);
+
+        // Chèn footer
+        fetch('footer.html')
+            .then(response => response.text())
+            .then(data => document.getElementById('footer').innerHTML = data);
+
+        // Get the button
+        let mybutton = document.getElementById("myBtn");
+
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function() {scrollFunction()};
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                mybutton.style.display = "block";
+            } else {
+                mybutton.style.display = "none";
+            }
+        }
+
+        // When the user clicks on the button, scroll to the top of the document
+        function topFunction() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+    </script>
+</div>
+</body>
+</html>
