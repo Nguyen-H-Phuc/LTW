@@ -118,12 +118,48 @@ public Product getProductById(int id) {
     }
     return product;
 }
+    // Lấy 3 sản phẩm liên quan khi vào trang chi tiết sản phẩm
+    public List<Product> getRelatedProducts(int productId) {
+        List<Product> list = new ArrayList<>();
+        String query = "SELECT * FROM products " +
+                "WHERE id != ? " +
+                "ORDER BY RAND() " +
+                "LIMIT 3"; // Lấy ngẫu nhiên 3 sản phẩm khác sản phẩm hiện tại
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setInt(1, productId); // Loại bỏ sản phẩm hiện tại
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(new Product(
+                        rs.getInt("id"),
+                        rs.getString("name"),
+                        rs.getInt("year"),
+                        rs.getString("brand"),
+                        rs.getString("type"),
+                        rs.getDouble("price"),
+                        rs.getString("description"),
+                        rs.getString("img"),
+                        rs.getString("numberPlate")
+                ));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
+        return list;
+    }
+
 
     public static void main(String[] args) {
       ProductDao dao = new ProductDao();
       Product product = dao.getProductById(1);
       System.out.println(product);
 
-
+        List<Product> relatedProducts = dao.getRelatedProducts(1);
+        System.out.println("\nSản phẩm liên quan:");
+        for (Product p : relatedProducts) {
+            System.out.println(p);
+        }
     }
 }
