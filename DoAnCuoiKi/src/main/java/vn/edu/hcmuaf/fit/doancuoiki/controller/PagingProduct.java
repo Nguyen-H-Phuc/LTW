@@ -8,7 +8,7 @@ import vn.edu.hcmuaf.fit.doancuoiki.model.Product;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "PagingProduct", value = "/product")
+@WebServlet(name = "PagingProduct", value = "/PagingProduct")
 public class PagingProduct extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
