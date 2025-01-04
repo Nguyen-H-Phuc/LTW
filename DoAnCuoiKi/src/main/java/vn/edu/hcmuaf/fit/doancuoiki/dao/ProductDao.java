@@ -1,7 +1,7 @@
 package vn.edu.hcmuaf.fit.doancuoiki.dao;
 
-import vn.edu.hcmuaf.fit.demtest.db.DBContext;
-import vn.edu.hcmuaf.fit.demtest.model.Product;
+import vn.edu.hcmuaf.fit.doancuoiki.db.DBContext;
+import vn.edu.hcmuaf.fit.doancuoiki.model.Product;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
