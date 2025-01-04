@@ -2,13 +2,32 @@ package vn.edu.hcmuaf.fit.doancuoiki.controller;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
+import vn.edu.hcmuaf.fit.doancuoiki.dao.ProductDao;
+import vn.edu.hcmuaf.fit.doancuoiki.model.Product;
+
 import java.io.IOException;
+import java.util.List;
 
 @WebServlet(name = "PagingProduct", value = "/PagingProduct")
 public class PagingProduct extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        String indexPage =request.getParameter("index");
+        if(indexPage==null){
+            indexPage="1";
+        }
+        int index = Integer.parseInt(indexPage);
+        ProductDao dao = new ProductDao();
+        int count = dao.getTatolProduct();
+        int endPage = count/8;
+        if(count % 8 !=0){
+            endPage++;
+        }
+        List<Product> list = dao.getPageProduct(index);
+        request.setAttribute("listA", list);
+        request.setAttribute("endP", endPage);
+        request.setAttribute("tag", index);
+        request.getRequestDispatcher("page-product.jsp").forward(request, response);
     }
 
     @Override
