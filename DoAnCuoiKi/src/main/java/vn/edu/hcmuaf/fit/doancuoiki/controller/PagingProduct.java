@@ -6,20 +6,28 @@ import vn.edu.hcmuaf.fit.doancuoiki.dao.ProductDao;
 import vn.edu.hcmuaf.fit.doancuoiki.model.Product;
 
 import java.io.IOException;
+import java.util.List;
 
 @WebServlet(name = "PagingProduct", value = "/product")
 public class PagingProduct extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int pid= Integer.parseInt(request.getParameter("pid"));
-
-        // Lấy chi tiết sản phẩm từ DB
-        ProductDao productDao = new ProductDao();
-        Product product = productDao.getProductById(pid);
-
-        // Gửi sản phẩm vào trang JSP
-        request.setAttribute("p", product);
-        request.getRequestDispatcher("product-detail.jsp").forward(request, response);
+        String indexPage =request.getParameter("index");
+        if(indexPage==null){
+            indexPage="1";
+        }
+        int index = Integer.parseInt(indexPage);
+        ProductDao dao = new ProductDao();
+        int count = dao.getTatolProduct();
+        int endPage = count/8;
+        if(count % 8 !=0){
+            endPage++;
+        }
+        List<Product> list = dao.getPageProduct(index);
+        request.setAttribute("listA", list);
+        request.setAttribute("endP", endPage);
+        request.setAttribute("tag", index);
+        request.getRequestDispatcher("page-product.jsp").forward(request, response);
     }
 
     @Override
