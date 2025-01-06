@@ -4,6 +4,7 @@ import jakarta.servlet.annotation.*;
 import vn.edu.hcmuaf.fit.doancuoiki.dao.UserDao;
 import vn.edu.hcmuaf.fit.doancuoiki.model.User;
 import vn.edu.hcmuaf.fit.doancuoiki.model.UserInfo;
+import vn.edu.hcmuaf.fit.doancuoiki.util.Encrypt;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -65,15 +66,15 @@ public class SignInController extends HttpServlet {
             return;
         }
 
-
+        String passwordEncrypt = Encrypt.encrypt(password);
         UserInfo userInfo = new UserInfo(name, phone, address, birthday);
-        User user = new User(email, password, userInfo, true);
+        User user = new User(email, passwordEncrypt, userInfo, true);
 
         if (userDao.addUser(user)) {
             url = "index.jsp"; // Chuyển hướng tới trang chính nếu thành công
         } else {
             request.setAttribute("error", "Đăng ký thất bại. Vui lòng thử lại.");
-            setRequestAttributes(request, email, name, phone, birthdayStr, address);
+            setRequestAttributes(request, email, name, password, birthdayStr, address);
         }
 
         forwardToPage(request, response, url);
