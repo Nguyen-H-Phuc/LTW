@@ -7,6 +7,7 @@ import vn.edu.hcmuaf.fit.doancuoiki.model.UserInfo;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 
 @WebServlet(name = "SignInController", value = "/SignIn")
 public class SignInController extends HttpServlet {
@@ -21,42 +22,73 @@ public class SignInController extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
 
-        String url = "";
+        String url = "signin.jsp"; // Mặc định quay lại trang đăng ký
         UserDao userDao = new UserDao();
+
         String email = request.getParameter("email");
-        if (userDao.isEmailExists(email)) {
-            url = "signin.jsp";
-            RequestDispatcher dispatcher = request.getRequestDispatcher(url);
-            dispatcher.forward(request, response);
-        } else {
-            String name = request.getParameter("name");
-            String phone = request.getParameter("phone");
-            String birthdayStr = request.getParameter("birthday"); // Nhận chuỗi ngày từ form
-            String address = request.getParameter("address");
-            String password = request.getParameter("password");
+        String password = request.getParameter("password");
+        String name = request.getParameter("name");
+        String phone = request.getParameter("phone");
+        String birthdayStr = request.getParameter("birthday");
+        String address = request.getParameter("address");
 
-            // Chuyển đổi chuỗi ngày thành LocalDate
-            LocalDate birthday = null;
-            if (birthdayStr != null && !birthdayStr.isEmpty()) {
-                birthday = LocalDate.parse(birthdayStr); // Chuyển chuỗi thành LocalDate
+        LocalDate birthday = null;
+        if (birthdayStr != null && !birthdayStr.isEmpty()) {
+            try {
+                birthday = LocalDate.parse(birthdayStr);
+            } catch (DateTimeParseException e) {
+                request.setAttribute("error", "Ngày sinh không hợp lệ. Vui lòng nhập đúng định dạng.");
+                forwardToPage(request, response, url);
+                return;
             }
-
-            // Tạo đối tượng UserInfo và User
-            UserInfo userInfo = new UserInfo(name, phone, address, birthday);
-            User user = new User(email, password, userInfo, true);
-
-            // Thêm người dùng vào cơ sở dữ liệu
-
-
-            if (userDao.addUser(user)) {
-                url = "index.jsp";
-            } else {
-                url = "signin.jsp";
-            }
-
-            // Chuyển hướng tới trang tương ứng
-            RequestDispatcher dispatcher = request.getRequestDispatcher(url);
-            dispatcher.forward(request, response);
         }
+
+        if (userDao.isEmailExists(email)) {
+            request.setAttribute("error", "Email đã tồn tại. Vui lòng sử dụng email khác.");
+            setRequestAttributes(request, email, name, password, birthdayStr, address);
+            forwardToPage(request, response, url);
+            return;
+        }
+
+        String passwordPattern = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{8,}$";
+        if (!password.matches(passwordPattern)) {
+            request.setAttribute("error", "Mật khẩu phải chứa ít nhất 8 ký tự, bao gồm 1 chữ thường, 1 chữ hoa và 1 chữ số.");
+            setRequestAttributes(request, email, name, password, birthdayStr, address);
+            forwardToPage(request, response, url);
+            return;
+        }
+
+        if (phone == null || phone.isEmpty() || !phone.matches("\\d{10,11}")) {
+            request.setAttribute("error", "Số điện thoại không hợp lệ. Vui lòng nhập đúng định dạng.");
+            setRequestAttributes(request, email, name, phone, birthdayStr, address);
+            forwardToPage(request, response, url);
+            return;
+        }
+
+
+        UserInfo userInfo = new UserInfo(name, phone, address, birthday);
+        User user = new User(email, password, userInfo, true);
+
+        if (userDao.addUser(user)) {
+            url = "index.jsp"; // Chuyển hướng tới trang chính nếu thành công
+        } else {
+            request.setAttribute("error", "Đăng ký thất bại. Vui lòng thử lại.");
+            setRequestAttributes(request, email, name, phone, birthdayStr, address);
+        }
+
+        forwardToPage(request, response, url);
+    }
+
+    private void forwardToPage(HttpServletRequest request, HttpServletResponse response, String url) throws ServletException, IOException {
+        RequestDispatcher dispatcher = request.getRequestDispatcher(url);
+        dispatcher.forward(request, response);
+    }
+
+    private void setRequestAttributes(HttpServletRequest request, String email, String name, String password, String birthday, String address) {
+        request.setAttribute("email", email);
+        request.setAttribute("name", name);
+        request.setAttribute("password", password);
+        request.setAttribute("birthday", birthday);
+        request.setAttribute("address", address);
     }
 }

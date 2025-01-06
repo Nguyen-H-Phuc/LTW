@@ -12,7 +12,7 @@
     <meta charset="UTF-8">
     <title>Đăng ký</title>
     <link rel="stylesheet" href="assets/css/signin.css">
-    <link rel="stylesheet" href="home_page/base.css">
+    <link rel="stylesheet" href="assets/css/base.css">
     <link rel="stylesheet" href="../assets/fonts/fontawesome-free-6.6.0-web/fontawesome-free-6.6.0-web/css/all.css">
     <style>
         #message {
@@ -62,10 +62,23 @@
     </style>
 </head>
 <body>
+<%
+    String email = (String) request.getAttribute("email");
+    String name = (String) request.getAttribute("name");
+    String birthday = (String) request.getAttribute("birthday");
+    String address = (String) request.getAttribute("address");
+    String password = (String) request.getAttribute("password");
+
+    email = (email == null ? "" : email);
+    name = (name == null ? "" : name);
+    address = (address == null ? "" : address);
+    password = (password == null ? "" : password);
+%>
+
 <div class="login">
     <div class="header">
         <div class="header__item">
-            <img class="header__item-img" src="/assets/img/home_img/xe/logo_xemay.png">
+            <img class="header__item-img" src="assets/img/home_img/xe/logo_xemay.png">
             <span class="header__item-span">
             Đăng ký
             </span>
@@ -85,23 +98,23 @@
                     <div class="auth-form__form">
                         <div class="auth-form__group">
                             <label for="email">Email </label>
-                            <input type="email" id="email" name="email" class="auth-form__input" placeholder="Email của bạn" required>
+                            <input type="email" id="email" name="email" class="auth-form__input" placeholder="Email của bạn" value="<%=email%>" required>
                         </div>
                         <div class="auth-form__group">
                             <label for="name">Họ và tên của bạn</label>
-                            <input type="text" id ="name" name="name" class="auth-form__input" placeholder="Họ và tên của bạn" required>
+                            <input type="text" id ="name" name="name" class="auth-form__input" placeholder="Họ và tên của bạn" value="<%=name%>"required>
                         </div>
                         <div class="auth-form__group">
                             <label for="birthday">Sinh nhật</label>
-                            <input type="date" id="birthday" name="birthday" class="auth-form__input" required>
+                            <input type="date" id="birthday" name="birthday" class="auth-form__input" value="<%=birthday%>"required>
                         </div>
                         <div class="auth-form__group">
-                            <label for="location">Địa chỉ</label>
-                            <input type="text" id="location" name="location" class="auth-form__input" placeholder="Địa chỉ của bạn" required>
+                            <label for="address">Địa chỉ</label>
+                            <input type="text" id="address" name="address" class="auth-form__input" placeholder="Địa chỉ của bạn" value="<%=address%>" required>
                         </div>
                         <div class="auth-form__group">
                             <label for="password">Mật khẩu</label>
-                            <input type="password" id="password" name="password" class="auth-form__input" placeholder="Mật khẩu của bạn" required>
+                            <input type="password" id="password" name="password" class="auth-form__input" placeholder="Mật khẩu của bạn" value="<%=password%>" required>
                             <div id="message">
                                 <h3>Mật khẩu phải chứa các kí tự sau</h3>
                                 <p id="letter" class="invalid">Một kí tự <b>thường</b></p>
@@ -155,7 +168,7 @@
 
 
 </div>
-<script src="assets/js/register.js"></script>
+<script src="assets/js/signin.js"></script>
 </body>
 </html>
 
