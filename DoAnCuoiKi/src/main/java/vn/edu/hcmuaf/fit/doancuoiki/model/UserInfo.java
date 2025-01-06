@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 public class UserInfo {
     private int id;
+    private int userId;
     private String fullName;
     private String phoneNumber;
     private LocalDate birthday;
@@ -12,8 +13,7 @@ public class UserInfo {
     public UserInfo() {
     }
 
-    public UserInfo(int id, String fullName, String phoneNumber, String address, LocalDate birthday) {
-        this.id = id;
+    public UserInfo(String fullName, String phoneNumber, String address, LocalDate birthday) {
         this.fullName = fullName;
         this.phoneNumber = phoneNumber;
         this.address = address;
@@ -27,6 +27,10 @@ public class UserInfo {
     public void setId(int id) {
         this.id = id;
     }
+
+    public int getUserId() {return userId;}
+
+    public void setUserId(int userId) {this.userId = userId;}
 
     public String getFullName() {
         return fullName;

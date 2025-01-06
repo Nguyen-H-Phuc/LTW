@@ -1,24 +1,20 @@
 package vn.edu.hcmuaf.fit.doancuoiki.model;
 
-import javax.management.relation.Role;
-
 public class User {
     private int id;
     private String email;
     private String password;
     private UserInfo userInfo;
-    private Role role;
+    private int roleId;
     private boolean isActive;
 
     public User() {
     }
 
-    public User(int id, String email, String password, UserInfo userInfo, Role role, boolean isActive) {
-        this.id = id;
+    public User(String email, String password, UserInfo userInfo, boolean isActive) {
         this.email = email;
         this.password = password;
         this.userInfo = userInfo;
-        this.role = role;
         this.isActive = isActive;
     }
 
@@ -54,12 +50,12 @@ public class User {
         this.userInfo = userInfo;
     }
 
-    public Role getRole() {
-        return role;
+    public int getRoleId() {
+        return roleId;
     }
 
-    public void setRole(Role role) {
-        this.role = role;
+    public void setRoleId(int roleId) {
+        this.roleId = roleId;
     }
 
     public boolean isActive() {
@@ -69,4 +65,5 @@ public class User {
     public void setActive(boolean active) {
         isActive = active;
     }
+
 }

@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DBContext {
-    private static final String URL = "jdbc:mysql://localhost:3306/test2";
+    private static final String URL = "jdbc:mysql://localhost:3306/UserManagement";
     private static final String USERNAME = "root";
     private static final String PASSWORD = ""; // Thay mật khẩu của bạn vào đây
 
