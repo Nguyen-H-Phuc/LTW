@@ -5,6 +5,8 @@
   Time: 10:18 AM
   To change this template use File | Settings | File Templates.
 --%>
+<%@ page import="vn.edu.hcmuaf.fit.doancuoiki.model.User" %>
+<%@ page import="vn.edu.hcmuaf.fit.doancuoiki.model.UserInfo" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -41,12 +43,19 @@
 
             </ul>
             <ul class="header__navbar-list">
-
+                <%
+                    Object obj = session.getAttribute("user");
+                    User user = null;
+                    if (obj instanceof User) {
+                        user = (User) obj;
+                    }
+                    if (user != null) {
+                %>
                 <!--            <li class="header__navbar-item header__navbar-item&#45;&#45;strong header__navbar-item&#45;&#45;separate">Đăng ký</li>-->
                 <!--            <li class="header__navbar-item header__navbar-item&#45;&#45;strong">Đăng nhập</li>-->
                 <li class="header__navbar-item header__navbar-user">
                     <img class="header__navbar-user-img" src="assets/img/home_img/user.png"/>
-                    <span class="header__navbar-user-name">Nhật Lâm</span>
+                    <span class="header__navbar-user-name"><%= user.getUserInfo().getFullName()%></span>
 
                     <ul class="header__navbar-user-menu">
                         <li class="header__navbar-user-item">
@@ -55,6 +64,10 @@
                         <li class="header__navbar-user-item">
                             <a href="">Địa chỉ của tôi</a>
                         </li>
+                        <% if(user.getRoleId() == 1) { %>
+                        <li class="header__navbar-user-item">
+                            <a href="">Admin</a>
+                        <% } %>
                         <li class="header__navbar-user-item">
                             <a href="">Lịch sử thuê</a>
                         </li>
@@ -64,6 +77,14 @@
 
                     </ul>
                 </li>
+                <% } else { %>
+                    <li >
+                        <a class="header__navbar-item header__navbar-item--strong header__navbar-item--separate" href="register.html">Đăng ký</a>
+                    </li>
+                    <li>
+                        <a class="header__navbar-item header__navbar-item--strong" href="login.html">Đăng nhập</a>
+                    </li>
+                <% } %>
             </ul>
         </nav>
 

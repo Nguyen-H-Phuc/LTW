@@ -45,33 +45,33 @@ public class SignInController extends HttpServlet {
         }
 
         if (userDao.isEmailExists(email)) {
-            request.setAttribute("error", "Email đã tồn tại. Vui lòng sử dụng email khác.");
+            request.setAttribute("emailExist", "Email đã tồn tại. Vui lòng sử dụng email khác.");
             setRequestAttributes(request, email, name, password, birthdayStr, address);
             forwardToPage(request, response, url);
             return;
         }
 
-        String passwordPattern = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{8,}$";
-        if (!password.matches(passwordPattern)) {
-            request.setAttribute("error", "Mật khẩu phải chứa ít nhất 8 ký tự, bao gồm 1 chữ thường, 1 chữ hoa và 1 chữ số.");
-            setRequestAttributes(request, email, name, password, birthdayStr, address);
-            forwardToPage(request, response, url);
-            return;
-        }
+//        String passwordPattern = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{8,}$";
+//        if (!password.matches(passwordPattern)) {
+//            request.setAttribute("error", "Mật khẩu phải chứa ít nhất 8 ký tự, bao gồm 1 chữ thường, 1 chữ hoa và 1 chữ số.");
+//            setRequestAttributes(request, email, name, password, birthdayStr, address);
+//            forwardToPage(request, response, url);
+//            return;
+//        }
 
-        if (phone == null || phone.isEmpty() || !phone.matches("\\d{10,11}")) {
-            request.setAttribute("error", "Số điện thoại không hợp lệ. Vui lòng nhập đúng định dạng.");
-            setRequestAttributes(request, email, name, phone, birthdayStr, address);
-            forwardToPage(request, response, url);
-            return;
-        }
+//        if (phone == null || phone.isEmpty() || !phone.matches("\\d{10,11}")) {
+//            request.setAttribute("error", "Số điện thoại không hợp lệ. Vui lòng nhập đúng định dạng.");
+//            setRequestAttributes(request, email, name, phone, birthdayStr, address);
+//            forwardToPage(request, response, url);
+//            return;
+//        }
 
         String passwordEncrypt = Encrypt.encrypt(password);
         UserInfo userInfo = new UserInfo(name, phone, address, birthday);
         User user = new User(email, passwordEncrypt, userInfo, true);
 
         if (userDao.addUser(user)) {
-            url = "index.jsp"; // Chuyển hướng tới trang chính nếu thành công
+            url = "login.jsp"; // Chuyển hướng tới trang chính nếu thành công
         } else {
             request.setAttribute("error", "Đăng ký thất bại. Vui lòng thử lại.");
             setRequestAttributes(request, email, name, password, birthdayStr, address);

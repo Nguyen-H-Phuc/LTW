@@ -68,11 +68,13 @@
     String birthday = (String) request.getAttribute("birthday");
     String address = (String) request.getAttribute("address");
     String password = (String) request.getAttribute("password");
+    String emailExist = (String) request.getAttribute("emailExist");
 
     email = (email == null ? "" : email);
     name = (name == null ? "" : name);
     address = (address == null ? "" : address);
     password = (password == null ? "" : password);
+    emailExist = (emailExist == null ? "" : emailExist);
 %>
 
 <div class="login">
@@ -99,6 +101,7 @@
                         <div class="auth-form__group">
                             <label for="email">Email </label>
                             <input type="email" id="email" name="email" class="auth-form__input" placeholder="Email của bạn" value="<%=email%>" required>
+                            <div id="email-exist"><%= emailExist %><div>
                         </div>
                         <div class="auth-form__group">
                             <label for="name">Họ và tên của bạn</label>

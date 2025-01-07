@@ -18,6 +18,17 @@ public class User {
         this.isActive = isActive;
     }
 
+    public User(int id, String email, String password, UserInfo userInfo, int roleId, boolean isActive) {
+        this.id = id;
+        this.email = email;
+        this.password = password;
+        this.userInfo = userInfo;
+        this.roleId = roleId;
+        this.isActive = isActive;
+    }
+
+
+
     public int getId() {
         return id;
     }
