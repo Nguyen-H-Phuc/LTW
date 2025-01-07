@@ -94,7 +94,7 @@
             <div class="auth-form__container">
                 <div class="auth-form__header">
                     <h3 class="auth-form__heading">Đăng ký</h3>
-                    <a class="auth-form__switch-b" href="login.html">Đăng nhập</a>
+                    <a class="auth-form__switch-b" href="login.jsp">Đăng nhập</a>
                 </div>
                 <form class="auth-form__group" method="post" action="SignIn" >
                     <div class="auth-form__form">

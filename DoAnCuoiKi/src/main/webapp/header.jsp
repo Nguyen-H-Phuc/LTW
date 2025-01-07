@@ -72,17 +72,17 @@
                             <a href="">Lịch sử thuê</a>
                         </li>
                         <li class="header__navbar-user-item header__navbar-user-item-separate">
-                            <a href="">Đăng xuất</a>
+                            <a href="logout">Đăng xuất</a>
                         </li>
 
                     </ul>
                 </li>
                 <% } else { %>
                     <li >
-                        <a class="header__navbar-item header__navbar-item--strong header__navbar-item--separate" href="register.html">Đăng ký</a>
+                        <a class="header__navbar-item header__navbar-item--strong header__navbar-item--separate" href="signin.jsp">Đăng ký</a>
                     </li>
                     <li>
-                        <a class="header__navbar-item header__navbar-item--strong" href="login.html">Đăng nhập</a>
+                        <a class="header__navbar-item header__navbar-item--strong" href="login.jsp">Đăng nhập</a>
                     </li>
                 <% } %>
             </ul>
