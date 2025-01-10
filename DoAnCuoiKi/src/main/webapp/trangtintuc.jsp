@@ -11,12 +11,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trang chi tiết 5</title>
+    <title>Tin tức</title>
+    <link rel="stylesheet" href="trangtintuc/csstintuc/csstintuc.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="../csstintuc/csschitiettintuc.css">
-
     <script>
         // Chèn header
         fetch('header.html')
@@ -35,18 +34,18 @@
     <div id="carouselExample" class="carousel slide mb-4">
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="../../assets/img/anh/tintuc/11.jpg" class="d-block w-100" alt="Slide 1">
+                <img src="/anh/tintuc/11.jpg" class="d-block w-100" alt="Slide 1">
                 <div class="carousel-caption d-none d-md-block">
 
                 </div>
             </div>
             <div class="carousel-item">
-                <img src="../../assets/img/anh/tintuc/12.jpg" class="d-block w-100" alt="Slide 2">
+                <img src="anh/tintuc/12.jpg" class="d-block w-100" alt="Slide 2">
                 <div class="carousel-caption d-none d-md-block">
                 </div>
             </div>
             <div class="carousel-item">
-                <img src="../../assets/img/anh/tintuc/12.jpg" class="d-block w-100" alt="Slide 3">
+                <img src="anh/tintuc/12.jpg" class="d-block w-100" alt="Slide 3">
                 <div class="carousel-caption d-none d-md-block">
                 </div>
             </div>
@@ -62,45 +61,80 @@
     </div>
 </div>
 <!-- Kết thúc Slider -->
-<div class="container">
-    <div class="content">
-        <h1 class="title">Chào Mừng Ngày Quốc Khánh 2/9</h1>
-        <p class="description">
-            <strong>Ngày Quốc khánh 2/9</strong> đánh dấu một bước ngoặt lớn trong lịch sử dân tộc.
-        </p>
-        <img src="https://chothuexemayhcm.com/upload/news/chao-mung-ngay-quoc-khanh-291725298440_385x205.jpg" alt="KYMCO Like" class="main-image">
-        <ul class="features">
 
-            <li>  Hình ảnh lá cờ Tổ quốc tung bay phấp phới trong ngày đặc biệt này luôn khắc sâu trong tâm trí mỗi con dân đất Việt.</li>
-            <li><strong>Ngày 2/9 </strong>còn giúp thế hệ trẻ cảm thấy trân trọng hơn nền độc lập tự do đang có. Từ đó, mỗi người sẽ ý thức được trách nhiệm của mình đối với sự nghiệp bảo vệ và phát triển đất nước ngày càng giàu mạnh, phồn vinh.</li>
-            <li>  Ngày Quốc khánh Việt Nam là ngày lễ chính thức của Việt Nam, diễn ra vào ngày 2 tháng 9 hằng năm, kỷ niệm ngày Chủ tịch Hồ Chí Minh đọc bản Tuyên ngôn độc lập tại Quảng trường Ba Đình, Hà Nội.</li>
-        </ul>
-    </div>
-    <div class="related-articles">
-        <h2>Các bài viết liên quan</h2>
-        <div class="article-list">
-            <div class="article-item">
-                <a href="../../chitiettintuc.html">
-                    <img src="../../assets/img/anh/tintuc/1.jpg" alt="Bài viết 1">
-                    <h3>KYMCO Like</h3>
-                    <p>Xe máy, thông tin, bảng giá</p>
-                </a>
-            </div>
-            <div class="article-item">
-                <a href="chitiettintuc4.html">
-                    <img src="../../assets/img/anh/tintuc/2.jpg" alt="Bài viết 2">
-                    <h3>
-                        Max Nhật huyền thoại   </h3>
-                    <p>Xe máy, thông tin, bảng giá</p>
-                </a>
-            </div>
-            <div class="article-item">
-                <a href="chitiettintuc2.html">
-                    <img src="../../assets/img/anh/tintuc/5.jpg" alt="Bài viết 3">
-                    <h3>Bảo tàng Chứng tích Chiến tranh - TP HCM</h3>
-                    <p>du lịch, tổng hợp, cẩm nang, Sài Gòn</p>
-                </a>
-            </div>
+<div class="container">
+
+    <h1 class="title">TIN TỨC</h1>
+    <div class="news-grid">
+        <div class="news-item">
+            <a href="chitiettintuc.html">
+                <img src="anh/tintuc/1.jpg" alt="KYMCO LIKE">
+                <h3>KYMCO LIKE</h3>
+                <p>Xe máy, thông tin, bảng giá</p>
+            </a>
+        </div>
+        <div class="news-item">
+            <a href="trangtintuc/tintuc/chitiettintuc2.html">
+                <img src="anh/tintuc/5.jpg" alt="Bảo tàng Chứng tích Chiến tranh">
+                <h3>Bảo tàng Chứng tích Chiến tranh - TP HCM</h3>
+                <p>du lịch, tổng hợp, cẩm nang, Sài Gòn</p>
+            </a>
+        </div>
+        <div class="news-item">
+            <a href="trangtintuc/tintuc/chitiettintuc4.html">
+                <img src="anh/tintuc/2.jpg" alt="Max Nhật huyền thoại">
+                <h3>Max Nhật huyền thoại</h3>
+                <p>Xe máy, thông tin, bảng giá</p>
+            </a>
+        </div>
+        <div class="news-item">
+            <img src="anh/tintuc/6.jpg" alt="Phố đi bộ Nguyễn Huệ">
+            <h3>Phố đi bộ Nguyễn Huệ</h3>
+            <p>du lịch, tổng hợp, cẩm nang, Sài Gòn</p>
+        </div>
+        <div class="news-item">
+            <img src="anh/tintuc/3.jpg" alt="Honda Air Blade">
+            <h3>Honda Air Blade: Luôn là lựa chọn hoàn hảo</h3>
+            <p>Xe máy, thông tin, bảng giá</p>
+        </div>
+        <div class="news-item">
+            <img src="anh/tintuc/7.jpg" alt="Honda Vision">
+            <h3>Honda Vision - Mẫu xe "quốc dân"</h3>
+            <p>Xe máy, thông tin, bảng giá</p>
+        </div>
+        <div class="news-item">
+            <img src="anh/tintuc/4.jpg" alt="Kinh nghiệm du lịch mùa Sài Gòn">
+            <h3>Kinh nghiệm du lịch mùa Sài Gòn</h3>
+            <p>du lịch, tổng hợp, cẩm nang, Sài Gòn</p>
+        </div>
+        <div class="news-item">
+            <a href="trangtintuc/tintuc/chitiettintuc3.html">
+                <img src="anh/tintuc/9.jpg" alt="Honda Lead 125">
+                <h3>Thuê xe Củ Chi đi Vũng Tàu</h3>
+                <p>Xe máy, thông tin, bảng giá</p>
+            </a>
+        </div>
+        <div class="news-item">
+            <a href="trangtintuc/tintuc/chitiettintuc5.html">
+                <img src="https://chothuexemayhcm.com/upload/news/chao-mung-ngay-quoc-khanh-291725298440_385x205.jpg" alt="Thue xe Củ Chi đi Vũng Tàu">
+                <h3>Chào Mừng Ngày Quốc Khánh 2/9</h3>
+                <p>Xe máy, thông tin, bảng giá</p>
+            </a>
+        </div>
+        <div class="news-item">
+            <img src="https://chothuexemayhcm.com/upload/news/cong-vien-tao-dan-la-phoi-xanh-cua-thanh-pho-ho-chi-minh1724001515_385x205.jpg" alt="Thue xe Củ Chi đi Vũng Tàu">
+            <h3>Công viên Tao Đàn - "Lá phổi xanh" của Thành phố Hồ Chí Minh</h3>
+            <p>du lịch, tổng hợp, cẩm nang, Sài Gòn/p>
+        </div>
+        <div class="news-item">
+            <img src="https://chothuexemayhcm.com/upload/news/mon-ngon-sai-gon-noi-tieng-bon-phuong1717603530_385x205.jpg" alt="Thue xe Củ Chi đi Vũng Tàu">
+            <h3>Món Ngon Sài Gòn Nổi Tiếng Bốn Phương</h3>
+            <p>du lịch, tổng hợp, cẩm nang, Sài Gòn</p>
+        </div>
+        <div class="news-item">
+            <img src="https://chothuexemayhcm.com/upload/news/chao-mung-dai-le-304-151714260161_385x205.jpg" alt="Thue xe Củ Chi đi Vũng Tàu">
+            <h3>Chào mừng đại Lễ 30/4 - 1/5</h3>
+            <p>Tổng hợp</p>
         </div>
     </div>
 </div>
