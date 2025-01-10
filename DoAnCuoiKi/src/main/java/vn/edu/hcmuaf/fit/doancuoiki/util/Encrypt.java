@@ -28,7 +28,7 @@ public class Encrypt {
     }
 
     public static void main(String[] args) {
-        String rawPassword = "12345";
+        String rawPassword = "Nh123456";
         String encryptedPassword = Encrypt.encrypt(rawPassword);
 
         System.out.println("Mật khẩu gốc: " + rawPassword);
