@@ -319,5 +319,52 @@
 }
 
 
+/*test
+ */
+/* Khu vực danh sách sản phẩm */
+.list-products {
+    display: flex;          /* Sử dụng Flexbox */
+    justify-content: space-between; /* Tạo khoảng cách đều giữa các sản phẩm */
+    gap: 20px;              /* Khoảng cách giữa các sản phẩm */
+    flex-wrap: nowrap;      /* Không cho phép xuống dòng */
+    overflow-x: auto;       /* Thêm thanh cuộn ngang nếu không đủ không gian */
+    padding: 10px;          /* Thêm padding để tránh sát viền */
+}
 
+/* Thiết kế từng sản phẩm */
+.list-product {
+    flex: 0 0 calc(25% - 20px); /* Mỗi sản phẩm chiếm 25% chiều rộng hàng (tương ứng 4 sản phẩm mỗi hàng) */
+    max-width: calc(25% - 20px);
+    box-sizing: border-box;     /* Bao gồm padding và border trong chiều rộng */
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+}
 
+.list-product:hover {
+    transform: scale(1.05); /* Hiệu ứng phóng to khi hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Tăng độ nổi bật */
+}
+
+@media (max-width: 768px) {
+    .list-products {
+        flex-wrap: wrap;         /* Cho phép xuống dòng khi màn hình nhỏ */
+        overflow-x: hidden;      /* Bỏ thanh cuộn ngang */
+    }
+
+    .list-product {
+        flex: 1 1 calc(50% - 20px); /* Mỗi sản phẩm chiếm 50% chiều rộng màn hình */
+        max-width: calc(50% - 20px);
+    }
+}
+
+@media (max-width: 480px) {
+    .list-product {
+        flex: 1 1 100%; /* Mỗi sản phẩm chiếm toàn bộ chiều rộng màn hình */
+        max-width: 100%;
+    }
+}
