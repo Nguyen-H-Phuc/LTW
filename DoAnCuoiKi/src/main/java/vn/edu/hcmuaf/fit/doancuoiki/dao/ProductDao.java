@@ -124,7 +124,7 @@ public Product getProductById(int id) {
         String query = "SELECT * FROM products " +
                 "WHERE id != ? " +
                 "ORDER BY RAND() " +
-                "LIMIT 3"; // Lấy ngẫu nhiên 3 sản phẩm khác sản phẩm hiện tại
+                "LIMIT 2"; // Lấy ngẫu nhiên 3 sản phẩm khác sản phẩm hiện tại
         try {
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(query);
