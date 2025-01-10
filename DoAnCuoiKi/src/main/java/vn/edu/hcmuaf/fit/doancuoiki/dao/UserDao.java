@@ -39,7 +39,7 @@ public class UserDao {
             ps.setString(1, email);
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) { // Kiểm tra có dữ liệu không
-                    return rs.getInt("is_active");
+                    return rs.getInt("isActive");
                 } else {
                     throw new SQLException("No user found with the given email.");
                 }
@@ -56,13 +56,13 @@ public class UserDao {
             ps.setString(2, password);
             try(ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
-                    UserInfo ui = getUserInfo(rs.getInt("user_id"));
-                    return new User(rs.getInt("user_id"),
+                    UserInfo ui = getUserInfo(rs.getInt("id"));
+                    return new User(rs.getInt("id"),
                             rs.getString("email"),
                             rs.getString("password"),
                             ui,
-                            rs.getInt("role_id"),
-                            rs.getBoolean("is_active"));
+                            rs.getInt("roleId"),
+                            rs.getBoolean("isActive"));
                 } else { return null;
                 }
             }
@@ -70,7 +70,7 @@ public class UserDao {
     }
 
     public UserInfo getUserInfo(int userId) {
-        String query = "SELECT * FROM userinfo WHERE user_id = ?";
+        String query = "SELECT * FROM userdetails WHERE userId = ?";
         try (Connection conn = new DBContext().getConnection();
              PreparedStatement ps = conn.prepareStatement(query)) {
 
@@ -78,10 +78,10 @@ public class UserDao {
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) { // Kiểm tra kết quả trước khi truy xuất
                     return new UserInfo(
-                            rs.getString("full_name"),
-                            rs.getString("phone_number"),
+                            rs.getString("fullName"),
+                            rs.getString("phoneNumber"),
                             rs.getString("address"), // Xóa khoảng trắng thừa
-                            rs.getDate("birth_date").toLocalDate()
+                            rs.getDate("birthDate").toLocalDate()
                     );
                 } else {
                     return null; // Trường hợp không có bản ghi
@@ -94,8 +94,8 @@ public class UserDao {
 
 
     public boolean addUser(User user) {
-        String query1 = "INSERT INTO users (email, password, role_id, is_Active) VALUES (?, ?, ?, ?)";
-        String query2 = "INSERT INTO userinfo (user_id, full_Name, phone_Number, birth_date, address) VALUES (?, ?, ?, ?, ?)";
+        String query1 = "INSERT INTO users (email, password, roleId, isActive) VALUES (?, ?, ?, ?)";
+        String query2 = "INSERT INTO userdetails (userId, fullName, phoneNumber, birthdate, address) VALUES (?, ?, ?, ?, ?)";
         boolean success = false;
 
         try (Connection conn = new DBContext().getConnection()) {
