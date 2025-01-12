@@ -49,6 +49,10 @@
             .then(data => document.getElementById('footer').innerHTML = data);
         function filterBestSellers() {
             window.location.href = 'ProductBestSeller';
+
+        }
+        function redirectToNewPage() {
+            window.location.href = 'ProductNew';
         }
     </script>
 </head>

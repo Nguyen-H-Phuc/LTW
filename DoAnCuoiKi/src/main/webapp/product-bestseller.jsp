@@ -33,7 +33,14 @@
         // Chèn footer
         fetch('footer.jsp')
             .then(response => response.text())
-            .then(data => document.getElementById('footer').innerHTML = data);
+            .then(data => document.getElementById('footer').innerHTML = data);function filterBestSellers() {
+            window.location.href = 'ProductBestSeller';
+
+        }
+        function redirectToNewPage() {
+            window.location.href = 'ProductNew';
+        }
+
     </script>
 </head>
 <body>
@@ -42,7 +49,7 @@
 <div class="hom-filter">
     <span class="hom-filter-label">Sắp xếp theo</span>
 
-    <button class="btnloc" >Mới nhất </button>
+    <button class="btnloc" onclick="redirectToNewPage()" >Mới nhất </button>
     <button class="btnloc" onclick="filterBestSellers()">Bán chạy </button>
     <div class="filter-group">
         <label for="price-filter">Sắp xếp giá:</label>
