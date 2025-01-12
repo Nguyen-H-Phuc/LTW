@@ -6,6 +6,7 @@ import vn.edu.hcmuaf.fit.doancuoiki.model.Product;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -204,17 +205,38 @@ public List<Product> getLast8Products() {
         }
         return list;
     }
+    public List<Product> searchByName(String txtSearch) {
+        List<Product> list = new ArrayList<>();
+        String query = "SELECT * FROM products WHERE name LIKE ?";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, "%" +txtSearch + "%");
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(new Product(
+                        rs.getInt("id"),
+                        rs.getString("name"),
+                        rs.getInt("year"),
+                        rs.getString("brand"),
+                        rs.getString("type"),
+                        rs.getDouble("price"),
+                        rs.getString("description"),
+                        rs.getString("img"),
+                        rs.getString("numberPlate")
+                ));
+            }
+        } catch (Exception e) {
 
+        }
+        return list;
+    }
 
     public static void main(String[] args) {
       ProductDao dao = new ProductDao();
-      Product product = dao.getProductById(1);
-      System.out.println(product);
-
-        List<Product> relatedProducts = dao.getRelatedProducts(1);
-        System.out.println("\nSản phẩm liên quan:");
-        for (Product p : relatedProducts) {
-            System.out.println(p);
-        }
+      List<Product> list = dao.searchByName("SH");
+      for (Product p : list) {
+          System.out.println(p);
+      }
     }
 }

@@ -77,7 +77,7 @@
             </div>
             <div class="header__search">
                 <div class="header__search-input-wrap">
-                    <input type="search" class="header__search-input" placeholder="Nhập để tìm kiếm sản phẩm">
+                    <input name="txt" type="text" class="header__search-input" placeholder="Nhập để tìm kiếm sản phẩm">
 
                     <!-- Search History-->
                     <div class="header__search-history">
