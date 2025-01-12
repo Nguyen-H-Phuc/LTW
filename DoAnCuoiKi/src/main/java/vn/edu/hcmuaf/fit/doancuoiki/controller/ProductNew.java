@@ -15,7 +15,7 @@ public class ProductNew extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ProductDao dao = new ProductDao();
         List<Product> listNewProducts = dao.getLast8Products();
-        request.setAttribute("listNewProducts", listNewProducts);
+        request.setAttribute("listN", listNewProducts);
         request.getRequestDispatcher("product-new.jsp").forward(request, response);
     }
 
