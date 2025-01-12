@@ -177,6 +177,34 @@ public List<Product> getLast8Products() {
     }
     return list;
 }
+    // Fetch the 8 most expensive products
+    public List<Product> getMostExpensiveProducts() {
+        List<Product> list = new ArrayList<>();
+        String query = "SELECT * FROM products ORDER BY price DESC LIMIT 8";  // Fetch the 8 most expensive products
+
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(new Product(
+                        rs.getInt("id"),
+                        rs.getString("name"),
+                        rs.getInt("year"),
+                        rs.getString("brand"),
+                        rs.getString("type"),
+                        rs.getDouble("price"),
+                        rs.getString("description"),
+                        rs.getString("img"),
+                        rs.getString("numberPlate")
+                ));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
 
     public static void main(String[] args) {
       ProductDao dao = new ProductDao();
