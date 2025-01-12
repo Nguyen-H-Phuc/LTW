@@ -18,7 +18,7 @@
 
 </head>
 <body>
-
+<form action="SearchControl" method="get">
 <header class="header">
     <div class="grid">
         <nav class="header__navbar">
@@ -75,31 +75,16 @@
                 <img class="header__logo-img" src="assets/img/home_img/xe/logo_xemay.png"/>
 
             </div>
+
             <div class="header__search">
+
                 <div class="header__search-input-wrap">
-                    <input name="txt" type="text" class="header__search-input" placeholder="Nhập để tìm kiếm sản phẩm">
-
-                    <!-- Search History-->
-                    <div class="header__search-history">
-                        <h3 class="header__search-history-heading">Lịch sử tìm kiếm</h3>
-                        <ul class="header__search-history-list">
-                            <li class="header__search-history-item">
-                                <a href="">Wave RSX</a>
-                            </li>
-                            <li class="header__search-history-item">
-                                <a href="">Xì po</a>
-                            </li>
-                            <li class="header__search-history-item">
-                                <a href="">Wave alpha</a>
-                            </li>
-                        </ul>
-                    </div>
+                    <input name="txt" type="search" class="header__search-input" placeholder="Nhập để tìm kiếm sản phẩm">
                 </div>
-
-
                 <button class="header__search-btn">
                     <i class="header__search-btn-icon fa-solid fa-magnifying-glass"></i>
                 </button>
+
             </div>
 
             <!--Cart Layout -->
@@ -140,4 +125,5 @@
     </div>
 
 </header>
+</form>
 </body>
