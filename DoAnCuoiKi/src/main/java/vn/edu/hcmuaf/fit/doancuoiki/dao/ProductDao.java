@@ -150,6 +150,33 @@ public Product getProductById(int id) {
         return list;
     }
 
+// product new
+public List<Product> getLast8Products() {
+    List<Product> list = new ArrayList<>();
+    String query = "SELECT * FROM products ORDER BY id DESC LIMIT 8";  // Adjust the query to fetch the last 8 products
+
+    try {
+        conn = new DBContext().getConnection();
+        ps = conn.prepareStatement(query);
+        rs = ps.executeQuery();
+        while (rs.next()) {
+            list.add(new Product(
+                    rs.getInt("id"),
+                    rs.getString("name"),
+                    rs.getInt("year"),
+                    rs.getString("brand"),
+                    rs.getString("type"),
+                    rs.getDouble("price"),
+                    rs.getString("description"),
+                    rs.getString("img"),
+                    rs.getString("numberPlate")
+            ));
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+    return list;
+}
 
     public static void main(String[] args) {
       ProductDao dao = new ProductDao();
