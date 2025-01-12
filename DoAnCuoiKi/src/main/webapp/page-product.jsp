@@ -57,7 +57,7 @@
 <div class="hom-filter">
     <span class="hom-filter-label">Sắp xếp theo</span>
     <button class="btnloc" onclick="redirectToNewPage()">Mới nhất </button>
-    <button class="btnloc" onclick="filterBestSellers()">Ban chay </button>
+    <button class="btnloc" onclick="filterBestSellers()">Bán chạy </button>
     <div class="filter-group">
         <label for="price-filter">Sắp xếp giá:</label>
         <select id="price-filter" onchange="sortProducts()">

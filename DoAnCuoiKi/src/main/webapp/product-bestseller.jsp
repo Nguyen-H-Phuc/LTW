@@ -63,6 +63,7 @@
                 <li data-best-seller="true" data-price="${p.price}">
                     <div class="product-item">
                         <div class="product-top">
+                            <a class="add-to-cart" onclick="addToCart()">+</a>
                             <a href="" class="product-thumb">
                                 <img src="${p.img}" alt="">
                             </a>
