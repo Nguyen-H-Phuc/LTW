@@ -11,6 +11,20 @@
     <link rel="stylesheet" href="csssp.css">
     <script src="../../js/locsanphamgiathapdencao.js"></script>
     <script>
+        function sortProducts() {
+            const priceFilter = document.getElementById('price-filter').value;
+            const productList = document.querySelector('.products');
+            const products = Array.from(productList.children);
+
+            if (priceFilter === 'asc') {
+                products.sort((a, b) => parseFloat(a.getAttribute('data-price')) - parseFloat(b.getAttribute('data-price')));
+            } else if (priceFilter === 'desc') {
+                products.sort((a, b) => parseFloat(b.getAttribute('data-price')) - parseFloat(a.getAttribute('data-price')));
+            }
+
+            productList.innerHTML = '';
+            products.forEach(product => productList.appendChild(product));
+        }
         // Chèn header
         fetch('header.jsp')
             .then(response => response.text())
@@ -46,7 +60,7 @@
 
         <ul class="products">
             <c:forEach var="p" items="${listN}">
-            <li data-best-seller="true" >
+            <li data-best-seller="true" data-price="${p.price}">
                 <div class="product-item">
                     <div class="product-top">
                         <a href="" class="product-thumb">

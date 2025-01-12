@@ -24,6 +24,20 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="csssp.css" rel="stylesheet">
     <script>
+        function sortProducts() {
+            const priceFilter = document.getElementById('price-filter').value;
+            const productList = document.querySelector('.products');
+            const products = Array.from(productList.children);
+
+            if (priceFilter === 'asc') {
+                products.sort((a, b) => parseFloat(a.getAttribute('data-price')) - parseFloat(b.getAttribute('data-price')));
+            } else if (priceFilter === 'desc') {
+                products.sort((a, b) => parseFloat(b.getAttribute('data-price')) - parseFloat(a.getAttribute('data-price')));
+            }
+
+            productList.innerHTML = '';
+            products.forEach(product => productList.appendChild(product));
+        }
         // Chèn header
         fetch('header.jsp')
             .then(response => response.text())
@@ -33,6 +47,9 @@
         fetch('footer.jsp')
             .then(response => response.text())
             .then(data => document.getElementById('footer').innerHTML = data);
+        function filterBestSellers() {
+            window.location.href = 'ProductBestSeller';
+        }
     </script>
 </head>
 <body>
@@ -56,7 +73,7 @@
 
         <ul class="products">
             <c:forEach var="p" items="${listA}">
-                <li>
+                <li data-price="${p.price}">
                     <div class="product-item">
                         <div class="product-top">
                             <a class="add-to-cart" onclick="addToCart()">+</a>
