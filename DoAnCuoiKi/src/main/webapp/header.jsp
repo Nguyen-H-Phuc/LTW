@@ -66,7 +66,7 @@
                         </li>
                         <% if(user.getRoleId() == 1) { %>
                         <li class="header__navbar-user-item">
-                            <a href="">Admin</a>
+                            <a href="admin/admin.jsp">Admin</a>
                         <% } %>
                         <li class="header__navbar-user-item">
                             <a href="">Lịch sử thuê</a>
