@@ -37,31 +37,17 @@
         <div class="auth-form__header">
           <h3 class="auth-form__heading">Quên mật khẩu</h3>
         </div>
-
+        <form action="your-backend-endpoint" method="POST">
         <div class="auth-form__form">
           <div class="auth-form__group">
             <input type="text" class="auth-form__input" placeholder="Email của bạn">
           </div>
-          <div class="auth-form__group">
-            <input type="password" class="auth-form__input" placeholder="Nhập mậu khẩu mới">
-          </div>
-          <div class="auth-form__group">
-            <input type="password" class="auth-form__input" placeholder="Nhập mậu khẩu mới">
-          </div>
-          <div class="auth-form__group">
-            <input type="password" class="auth-form__input" placeholder="Nhập mã xác nhận">
-          </div>
-
         </div>
-
-        <div class="auth-form__aside">
-
-        </div>
-
         <div class="auth-form__controls">
-          <button class="btn btn--normal auth-form__controls-back">TRỞ LẠI</button>
-          <button class="btn btn--primary">XÁC NHẬN</button>
+          <button type = "button" class="btn btn--normal auth-form__controls-back">TRỞ LẠI</button>
+          <button type = "submit" class="btn btn--primary">XÁC NHẬN</button>
         </div>
+        </form>
       </div>
       <div class="social-container">
         <div class="auth-form__socials">
