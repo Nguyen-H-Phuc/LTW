@@ -1,33 +1,42 @@
 package vn.edu.hcmuaf.fit.doancuoiki.model;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable {
     private int id;
     private String email;
     private String password;
     private UserInfo userInfo;
     private int roleId;
-    private boolean isActive;
+    private boolean active;
 
     public User() {
     }
 
-    public User(String email, String password, UserInfo userInfo, boolean isActive) {
+    public User(String email, String password, UserInfo userInfo, boolean active) {
         this.email = email;
         this.password = password;
         this.userInfo = userInfo;
-        this.isActive = isActive;
+        this.roleId = 2;
+        this.active = active;
     }
 
-    public User(int id, String email, String password, UserInfo userInfo, int roleId, boolean isActive) {
+    public User(int id, String email, String password, UserInfo userInfo, int roleId, boolean active) {
         this.id = id;
         this.email = email;
         this.password = password;
         this.userInfo = userInfo;
         this.roleId = roleId;
-        this.isActive = isActive;
+        this.active = active;
     }
 
-
+    public User(int id, String email, UserInfo userInfo, int roleId, boolean active) {
+        this.id = id;
+        this.email = email;
+        this.userInfo = userInfo;
+        this.roleId = roleId;
+        this.active = active;
+    }
 
     public int getId() {
         return id;
@@ -70,11 +79,22 @@ public class User {
     }
 
     public boolean isActive() {
-        return isActive;
+        return active;
     }
 
     public void setActive(boolean active) {
-        isActive = active;
+        active = active;
     }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", userInfo=" + userInfo +
+                ", roleId=" + roleId +
+                ", isActive=" + active +
+                '}';
+    }
 }
