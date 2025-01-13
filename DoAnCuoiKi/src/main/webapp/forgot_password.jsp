@@ -37,10 +37,10 @@
         <div class="auth-form__header">
           <h3 class="auth-form__heading">Quên mật khẩu</h3>
         </div>
-        <form action="your-backend-endpoint" method="POST">
+        <form action="ForgotPasswordController" method="POST">
         <div class="auth-form__form">
           <div class="auth-form__group">
-            <input type="text" class="auth-form__input" placeholder="Email của bạn">
+            <input type="text" name = "email" class="auth-form__input" placeholder="Email của bạn">
           </div>
         </div>
         <div class="auth-form__controls">
