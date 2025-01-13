@@ -37,10 +37,10 @@ public class LoginController extends HttpServlet {
             User user = userDao.getUser(email, passwordEncrypt);
 
             if(user !=null) {
-                url = "/index.jsp";
+                url = "index.jsp";
                 HttpSession session = request.getSession();
                 session.setAttribute("user", user);
-                forwardToPage(request, response, url);
+                response.sendRedirect(url);
             } else {
                 request.setAttribute("error", "Sai mật khẩu hoặc tên đăng nhập");
                 forwardToPage(request, response, url);
@@ -54,4 +54,5 @@ public class LoginController extends HttpServlet {
         RequestDispatcher dispatcher = request.getRequestDispatcher(url);
         dispatcher.forward(request, response);
     }
+
 }
