@@ -6,6 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix = "f" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,7 +15,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0">
   <title>Trang admin</title>
   <link rel= "stylesheet" href= "https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css" >
-  <link rel="stylesheet" href="admin.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/admin/admin.css">
+
   <style>
     .modal {
       display: none; /* Hidden by default */
@@ -191,222 +194,53 @@
                 <th>ID</th>
                 <th>Họ tên</th>
                 <th>Ngày sinh</th>
-                <th>Giới tính</th>
                 <th>Email</th>
                 <th>Số điện thoại</th>
                 <th>Địa chỉ</th>
-                <th>Ngày đăng ký</th>
-                <th>Chi tiết sản phẩm đã thuê</th>
+                <th>Vai trò</th>
+                <th>Trạng thái</th>
               </tr>
               </thead>
               <tbody>
-              <tr>
-                <td>KH01</td>
-                <td>Mai Lâm Nhật</td>
-                <td>11-04-2004</td>
-                <td>nam</td>
-                <td>22130195@st</td>
-                <td>0908028875</td>
-                <td>KTX khu B</td>
-                <td>20-10-2024</td>
-                <td>
-                  <button class="see-btn" onclick="openConfig()">xem chi tiết</button>
-                </td>
-              </tr>
-              <tr>
-                <td>KH02</td>
-                <td>Nguyễn Hoàng Phúc</td>
-                <td>11-04-2004</td>
-                <td>nam</td>
-                <td>22130218@st</td>
-                <td>0908028875</td>
-                <td>Hóc Môn</td>
-                <td>15-10-2024</td>
-                <td>
-                  <button class="see-btn">xem chi tiết</button>
-                </td>
-              </tr>
-              <tr>
-                <td>KH03</td>
-                <td>Nguyễn Bảo Nguyên</td>
-                <td>11-04-2004</td>
-                <td>nam</td>
-                <td>22130189@st</td>
-                <td>0908028875</td>
-                <td>Gò Vấp</td>
-                <td>03-11-2024</td>
-                <td>
-                  <button class="see-btn">xem chi tiết</button>
-                </td>
-              </tr>
-              <tr>
-                <td>KH04</td>
-                <td>Mai Lâm Nhật</td>
-                <td>11-04-2004</td>
-                <td>nam</td>
-                <td>22130195@st</td>
-                <td>0908028875</td>
-                <td>KTX khu B</td>
-                <td>20-10-2024</td>
-                <td>
-                  <button class="see-btn">xem chi tiết</button>
-                </td>
-              </tr>
-              <tr>
-                <td>KH05</td>
-                <td>Nguyễn Hoàng Phúc</td>
-                <td>11-04-2004</td>
-                <td>nam</td>
-                <td>22130218@st</td>
-                <td>0908028875</td>
-                <td>Hóc Môn</td>
-                <td>15-10-2024</td>
-                <td>
-                  <button class="see-btn">xem chi tiết</button>
-                </td>
-              </tr>
-              <tr>
-                <td>KH06</td>
-                <td>Nguyễn Bảo Nguyên</td>
-                <td>11-04-2004</td>
-                <td>nam</td>
-                <td>22130189@st</td>
-                <td>0908028875</td>
-                <td>Gò Vấp</td>
-                <td>03-11-2024</td>
-                <td>
-                  <button class="see-btn">xem chi tiết</button>
-                </td>
-              </tr>
-              <tr>
-                <td>KH07</td>
-                <td>Mai Lâm Nhật</td>
-                <td>11-04-2004</td>
-                <td>nam</td>
-                <td>22130195@st</td>
-                <td>0908028875</td>
-                <td>KTX khu B</td>
-                <td>20-10-2024</td>
-                <td>
-                  <button class="see-btn">xem chi tiết</button>
-                </td>
-              </tr>
-              <tr>
-                <td>KH08</td>
-                <td>Nguyễn Hoàng Phúc</td>
-                <td>11-04-2004</td>
-                <td>nam</td>
-                <td>22130218@st</td>
-                <td>0908028875</td>
-                <td>Hóc Môn</td>
-                <td>15-10-2024</td>
-                <td>
-                  <button class="see-btn">xem chi tiết</button>
-                </td>
-              </tr>
-              <tr>
-                <td>KH09</td>
-                <td>Nguyễn Bảo Nguyên</td>
-                <td>11-04-2004</td>
-                <td>nam</td>
-                <td>22130189@st</td>
-                <td>0908028875</td>
-                <td>Gò Vấp</td>
-                <td>03-11-2024</td>
-                <td>
-                  <button class="see-btn">xem chi tiết</button>
-                </td>
-              </tr>
-              <tr>
-                <td>KH10</td>
-                <td>Mai Lâm Nhật</td>
-                <td>11-04-2004</td>
-                <td>nam</td>
-                <td>22130195@st</td>
-                <td>0908028875</td>
-                <td>KTX khu B</td>
-                <td>20-10-2024</td>
-                <td>
-                  <button class="see-btn">xem chi tiết</button>
-                </td>
-              </tr>
-              <tr>
-                <td>KH11</td>
-                <td>Nguyễn Hoàng Phúc</td>
-                <td>11-04-2004</td>
-                <td>nam</td>
-                <td>22130218@st</td>
-                <td>0908028875</td>
-                <td>Hóc Môn</td>
-                <td>15-10-2024</td>
-                <td>
-                  <button class="see-btn">xem chi tiết</button>
-                </td>
-              </tr>
-              <tr>
-                <td>KH12</td>
-                <td>Nguyễn Bảo Nguyên</td>
-                <td>11-04-2004</td>
-                <td>nam</td>
-                <td>22130189@st</td>
-                <td>0908028875</td>
-                <td>Gò Vấp</td>
-                <td>03-11-2024</td>
-                <td>
-                  <button class="see-btn">xem chi tiết</button>
-                </td>
-              </tr>
+                  <c:if test="${not empty users}">
+                      <c:forEach var="u" items="${users}">
+                          <tr>
+                              <td>${u.id}</td>
+                              <td>${u.userInfo.fullName}</td>
+                              <td>${u.userInfo.birthday}</td>
+                              <td>${u.email}</td>
+                              <td>${u.userInfo.phoneNumber}</td>
+                              <td>${u.userInfo.address}</td>
+                              <td>
+                                  <form action="admin" method="get">
+                                      <input type="hidden" name="action" value="changeRoleUser" />
+                                      <input type="hidden" name="userId" value="${u.id}" />
+                                      <select name="roleId" onchange="this.form.submit()">
+                                          <option value="1" ${u.roleId == 1 ? 'selected' : ''}>Admin</option>
+                                          <option value="2" ${u.roleId == 2 ? 'selected' : ''}>Người dùng thường</option>
+                                      </select>
+                                  </form>
+                              </td>
+                              <td>
+                                  <form action="admin" method="get">
+                                      <input type="hidden" name="action" value="changeStatusUser" />
+                                      <input type="hidden" name="userId" value="${u.id}" />
+                                      <select name="status" onchange="this.form.submit()">
+                                          <option value="1" ${u.active ? 'selected' : ''}>Đang hoạt động</option>
+                                          <option value="0" ${!u.active ? 'selected' : ''}>Bị khoá</option>
+                                      </select>
+                                  </form>
+                              </td>
+                          </tr>
+                      </c:forEach>
+                  </c:if>
+                  <c:if test="${empty users}">
+                      <tr>
+                          <td colspan="8">Không có khách hàng nào</td>
+                      </tr>
+                  </c:if>
               </tbody>
             </table>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div id="configModal" class="modal">
-      <div class="modal-content">
-        <div class="invoice-modal">
-          <div class="invoice-header">
-            <h2>CHI TIẾT HÓA ĐỠ THUÊ XE</h2>
-            <span class="close-btn" onclick="closeConfig()">&times;</span>
-          </div>
-          <div class="invoice-info">
-            <p><strong>Tên:</strong> Nguyễn Bảo Nguyên</p>
-            <p><strong>Địa chỉ:</strong> 123 Đường ABC</p>
-            <p><strong>Số điện thoại:</strong> 0987654321</p>
-            <p><strong>Ngày mua:</strong> 12/11/2023</p>
-          </div>
-          <table class="invoice-table">
-            <thead>
-            <tr>
-              <th>ID xe</th>
-              <th>Tên xe</th>
-              <th>Loại xe</th>
-              <th>Giá thuê</th>
-              <th>Mô tả </th>
-              <th>Hãng sản xuất</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-              <td>1</td>
-              <td>Yamaha Nozza</td>
-              <td>Xe số</td>
-              <td>80.000 VND</td>
-              <td>	Dễ lái, tiết kiệm xăng</td>
-              <td>Yamaha</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Honda SH</td>
-              <td>Xe tay ga</td>
-              <td>180.000 VND</td>
-              <td>	Dễ lái, tiết kiệm xăng</td>
-              <td>Honda</td>
-            </tr>
-            </tbody>
-          </table>
-          <div class="invoice-total">
-            <strong>TỔNG TIỀN: 260,000 VND</strong>
           </div>
         </div>
       </div>
