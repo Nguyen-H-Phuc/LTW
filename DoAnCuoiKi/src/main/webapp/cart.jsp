@@ -1,4 +1,7 @@
-<%--
+<%@ page import="vn.edu.hcmuaf.fit.doancuoiki.model.ShoppingCart" %>
+<%@ page import="vn.edu.hcmuaf.fit.doancuoiki.model.CartItem" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.text.NumberFormat" %><%--
   Created by IntelliJ IDEA.
   User: DELL
   Date: 1/10/2025
@@ -20,6 +23,17 @@
 </head>
 
 <body>
+<%
+    ShoppingCart shoppingCart = (ShoppingCart) session.getAttribute("cart");
+    if(shoppingCart==null){
+        response.sendRedirect("ProductController");
+    }
+    List<CartItem> cartItems = shoppingCart.getCartItemList();
+    NumberFormat numberFormat = NumberFormat.getCurrencyInstance();
+    String e = request.getAttribute("error")==null?"":(String) request.getAttribute("error");
+
+
+%>
 <header id="header"></header>
 <!-- section 1 -->
 <div id="sec1">
@@ -34,63 +48,22 @@
             <div class="col-left">
                 <div class="cart-item">
                     <div class="cart-item__product">
-
-                        <img src="assets/img/home_img/xe/xe1.jpg" class="cart-img">
-                        <p><strong>Yamaha Nozza</strong></p>
+                        <%
+                            for (CartItem cartItem : cartItems) {
+                        %>
+                        <img src="<%=cartItem.getProduct().getImg()%>" class="cart-img">
+                        <p><strong><%=cartItem.getProduct().getName()%></strong></p>
                         <i class="cart-icon fa-regular fa-pen-to-square fa-xl"></i>
-                        <input type="number" class="form-control" value="1" min="1" max="5">
+                        <input type="number" class="form-control" value="<%=cartItem.getQuanlity()%>" min="1" max="5">
 
-                        <p><strong>80,000 VND/ngày</strong></p>
+                        <p><strong><%=cartItem.getProduct().getPrice()%></strong></p>
                         <i class="cart-icon fa-solid fa-trash fa-xl"></i>
-                    </div>
-                </div>
-
-                <div class="cart-item">
-                    <div class="cart-item__product">
-                        <img src="assets/img/home_img/xe/xe2.jpg" class="cart-img">
-                        <p><strong>Honda Vision</strong></p>
-                        <i class="cart-icon fa-regular fa-pen-to-square fa-xl"></i>
-                        <input type="number" class="form-control" value="1" min="1" max="5">
-
-                        <p><strong>90,000 VND/ngày</strong></p>
-                        <i class="cart-icon fa-solid fa-trash fa-xl"></i>
-                    </div>
-                </div>
-
-                <div class="cart-item">
-                    <div class="cart-item__product">
-                        <img src="assets/img/home_img/xe/xe3.jpg" class="cart-img">
-                        <p><strong>Honda Wave RSX</strong></p>
-                        <i class="cart-icon fa-regular fa-pen-to-square fa-xl"></i>
-                        <input type="number" class="form-control" value="1" min="1" max="5">
-
-                        <p><strong>50,000 VND/ngày</strong></p>
-                        <i class="cart-icon fa-solid fa-trash fa-xl"></i>
-                    </div>
-                </div>
-                <div class="cart-item">
-                    <div class="cart-item__product">
-                        <img src="assets/img/home_img/xe/xe4.jpg" class="cart-img">
-                        <p><strong>Sirius RC</strong></p>
-                        <i class="cart-icon fa-regular fa-pen-to-square fa-xl"></i>
-                        <input type="number" class="form-control" value="1" min="1" max="5">
-
-                        <p><strong>50,000 VND/ngày</strong></p>
-                        <i class="cart-icon fa-solid fa-trash fa-xl"></i>
-                    </div>
-                </div>
-
-                <div class="cart-item">
-                    <div class="cart-item__product">
-                        <img src="assets/img/home_img/xe/xe5.jpg" class="cart-img">
-                        <p><strong>Liberty</strong></p>
-                        <i class="cart-icon fa-regular fa-pen-to-square fa-xl"></i>
-                        <input type="number" class="form-control" value="1" min="1" max="5">
-                        <p><strong>90,000 VND/ngày</strong></p>
-                        <i class="cart-icon fa-solid fa-trash fa-xl"></i>
+                        <% }%>
                     </div>
                 </div>
             </div>
+
+
             <!-- col right -->
             <div class="col-right">
                 <form class="rental-information" action="/submit-rental" method="post">

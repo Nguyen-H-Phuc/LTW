@@ -1,8 +1,8 @@
 package vn.edu.hcmuaf.fit.doancuoiki.db;
 
-import Beans.Product;
 import com.mysql.cj.jdbc.MysqlDataSource;
 import org.jdbi.v3.core.Jdbi;
+import vn.edu.hcmuaf.fit.doancuoiki.model.Vehicle;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -33,12 +33,12 @@ public class JDBIConnector {
 
     public static void main(String[] args) {
         Jdbi jdbi = JDBIConnector.getJdbi();
-        List<Product> products = jdbi.withHandle(handle -> {
-            String sql = "SELECT * FROM products";
-            return handle.createQuery(sql).mapToBean(Product.class).stream().collect(Collectors.toList());
+        List<Vehicle> vehicles = jdbi.withHandle(handle -> {
+            String sql = "SELECT * FROM vehicles";
+            return handle.createQuery(sql).mapToBean(Vehicle.class).stream().collect(Collectors.toList());
 
         });
-        System.out.println(products);
+        System.out.println(vehicles);
 
     }
 }
