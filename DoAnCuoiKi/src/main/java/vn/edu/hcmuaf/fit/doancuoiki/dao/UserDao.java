@@ -4,15 +4,9 @@ import vn.edu.hcmuaf.fit.doancuoiki.db.DBContext;
 import vn.edu.hcmuaf.fit.doancuoiki.model.User;
 import vn.edu.hcmuaf.fit.doancuoiki.model.UserInfo;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class UserDao {
-    Connection conn = null;
-    PreparedStatement ps = null;
-    ResultSet rs = null;
 
     public boolean isEmailExists(String email) {
         String query = "SELECT COUNT(*) FROM users WHERE email = ?";
@@ -151,6 +145,50 @@ public class UserDao {
             throw new RuntimeException(e);
         }
         return success;
+    }
+
+    public void createToken(String token, long expiryTime, String email) {
+        String query = "UPDATE users SET resetToken = ?, tokenExpiry = ? WHERE email = ?";
+        try (Connection conn = new DBContext().getConnection();
+        PreparedStatement ps = conn.prepareStatement(query)){
+            ps.setString(1, token);
+            ps.setTimestamp(2, new Timestamp(expiryTime));
+            ps.setString(3, email);
+            ps.executeUpdate();
+        }
+        catch (SQLException e) {
+            throw new RuntimeException("Error retrieving user info", e);
+        }
+    }
+
+    public boolean checkConditionResetPassword(String token) {
+        String query = "SELECT * FROM users WHERE resetToken = ? AND tokenExpiry > ?";
+        try (Connection conn = new DBContext().getConnection();
+             PreparedStatement pre = conn.prepareStatement(query)) {
+            pre.setString(1, token);
+            pre.setTimestamp(2, new Timestamp(System.currentTimeMillis())); // Kiểm tra tokenExpiry có lớn hơn thời gian hiện tại không
+            ResultSet rs = pre.executeQuery();
+            if (rs.next()) {
+                return true;  // Token hợp lệ và chưa hết hạn
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;  // Token không hợp lệ hoặc đã hết hạn
+    }
+
+    public boolean resetPassword(String password, String token) {
+        String query = "UPDATE users SET password = ?, resetToken = NULL, tokenExpiry = NULL WHERE resetToken = ?";
+        try(Connection conn = new DBContext().getConnection();
+           PreparedStatement pre = conn.prepareStatement(query)) {
+               pre.setString(1, password);
+               pre.setString(2, token);
+               return pre.executeUpdate()>1;
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
     public static void main(String[] args) throws SQLException {
