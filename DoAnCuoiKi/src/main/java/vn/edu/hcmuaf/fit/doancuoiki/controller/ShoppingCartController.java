@@ -12,7 +12,7 @@ import jakarta.servlet.annotation.*;
 import java.io.IOException;
 
 @WebServlet(name = "ShopingCartCL", value = "/ShopingCartCL")
-public class ShopingCartController extends HttpServlet {
+public class ShoppingCartController extends HttpServlet {
     IProductService productService = new ProductService();
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -82,7 +82,7 @@ public class ShopingCartController extends HttpServlet {
         int id = Integer.parseInt(req.getParameter("id"));
         shoppingCart.remove(id);
         session.setAttribute("cart",shoppingCart);
-        resp.sendRedirect("Cart.jsp");
+        resp.sendRedirect("cart.jsp");
 
     }
 }
