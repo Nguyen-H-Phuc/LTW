@@ -10,12 +10,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Đổi mật khẩu</title>
     <link rel="stylesheet" href="home_page/base.css">
     <link rel="stylesheet" href="assets/header_footer/footer.css">
     <link rel="stylesheet" href="assets/css/forgot_password.css">
-
-
 </head>
 <body>
 
@@ -39,35 +37,29 @@
                     <h3 class="auth-form__heading">Đổi mật khẩu</h3>
                 </div>
 
-                <div class="auth-form__form">
-                    <div class="auth-form__group">
-                        <input type="text" class="auth-form__input" placeholder="Email của bạn">
-                    </div>
-                    <div class="auth-form__group">
-                        <input type="password" class="auth-form__input" placeholder="Mật khẩu của bạn">
-                    </div>
-                    <div class="auth-form__group">
-                        <input type="password" class="auth-form__input" placeholder="Mật khẩu mới">
-                    </div>
-                    <div class="auth-form__group">
-                        <input type="password" class="auth-form__input" placeholder="Nhập lại mật khẩu mới">
+                <!-- Thêm thẻ form và thuộc tính action để gửi dữ liệu -->
+                <form action="ResetPasswordController" method="POST">
+                    <div class="auth-form__form">
+                        <div class="auth-form__group">
+                            <input type="password" class="auth-form__input" name="newPassword" placeholder="Mật khẩu mới" required>
+                        </div>
                     </div>
 
-                </div>
-
-                <div class="auth-form__aside">
-                    <div class="auth-form__helps">
-                        <a href="" class="auth-form__helps-link auth-form__helps-forgot">Quên mật khẩu</a>
-                        <span class="auth-form__helps-separate"></span>
-                        <a href="" class="auth-form__helps-link">Cần trợ giúp?</a>
+                    <div class="auth-form__aside">
+                        <div class="auth-form__helps">
+                            <a href="" class="auth-form__helps-link auth-form__helps-forgot">Quên mật khẩu</a>
+                            <span class="auth-form__helps-separate"></span>
+                            <a href="" class="auth-form__helps-link">Cần trợ giúp?</a>
+                        </div>
                     </div>
-                </div>
 
-                <div class="auth-form__controls">
-                    <button class="btn btn--normal auth-form__controls-back">TRỞ LẠI</button>
-                    <button class="btn btn--primary">ĐỔI MẬT KHẨU</button>
-                </div>
+                    <div class="auth-form__controls">
+                        <button type="button" class="btn btn--normal auth-form__controls-back">TRỞ LẠI</button>
+                        <button type="submit" class="btn btn--primary">ĐỔI MẬT KHẨU</button>
+                    </div>
+                </form>
             </div>
+
             <div class="social-container">
                 <div class="auth-form__socials">
                     <a href="" class="auth-form__socials--facebook btn btn__size-s btn--with-icon">
@@ -86,12 +78,11 @@
             </div>
         </div>
     </div>
-
-
 </div>
 
 <script src="../assets/js/main.js"></script>
 <script src="../assets/js/quit.js"></script>
 </body>
 </html>
+
 
