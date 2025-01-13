@@ -1,6 +1,6 @@
 package vn.edu.hcmuaf.fit.doancuoiki.model;
 
-public class Vehicles {
+public class Vehicle {
     private String id;
     private int typeId;
     private String licensePlate;
@@ -8,7 +8,7 @@ public class Vehicles {
     private int rentalCount;
     private int isInUse;
 
-    public Vehicles(String id, int typeId, String licensePlate, String status, int rentalCount, int isInUse) {
+    public Vehicle(String id, int typeId, String licensePlate, String status, int rentalCount, int isInUse) {
         this.id = id;
         this.typeId = typeId;
         this.licensePlate = licensePlate;
