@@ -5,6 +5,8 @@ import vn.edu.hcmuaf.fit.doancuoiki.model.User;
 import vn.edu.hcmuaf.fit.doancuoiki.model.UserInfo;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserDao {
 
@@ -191,11 +193,67 @@ public class UserDao {
         return false;
     }
 
+    public List<User> getUsers() {
+        List<User> users = new ArrayList<>();
+        String query = "SELECT users.id AS userId, " +
+                "users.email AS userEmail, " +
+                "users.isActive AS userStatus, " +
+                "roles.id AS roleId, " +
+                "userDetails.fullName AS userFullName, " +
+                "userDetails.phoneNumber AS userPhone, " +
+                "userDetails.birthDate AS userBirthDate, " +
+                "userDetails.address AS userAddress FROM users " +
+                "LEFT JOIN roles ON users.roleId = roles.id " +
+                "LEFT JOIN userDetails ON users.id = userDetails.userId;";
+        try(Connection conn = new DBContext().getConnection();
+            PreparedStatement pre = conn.prepareStatement(query)){
+            ResultSet rs = pre.executeQuery(query);
+            while (rs.next()) {
+                UserInfo userInfo = new UserInfo();
+                userInfo.setFullName(rs.getString("userFullName"));
+                userInfo.setPhoneNumber(rs.getString("userPhone"));
+                userInfo.setAddress(rs.getString("userAddress"));
+                userInfo.setBirthday(rs.getDate("userBirthDate").toLocalDate());
+                users.add(new User(rs.getInt("userId"),
+                        rs.getString("userEmail"),
+                        userInfo,
+                        rs.getInt("roleId"),
+                        rs.getBoolean("userStatus")));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return users;
+    }
+
+    public void changeActive(int id, int active) {
+        String query = "UPDATE users SET isActive = ? WHERE id = ?";
+        try(Connection conn = new DBContext().getConnection();
+            PreparedStatement pre = conn.prepareStatement(query)){
+            pre.setInt(1, active);
+            pre.setInt(2, id);
+            pre.executeUpdate();
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void changeRole(int id, int roleId) {
+        String query = "UPDATE users SET roleId = ? WHERE id = ?";
+        try(Connection conn = new DBContext().getConnection();
+            PreparedStatement pre = conn.prepareStatement(query)){
+            pre.setInt(1, roleId);
+            pre.setInt(2, id);
+            pre.executeUpdate();
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public static void main(String[] args) throws SQLException {
         UserDao dao = new UserDao();
-        System.out.println(dao.isActive("e@gmail.com"));
-        System.out.println(dao.isEmailExists("e@gmail.com"));
-        String password= "b22343e71c4519d810350eca84caf214";
-        System.out.println(dao.getUser("e@gmail.com", password).getUserInfo().getFullName());
+        for(User u : dao.getUsers())
+            System.out.println(u);
     }
 }
