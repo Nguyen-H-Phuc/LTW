@@ -11,7 +11,7 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import java.io.IOException;
 
-@WebServlet(name = "ShopingCartCL", value = "/ShopingCartCL")
+@WebServlet(name = "ShoppingCartCL", value = "/ShoppingCartCL")
 public class ShoppingCartController extends HttpServlet {
     IProductService productService = new ProductService();
     @Override
