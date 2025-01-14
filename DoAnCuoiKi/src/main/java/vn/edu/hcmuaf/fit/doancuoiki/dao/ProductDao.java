@@ -332,11 +332,75 @@ public List<Product> listPro1(String sdate, String edate, int a, int pageIndex) 
     }
     return list;
 }
+// * ham count chua dc dat
+public int countProducts(String sdate, String edate, int a) {
+    String countQuery = "SELECT COUNT(*) AS rowCount FROM ("
+            + "SELECT \n"
+            + "    vt.id,\n"
+            + "    vt.name AS name,\n"
+            + "    vt.brand, \n"
+            + "    vt.category,\n"
+            + "    vt.rentalPrice,\n"
+            + "    vt.image,\n"
+            + "    vt.totalVehicles,\n"
+            + "    vt.description, \n"
+            + "    vt.totalVehicles - COUNT(od.licensePlate) AS availableVehicles\n"
+            + "FROM \n"
+            + "    vehicleTypes vt\n"
+            + "LEFT JOIN \n"
+            + "    vehicles v ON vt.id = v.typeId\n"
+            + "LEFT JOIN \n"
+            + "    orderDetails od ON v.licensePlate = od.licensePlate\n"
+            + "LEFT JOIN \n"
+            + "    orders o ON od.orderId = o.id\n"
+            + "WHERE \n"
+            + "    vt.isAvailable = 1 \n"
+            + "    AND (\n"
+            + "        (o.rentalStartDate <= ? OR o.rentalStartDate BETWEEN ? AND ?) \n"
+            + "        AND (o.expectedReturnDate BETWEEN ? AND ? OR o.expectedReturnDate > ?)\n"
+            + "        OR o.id IS NULL \n"
+            + "    )\n"
+            + "GROUP BY \n"
+            + "    vt.name, vt.totalVehicles\n"
+            + "HAVING \n"
+            + "    availableVehicles > ?"
+            + ") AS subquery";
+
+    try {
+        conn = new DBContext().getConnection(); // Kết nối DB
+        ps = conn.prepareStatement(countQuery); // Chuẩn bị truy vấn
+        ps.setString(1, sdate);
+        ps.setString(2, sdate);
+        ps.setString(3, edate);
+        ps.setString(4, sdate);
+        ps.setString(5, edate);
+        ps.setString(6, edate);
+        ps.setInt(7, a); // Thiết lập tham số cuối
+        rs = ps.executeQuery();
+        if (rs.next()) {
+            int rowCount = rs.getInt("rowCount"); // Lấy kết quả đếm
+            return rowCount;
+        }
+    } catch (Exception e) {
+        e.printStackTrace(); // Debug lỗi
+    } finally {
+        // Đóng các tài nguyên (ResultSet, PreparedStatement, Connection)
+        try {
+            if (rs != null) rs.close();
+            if (ps != null) ps.close();
+            if (conn != null) conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    return 0; // Trả về 0 nếu có lỗi
+}
     public static void main(String[] args) {
       ProductDao dao = new ProductDao();
-      List<Product> list = dao.listPro1("2025-01-01","2025-01-31",2,1);
-      for (Product p : list) {
-          System.out.println(p);
-      }
+//      List<Product> list = dao.listPro1("2025-01-01","2025-01-31",2,1);
+//      for (Product p : list) {
+//          System.out.println(p);
+//      }
+        System.out.println(dao.countProducts("2025-01-01","2025-01-31",2));
     }
 }
