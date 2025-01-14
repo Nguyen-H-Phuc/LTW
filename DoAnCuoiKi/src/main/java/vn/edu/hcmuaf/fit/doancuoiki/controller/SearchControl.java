@@ -7,6 +7,7 @@ import vn.edu.hcmuaf.fit.doancuoiki.dao.ProductDao;
 import vn.edu.hcmuaf.fit.doancuoiki.model.Product;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet(name = "SearchControl", value = "/SearchControl")
@@ -16,6 +17,7 @@ public class SearchControl extends HttpServlet {
         String txtSearch = request.getParameter("txt");
         ProductDao dao = new ProductDao();
         List<Product> list = dao.searchByName(txtSearch);
+
         request.setAttribute("listA", list);
         request.getRequestDispatcher("page-product.jsp").forward(request, response);
 
