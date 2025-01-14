@@ -12,8 +12,12 @@ public class Product implements Serializable {
     private double price;
     private String description;
     private String img;
+    private int quantity;
 
     private String numberPlate;
+    public int getQuantity() {
+        return quantity;
+    }
 
     public int getId() {
         return id;

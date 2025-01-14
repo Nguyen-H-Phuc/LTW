@@ -58,6 +58,7 @@ public class ShoppingCartController extends HttpServlet {
 
 
     protected void Put(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        System.out.println("da goi phuong thuc");
         HttpSession session = req.getSession();
         ShoppingCart shoppingCart = (ShoppingCart) session.getAttribute("cart");
         int id = Integer.parseInt(req.getParameter("id"));
