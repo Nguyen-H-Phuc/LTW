@@ -24,9 +24,10 @@
 
 <body>
 <%
-    ShoppingCart shoppingCart = (ShoppingCart) session.getAttribute("cart");
-    if(shoppingCart==null){
-        response.sendRedirect("ProductController");
+    ShoppingCart shoppingCart = (ShoppingCart) session.getAttribute("shoppingCart");
+    if (shoppingCart == null) {
+        shoppingCart = new ShoppingCart();
+        session.setAttribute("shoppingCart", shoppingCart);
     }
     List<CartItem> cartItems = shoppingCart.getCartItemList();
     NumberFormat numberFormat = NumberFormat.getCurrencyInstance();
@@ -94,12 +95,12 @@
 <footer id="footer"></footer>
 <script>
     // Chèn header
-    fetch('header.html')
+    fetch('header.jsp')
         .then(response => response.text())
         .then(data => document.getElementById('header').innerHTML = data);
 
     // Chèn footer
-    fetch('footer.html')
+    fetch('footer.jsp')
         .then(response => response.text())
         .then(data => document.getElementById('footer').innerHTML = data);
 </script>

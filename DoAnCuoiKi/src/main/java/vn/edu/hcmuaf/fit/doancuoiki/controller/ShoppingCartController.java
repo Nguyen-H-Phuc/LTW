@@ -35,7 +35,7 @@ public class ShoppingCartController extends HttpServlet {
         String action = request.getParameter("action");
         switch (action){
             case "get":
-                request.getRequestDispatcher("/Cart.jsp").forward(request,response);
+                request.getRequestDispatcher("/cart.jsp").forward(request,response);
                 break;
             case "delete":
                 Delete(request,response);
@@ -71,7 +71,7 @@ public class ShoppingCartController extends HttpServlet {
         }
         req.setAttribute("error",e);
         session.setAttribute("cart",shoppingCart);
-        req.getRequestDispatcher("ShopingCartCL?action=get").forward(req,resp);
+        req.getRequestDispatcher("ShoppingCartCL?action=get").forward(req,resp);
     }
 
 
