@@ -29,9 +29,13 @@ public class ResetPasswordController extends HttpServlet {
         String newPassword = Encrypt.encrypt(password);
         UserDao dao = new UserDao();
         if (dao.resetPassword(newPassword, token)) {
-            request.setAttribute("success", "Đôi mật khẩu thành công");
+            request.setAttribute("message", "Đôi mật khẩu thành công");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("change_password.jsp");
+            dispatcher.forward(request, response);
         } else {
-            request.setAttribute("success", "Đổi mật khẩu thất bại");
+            request.setAttribute("message", "Đổi mật khẩu thất bại");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("change_password.jsp");
+            dispatcher.forward(request, response);
         }
     }
 }

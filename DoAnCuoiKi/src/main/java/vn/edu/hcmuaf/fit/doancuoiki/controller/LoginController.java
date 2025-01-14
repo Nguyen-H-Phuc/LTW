@@ -27,28 +27,37 @@ public class LoginController extends HttpServlet {
         UserDao userDao = new UserDao();
 
         try {
-            if(userDao.isActive(email)!=1) {
+            // Kiểm tra tài khoản có bị khoá không
+            if (userDao.isActive(email) != 1) {
                 request.setAttribute("error", "Tài khoản bị khoá");
                 forwardToPage(request, response, url);
                 return;
             }
 
+            // Mã hóa mật khẩu trước khi kiểm tra
             String passwordEncrypt = Encrypt.encrypt(password);
+
+            // Lấy người dùng từ cơ sở dữ liệu
             User user = userDao.getUser(email, passwordEncrypt);
 
-            if(user !=null) {
+            if (user != null) {
+                // Đăng nhập thành công, lưu thông tin người dùng vào session
                 url = "index.jsp";
                 HttpSession session = request.getSession();
                 session.setAttribute("user", user);
                 response.sendRedirect(url);
             } else {
+                // Nếu không tìm thấy người dùng, hiển thị thông báo lỗi
                 request.setAttribute("error", "Sai mật khẩu hoặc tên đăng nhập");
                 forwardToPage(request, response, url);
             }
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            // Nếu có lỗi trong quá trình truy vấn, hiển thị thông báo lỗi
+            request.setAttribute("error", "Lỗi hệ thống: " + e.getMessage());
+            forwardToPage(request, response, url);
         }
     }
+
 
     private void forwardToPage(HttpServletRequest request, HttpServletResponse response, String url) throws ServletException, IOException {
         RequestDispatcher dispatcher = request.getRequestDispatcher(url);
