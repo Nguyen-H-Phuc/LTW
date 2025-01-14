@@ -395,6 +395,48 @@ public int countProducts(String sdate, String edate, int a) {
     }
     return 0; // Trả về 0 nếu có lỗi
 }
+    public Product getUnbookedProductById(int id) {
+        Product product = null;
+        String query = "SELECT vt.id, vt.name, vt.brand, vt.category, vt.rentalPrice, vt.image, vt.totalVehicles, vt.description " +
+                "FROM vehicleTypes vt " +
+                "LEFT JOIN vehicles v ON vt.id = v.typeId " +
+                "LEFT JOIN orderDetails od ON v.licensePlate = od.licensePlate " +
+                "LEFT JOIN orders o ON od.orderId = o.id " +
+                "WHERE vt.id = ? AND o.id IS NULL";
+
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setInt(1, id);
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+                product = new Product(
+                        rs.getInt("id"),
+                        rs.getString("name"),
+                        0, // Bạn có thể thay đổi số liệu nếu cần
+                        rs.getString("brand"),
+                        rs.getString("category"),
+                        rs.getDouble("rentalPrice"),
+                        rs.getString("description"),
+                        rs.getString("image"),
+                        rs.getInt("totalVehicles")
+                );
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (rs != null) rs.close();
+                if (ps != null) ps.close();
+                if (conn != null) conn.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        return product;
+    }
     public static void main(String[] args) {
       ProductDao dao = new ProductDao();
 //      List<Product> list = dao.listPro1("2025-01-01","2025-01-31",2,1);
