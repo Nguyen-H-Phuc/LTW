@@ -3,6 +3,7 @@ package vn.edu.hcmuaf.fit.doancuoiki.model;
 import java.io.Serializable;
 
 public class Product implements Serializable {
+    private int number;
     private int id;
     private String name;
     private int year;
@@ -116,6 +117,17 @@ public class Product implements Serializable {
                 ", img='" + img + '\'' +
                 ", numberPlate='" + numberPlate + '\'' +
                 '}';
+    }
+    public Product(int id, String name, int year, String brand, String type, double price, String description, String img, int number) {
+        this.id = id;
+        this.name = name;
+        this.year = year;
+        this.brand = brand;
+        this.type = type;
+        this.price = price;
+        this.description = description;
+        this.img = img;
+        this.number = number;
     }
 }
 

@@ -23,7 +23,7 @@ public class ProductDetail extends HttpServlet {
             int pid = Integer.parseInt(pidParam);
 
             ProductDao productDao = new ProductDao();
-            Product product = productDao.getProductById(pid);
+            Product product = productDao.getUnbookedProductById(pid);
 
             if (product == null) {
                 throw new IllegalArgumentException("Không tìm thấy sản phẩm với ID: " + pid);
