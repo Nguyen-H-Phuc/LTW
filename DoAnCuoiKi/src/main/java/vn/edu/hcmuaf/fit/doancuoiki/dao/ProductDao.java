@@ -579,6 +579,58 @@ public List<Product> searchUnbookedProductByName(String name) {
     }
     return productList;
 }
+// * sp moi nhat
+public List<Product> getTop8ProductNew() {
+    List<Product> productList = new ArrayList<>();
+    String query = "SELECT vt.id, vt.name, vt.brand, vt.category, vt.rentalPrice, vt.image, vt.totalVehicles, vt.description " +
+            "FROM vehicleTypes vt " +
+            "LEFT JOIN vehicles v ON vt.id = v.typeId " +
+            "LEFT JOIN orderDetails od ON v.licensePlate = od.licensePlate " +
+            "LEFT JOIN orders o ON od.orderId = o.id " +
+            "WHERE vt.totalVehicles > ( " +
+            "    SELECT COUNT(od.licensePlate) " +
+            "    FROM orderDetails od " +
+            "    LEFT JOIN orders o ON od.orderId = o.id " +
+            "    WHERE o.rentalStartDate <= NOW() AND o.expectedReturnDate >= NOW() " +
+            "    AND od.licensePlate = v.licensePlate " +
+            ") " +
+            "GROUP BY vt.id, vt.name, vt.brand, vt.category, vt.rentalPrice, vt.image, vt.totalVehicles, vt.description " +
+            "ORDER BY vt.rentalPrice DESC " +
+            "LIMIT 8";
+
+    try {
+        conn = new DBContext().getConnection();
+        ps = conn.prepareStatement(query);
+        rs = ps.executeQuery();
+
+        while (rs.next()) {
+            Product product = new Product(
+                    rs.getInt("id"),
+                    rs.getString("name"),
+                    0, // Giá trị mặc định, sửa nếu cần
+                    rs.getString("brand"),
+                    rs.getString("category"),
+                    rs.getDouble("rentalPrice"),
+                    rs.getString("description"),
+                    rs.getString("image"),
+                    rs.getInt("totalVehicles")
+            );
+            productList.add(product);
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
+    } finally {
+        try {
+            if (rs != null) rs.close();
+            if (ps != null) ps.close();
+            if (conn != null) conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    return productList;
+}
+
 
     public static void main(String[] args) {
         ProductDao dao = new ProductDao();
