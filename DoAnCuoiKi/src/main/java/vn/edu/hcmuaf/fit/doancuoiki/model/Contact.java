@@ -1,8 +1,9 @@
 package vn.edu.hcmuaf.fit.doancuoiki.model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Contact {
+public class Contact implements Serializable {
     private int id;
     private String fullName;
     private String email;

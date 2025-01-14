@@ -1,8 +1,9 @@
 package vn.edu.hcmuaf.fit.doancuoiki.model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class UserInfo {
+public class UserInfo implements Serializable {
     private int id;
     private int userId;
     private String fullName;
