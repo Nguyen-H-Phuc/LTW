@@ -1,6 +1,8 @@
 package vn.edu.hcmuaf.fit.doancuoiki.dao;
 
+import org.jdbi.v3.core.Jdbi;
 import vn.edu.hcmuaf.fit.doancuoiki.db.DBContext;
+import vn.edu.hcmuaf.fit.doancuoiki.db.JDBIConnector;
 import vn.edu.hcmuaf.fit.doancuoiki.model.Product;
 
 import java.sql.Connection;
@@ -8,7 +10,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ProductDao {
     Connection conn = null;
@@ -444,5 +448,26 @@ public int countProducts(String sdate, String edate, int a) {
 //          System.out.println(p);
 //      }
         System.out.println(dao.countProducts("2025-01-01","2025-01-31",2));
+    }
+
+    public List<Product> findALl() {
+        Jdbi jdbi = JDBIConnector.getJdbi();
+        List<Product> products = jdbi.withHandle(handle -> {
+            String sql = "SELECT * FROM vehicletypes";
+            return handle.createQuery(sql).mapToBean(Product.class).stream().collect(Collectors.toList());
+
+        });
+        return products;
+    }
+
+
+    public List<Product> findById(int id) {
+        Jdbi jdbi = JDBIConnector.getJdbi();
+        List<Product> products = jdbi.withHandle(handle -> {
+            String sql = "SELECT * FROM vehicletypes where id =?";
+            return handle.createQuery(sql).bind(0,id).mapToBean(Product.class).stream().collect(Collectors.toList());
+
+        });
+        return products;
     }
 }
