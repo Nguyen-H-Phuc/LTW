@@ -630,6 +630,49 @@ public List<Product> getTop8ProductNew() {
     }
     return productList;
 }
+    public List<Product> getLast8BetSeller() {
+        List<Product> productList = new ArrayList<>();
+        String query = "SELECT * FROM products " +
+                "WHERE id NOT IN ( " +
+                "    SELECT DISTINCT productId FROM orders " +
+                "    JOIN orderDetails ON orders.id = orderDetails.orderId " +
+                ") " +
+                "ORDER BY id DESC " + // Sắp xếp theo id giảm dần
+                "LIMIT 8"; // Lấy 8 sản phẩm cuối cùng
+
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Product product = new Product(
+                        rs.getInt("id"),
+                        rs.getString("name"),
+                        rs.getInt("year"), // Năm sản xuất
+                        rs.getString("brand"),
+                        rs.getString("type"),
+                        rs.getDouble("price"),
+                        rs.getString("description"),
+                        rs.getString("img"),
+                        rs.getString("numberPlate") // Biển số xe (nếu có)
+                );
+                productList.add(product);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (rs != null) rs.close();
+                if (ps != null) ps.close();
+                if (conn != null) conn.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return productList;
+    }
+
 
 
     public static void main(String[] args) {
