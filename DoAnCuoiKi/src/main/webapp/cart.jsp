@@ -40,7 +40,7 @@
 <div id="sec1">
     <hr>
     <div class="container border">
-        <h1><strong>Giỏ Hàng Của Bạn (5 Sản Phẩm)</strong></h1>
+        <h1><strong>Giỏ Hàng Của Bạn (<%=shoppingCart.getSize()%>)</strong></h1>
 
         <!-- Giỏ hàng -->
         <div class="row">
