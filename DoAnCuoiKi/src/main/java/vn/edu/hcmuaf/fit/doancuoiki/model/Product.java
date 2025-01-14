@@ -6,6 +6,7 @@ public class Product implements Serializable {
     private int id;
     private String name;
     private int year;
+    private int number;
     private String brand;
     private String type;
     private double price;
@@ -100,6 +101,7 @@ public class Product implements Serializable {
         this.numberPlate = numberPlate;
     }
 
+
     public Product() {
     }
 
@@ -116,6 +118,17 @@ public class Product implements Serializable {
                 ", img='" + img + '\'' +
                 ", numberPlate='" + numberPlate + '\'' +
                 '}';
+    }
+    public Product(int id, String name, int year, String brand, String type, double price, String description, String img, int number) {
+        this.id = id;
+        this.name = name;
+        this.year = year;
+        this.brand = brand;
+        this.type = type;
+        this.price = price;
+        this.description = description;
+        this.img = img;
+        this.number = number;
     }
 }
 
