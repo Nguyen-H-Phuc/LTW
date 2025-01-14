@@ -443,6 +443,6 @@ public int countProducts(String sdate, String edate, int a) {
 //      for (Product p : list) {
 //          System.out.println(p);
 //      }
-        System.out.println(dao.countProducts("2025-01-01","2025-01-31",2));
+//        System.out.println(dao.countProducts("2025-01-01","2025-01-31",2));
     }
 }
