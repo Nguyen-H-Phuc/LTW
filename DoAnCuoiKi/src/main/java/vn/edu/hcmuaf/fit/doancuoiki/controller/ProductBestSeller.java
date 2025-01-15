@@ -14,7 +14,7 @@ public class ProductBestSeller extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ProductDao dao = new ProductDao();
-        List<Product> listPrice = dao.getMostExpensiveProducts();
+        List<Product> listPrice = dao.getLast8BestSeller();
         request.setAttribute("listPrice", listPrice);
         request.getRequestDispatcher("product-bestseller.jsp").forward(request, response);
     }

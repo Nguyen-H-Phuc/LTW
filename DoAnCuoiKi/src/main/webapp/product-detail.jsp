@@ -45,7 +45,6 @@
                     <h1 class="name-moto" style="text-align: center">${p.name}</h1>
                         <h3 id="price-per-day">Giá thuê: <f:formatNumber value="${p.price}" />đ/ngày</h3>
                         <h3 id="manufacturer">Nhà sản xuất: ${p.brand}</h3>
-                        <h3 id="year-of-manufacture">Năm sản xuất: ${p.year}</h3>
                         <h3 id="type">Loại xe: Xe số</h3>
                         <p class="note">* Giá thuê chưa bao gồm: Xăng phục vụ suốt chuyến đi, Bảo hiểm hành khách, Thuế VAT, Phụ thu dịp Lễ Tết.</p>
                 </div>
