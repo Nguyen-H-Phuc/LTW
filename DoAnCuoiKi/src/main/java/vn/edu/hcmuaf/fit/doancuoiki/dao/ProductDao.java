@@ -238,7 +238,7 @@ public List<Product> getLast8Products() {
     public List<Product> findALl() {
         Jdbi jdbi = JDBIConnector.getJdbi();
         List<Product> products = jdbi.withHandle(handle -> {
-            String sql = "SELECT * FROM vehicletypes";
+            String sql = "SELECT * FROM products";
             return handle.createQuery(sql).mapToBean(Product.class).stream().collect(Collectors.toList());
 
         });
@@ -249,7 +249,7 @@ public List<Product> getLast8Products() {
     public List<Product> findById(int id) {
         Jdbi jdbi = JDBIConnector.getJdbi();
         List<Product> products = jdbi.withHandle(handle -> {
-            String sql = "SELECT * FROM vehicletypes where id =?";
+            String sql = "SELECT * FROM products where id =?";
             return handle.createQuery(sql).bind(0,id).mapToBean(Product.class).stream().collect(Collectors.toList());
 
         });

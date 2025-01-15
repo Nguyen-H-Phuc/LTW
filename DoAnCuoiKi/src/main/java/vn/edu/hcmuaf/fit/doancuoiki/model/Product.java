@@ -134,6 +134,18 @@ public class Product implements Serializable {
         this.img = img;
         this.number = number;
     }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public int getNumber() {
+        return number;
+    }
+
+    public void setNumber(int number) {
+        this.number = number;
+    }
 }
 
 

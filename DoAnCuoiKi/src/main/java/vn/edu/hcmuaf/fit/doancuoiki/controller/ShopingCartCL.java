@@ -11,8 +11,8 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import java.io.IOException;
 
-@WebServlet(name = "ShoppingCartCL", value = "/ShoppingCartCL")
-public class ShoppingCartController extends HttpServlet {
+@WebServlet(name = "ShopingCartCL", value = "/ShopingCartCL")
+public class ShopingCartCL extends HttpServlet {
     IProductService productService = new ProductService();
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -42,6 +42,7 @@ public class ShoppingCartController extends HttpServlet {
                 break;
             case "put":
                 Put(request,response);
+
                 break;
             case "post":
                 int id = Integer.parseInt(request.getParameter("id"));
@@ -50,6 +51,7 @@ public class ShoppingCartController extends HttpServlet {
                 shoppingCart.add(cartItem);
                 session.setAttribute("cart",shoppingCart);
                 response.sendRedirect("ProductController");
+                System.out.println("---------------------------------------------------");
                 break;
             default:
         }
@@ -58,7 +60,6 @@ public class ShoppingCartController extends HttpServlet {
 
 
     protected void Put(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("da goi phuong thuc");
         HttpSession session = req.getSession();
         ShoppingCart shoppingCart = (ShoppingCart) session.getAttribute("cart");
         int id = Integer.parseInt(req.getParameter("id"));
@@ -72,7 +73,7 @@ public class ShoppingCartController extends HttpServlet {
         }
         req.setAttribute("error",e);
         session.setAttribute("cart",shoppingCart);
-        req.getRequestDispatcher("ShoppingCartCL?action=get").forward(req,resp);
+        req.getRequestDispatcher("ShopingCartCL?action=get").forward(req,resp);
     }
 
 

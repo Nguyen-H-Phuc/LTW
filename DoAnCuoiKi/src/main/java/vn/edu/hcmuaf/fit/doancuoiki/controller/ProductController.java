@@ -17,7 +17,7 @@ public class ProductController extends HttpServlet {
         IProductService productService = new ProductService();
         List<Product> products = productService.findAll();
         request.setAttribute("products",products);
-        String url = "/cart.jsp";
+        String url = "/page-product.jsp";
         request.getRequestDispatcher(url).forward(request,response);
 
     }

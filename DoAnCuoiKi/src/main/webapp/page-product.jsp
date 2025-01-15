@@ -90,7 +90,7 @@
                 <li data-price="${p.price}">
                     <div class="product-item">
                         <div class="product-top">
-                            <a class="add-to-cart" href="ShoppingCartCL?action=post&id=${p.id}" >+</a>
+                            <a class="add-to-cart" href="ShopingCartCL?action=post&id=${p.id}" >+</a>
                             <a href="" class="product-thumb">
                                 <img src="${p.img}" alt="">
                             </a>
