@@ -2,11 +2,11 @@ package vn.edu.hcmuaf.fit.doancuoiki.model;
 
 public class CartItem {
     private Product product;
-    private int quanlity;
+    private int quantity;
 
-    public CartItem(Product product, int quanlity) {
+    public CartItem(Product product, int quantity) {
         this.product = product;
-        this.quanlity = quanlity;
+        this.quantity = quantity;
     }
 
     public Product getProduct() {
@@ -18,18 +18,18 @@ public class CartItem {
     }
 
     public int getQuanlity() {
-        return quanlity;
+        return quantity;
     }
 
     public void setQuanlity(int quanlity) {
-        this.quanlity = quanlity;
+        this.quantity = quanlity;
     }
 
     public boolean addQuanlity(int quanlity){
-        this.quanlity+=quanlity;
+        this.quantity+=quanlity;
         return true;
     }
     public double getTotalPrice(){
-        return this.quanlity*this.product.getPrice();
+        return this.quantity*this.product.getPrice();
     }
 }

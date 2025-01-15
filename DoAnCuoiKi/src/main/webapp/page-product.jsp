@@ -1,4 +1,6 @@
-<%--
+<%@ page import="vn.edu.hcmuaf.fit.doancuoiki.model.Product" %>
+<%@ page import="java.util.List" %>
+<%@ page import="vn.edu.hcmuaf.fit.doancuoiki.model.ShoppingCart" %><%--
   Created by IntelliJ IDEA.
   User: PC
   Date: 12/22/2024
@@ -17,6 +19,14 @@
 <%@ taglib prefix = "f" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="vi">
+<%
+    List<Product> products = (List<Product>) request.getAttribute("products");
+    ShoppingCart shoppingCart = (ShoppingCart) session.getAttribute("cart");
+    if(shoppingCart==null){
+        shoppingCart = new ShoppingCart();
+    }
+
+%>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -100,7 +110,7 @@
                 <li data-price="${p.price}">
                     <div class="product-item">
                         <div class="product-top">
-                            <a class="add-to-cart" onclick="addToCart()">+</a>
+                            <a class="add-to-cart" href="ShopingCartCL?action=post&id=${p.id}" >+</a>
                             <a href="" class="product-thumb">
                                 <img src="${p.img}" alt="">
                             </a>

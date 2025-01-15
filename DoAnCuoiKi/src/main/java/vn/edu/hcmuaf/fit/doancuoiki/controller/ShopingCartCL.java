@@ -11,8 +11,8 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import java.io.IOException;
 
-@WebServlet(name = "ShoppingCartCL", value = "/ShoppingCartCL")
-public class ShoppingCartController extends HttpServlet {
+@WebServlet(name = "ShopingCartCL", value = "/ShopingCartCL")
+public class ShopingCartCL extends HttpServlet {
     IProductService productService = new ProductService();
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -35,13 +35,14 @@ public class ShoppingCartController extends HttpServlet {
         String action = request.getParameter("action");
         switch (action){
             case "get":
-                request.getRequestDispatcher("/Cart.jsp").forward(request,response);
+                request.getRequestDispatcher("/cart.jsp").forward(request,response);
                 break;
             case "delete":
                 Delete(request,response);
                 break;
             case "put":
                 Put(request,response);
+
                 break;
             case "post":
                 int id = Integer.parseInt(request.getParameter("id"));
@@ -50,6 +51,7 @@ public class ShoppingCartController extends HttpServlet {
                 shoppingCart.add(cartItem);
                 session.setAttribute("cart",shoppingCart);
                 response.sendRedirect("ProductController");
+                System.out.println("---------------------------------------------------");
                 break;
             default:
         }

@@ -306,6 +306,13 @@ public List<Product> listPro1(String sdate, String edate, int a, int pageIndex) 
         ps.setInt(8, (pageIndex - 1) * 8); // Tính toán OFFSET dựa trên trang hiện tại
         rs = ps.executeQuery();
 
+
+    public List<Product> findALl() {
+        Jdbi jdbi = JDBIConnector.getJdbi();
+        List<Product> products = jdbi.withHandle(handle -> {
+            String sql = "SELECT * FROM products";
+            return handle.createQuery(sql).mapToBean(Product.class).stream().collect(Collectors.toList());
+
         while (rs.next()) {
             list.add(new Product(
                     rs.getInt("id"),
@@ -366,6 +373,7 @@ public int countProducts(String sdate, String edate, int a) {
             + "    availableVehicles > ?"
             + ") AS subquery";
 
+
     try {
         conn = new DBContext().getConnection(); // Kết nối DB
         ps = conn.prepareStatement(countQuery); // Chuẩn bị truy vấn
@@ -410,6 +418,13 @@ public int countProducts(String sdate, String edate, int a) {
             ps.setInt(1, id);
             rs = ps.executeQuery();
 
+
+    public List<Product> findById(int id) {
+        Jdbi jdbi = JDBIConnector.getJdbi();
+        List<Product> products = jdbi.withHandle(handle -> {
+            String sql = "SELECT * FROM products where id =?";
+            return handle.createQuery(sql).bind(0,id).mapToBean(Product.class).stream().collect(Collectors.toList());
+
             if (rs.next()) {
                 product = new Product(
                         rs.getInt("id"),
@@ -435,8 +450,78 @@ public int countProducts(String sdate, String edate, int a) {
             }
         }
 
+
         return product;
     }
+
+    public List<Product> listPro(String sdate, String edate ,int a ) {
+        List<Product> list = new ArrayList<>();
+        String query = "SELECT \n" +
+                "    vt.id,\n" +
+                "    vt.name AS name,\n" +
+                "    vt.brand, \n" +
+                "    vt.category,\n" +
+                "    vt.rentalPrice,\n" +
+                "vt.image,\n" +
+                "    vt.totalVehicles,\n" +
+                "    vt.description, \n" +
+                "--     COUNT(od.licensePlate) AS totalRentals, \n" +
+                "    vt.totalVehicles - COUNT(od.licensePlate) AS availableVehicles\n" +
+                "FROM \n" +
+                "    vehicleTypes vt\n" +
+                "LEFT JOIN \n" +
+                "    vehicles v ON vt.id = v.typeId\n" +
+                "LEFT JOIN \n" +
+                "    orderDetails od ON v.licensePlate = od.licensePlate\n" +
+                "LEFT JOIN \n" +
+                "    orders o ON od.orderId = o.id\n" +
+                "WHERE \n" +
+                "    vt.isAvailable = 1 \n" +
+                "    AND (\n" +
+                "        (o.rentalStartDate <= ? OR o.rentalStartDate BETWEEN ? AND ?) \n" +
+                "        AND (o.expectedReturnDate BETWEEN ? AND ? OR o.expectedReturnDate > ?)\n" +
+                "        OR o.id IS NULL -- Đảm bảo lấy các loại xe không có đơn thuê\n" +
+                "    )\n" +
+                "GROUP BY \n" +
+                "    vt.name, vt.totalVehicles\n" +
+                "HAVING \n" +
+                "    availableVehicles > ?;";
+        try{
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, sdate);
+            ps.setString(2, sdate);
+            ps.setString(3, edate);
+            ps.setString(4, sdate);
+            ps.setString(5, edate);
+            ps.setString(6, edate);
+            ps.setInt(7, a);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(new Product(
+                        rs.getInt("id"),
+                        rs.getString("name"),
+                        0,
+                        rs.getString("brand"),
+                        rs.getString("category"),
+                        rs.getDouble("rentalPrice"),
+                        rs.getString("description"),
+                        rs.getString("image"),
+                        rs.getInt("totalVehicles")
+                ));
+            }
+
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+
+
+
+
     public static void main(String[] args) {
       ProductDao dao = new ProductDao();
 //      List<Product> list = dao.listPro1("2025-01-01","2025-01-31",2,1);
