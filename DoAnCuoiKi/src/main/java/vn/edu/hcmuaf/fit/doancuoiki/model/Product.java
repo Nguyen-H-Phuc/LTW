@@ -6,8 +6,6 @@ public class Product implements Serializable {
     private int number;
     private int id;
     private String name;
-    private int year;
-    private int number;
     private String brand;
     private String type;
     private double price;
@@ -34,14 +32,6 @@ public class Product implements Serializable {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public int getYear() {
-        return year;
-    }
-
-    public void setYear(int year) {
-        this.year = year;
     }
 
     public String getBrand() {
@@ -94,10 +84,9 @@ public class Product implements Serializable {
         this.numberPlate = numberPlate;
     }
 
-    public Product(int id, String name, int year, String brand, String type, double price, String description, String img, String numberPlate) {
+    public Product(int id, String name, String brand, String type, double price, String description, String img, String numberPlate) {
         this.id = id;
         this.name = name;
-        this.year = year;
         this.brand = brand;
         this.type = type;
         this.price = price;
@@ -115,7 +104,6 @@ public class Product implements Serializable {
         return "Product{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", year=" + year +
                 ", brand='" + brand + '\'' +
                 ", type='" + type + '\'' +
                 ", price=" + price +
@@ -127,7 +115,6 @@ public class Product implements Serializable {
     public Product(int id, String name, int year, String brand, String type, double price, String description, String img, int number) {
         this.id = id;
         this.name = name;
-        this.year = year;
         this.brand = brand;
         this.type = type;
         this.price = price;
