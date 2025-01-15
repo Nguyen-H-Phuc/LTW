@@ -1,11 +1,6 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: DELL
-  Date: 1/10/2025
-  Time: 3:43 PM
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix = "f" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,7 +8,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0">
   <title>Trang admin</title>
   <link rel= "stylesheet" href= "https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css" >
-  <link rel="stylesheet" href="admin.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/admin/admin.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
 </head>
 <body>
 <input type="checkbox" id="nav-toggle">
@@ -27,20 +25,20 @@
   <div class="sidebar-menu">
     <ul>
       <li>
-        <a href="admin.jsp">
+        <a href="/DoAnCuoiKi/admin?action=dashboard">
           <span class="las la-igloo"></span>
           <span>Dashboard</span></a>
       </li>
       <li>
-        <a href="customers.jsp"><span class="las la-users"></span>
+        <a href="/DoAnCuoiKi/admin?action=managerCustomer"><span class="las la-users"></span>
           <span>Quản lý khách hàng</span></a>
       </li>
       <li>
-        <a href="motorbikes.jsp"><span class="las la-motorcycle"></span>
+        <a href="/DoAnCuoiKi/admin?action=managerVehicleType"><span class="las la-motorcycle"></span>
           <span>Quản lý xe máy</span></a>
       </li>
       <li>
-        <a href="orders.jsp" class="orders-active"><span class="las la-shopping-bag"></span>
+        <a href="/DoAnCuoiKi/admin?action=managerOrder" class="orders-active"><span class="las la-shopping-bag"></span>
           <span>Quản lý đơn hàng</span></a>
       </li>
       <li>
@@ -100,144 +98,43 @@
         <div class="card">
           <div class="card-header">
             <h3>Đơn hàng</h3>
-            <button> Duyệt tất cả<span class="las la-arrow-right"></span> </button>
+            <button>Thêm<span class="las la-arrow-right"></span> </button>
           </div>
 
           <div class="card-body">
-            <table width="100%">
-              <thead>
-              <tr>
-                <th>Mã đơn hàng</th>
-                <th>Tên khách hàng</th>
-                <th>Địa chỉ</th>
-                <th>Ngày đặt hàng</th>
-                <th>Phương thức thanh toán</th>
-                <th>Trạng thái</th>
-                <th>Hành động</th>
-              </tr>
-              </thead>
-              <tbody>
-              <tr>
-                <td>DH001</td>
-                <td>Nguyễn Văn A</td>
-                <td>123 Đường ABC</td>
-                <td>15/11/2023</td>
-                <td>Chuyển khoản</td>
-                <td>Mới đặt</td>
-                <td>
-                  <button class="see-btn">Duyệt</button>
-                  <button class="see-btn">Xóa</button>
-                </td>
-              </tr>
-              <tr>
-                <td>DH002</td>
-                <td>Trần Thị B</td>
-                <td>456 Đường XYZ</td>
-                <td>14/11/2023</td>
-                <td>Thanh toán khi nhận hàng</td>
-                <td>Mới đặt</td>
-                <td>
-                  <button class="see-btn">Duyệt</button>
-                  <button class="see-btn">Xóa</button>
-                </td>
-              </tr>
-              <tr>
-                <td>DH003</td>
-                <td>Nguyễn Văn A</td>
-                <td>123 Đường ABC</td>
-                <td>15/11/2023</td>
-                <td>Chuyển khoản</td>
-                <td>Đang giao</td>
-                <td>
-                  <button class="see-btn">Xong</button>
-                  <button class="see-btn">Xóa</button>
-                </td>
-              </tr>
-              <tr>
-                <td>DH004</td>
-                <td>Trần Thị B</td>
-                <td>456 Đường XYZ</td>
-                <td>14/11/2023</td>
-                <td>Thanh toán khi nhận hàng</td>
-                <td>Đang giao</td>
-                <td>
-                  <button class="see-btn">Xong</button>
-                  <button class="see-btn">Xóa</button>
-                </td>
-              </tr>
-              <tr>
-                <td>DH005</td>
-                <td>Nguyễn Văn A</td>
-                <td>123 Đường ABC</td>
-                <td>15/11/2023</td>
-                <td>Chuyển khoản</td>
-                <td>Mới đặt</td>
-                <td>
-                  <button class="see-btn">Duyệt</button>
-                  <button class="see-btn">Xóa</button>
-                </td>
-              </tr>
-              <tr>
-                <td>DH006</td>
-                <td>Trần Thị B</td>
-                <td>456 Đường XYZ</td>
-                <td>14/11/2023</td>
-                <td>Thanh toán khi nhận hàng</td>
-                <td>Đã giao</td>
-                <td>
-                  <button class="see-btn">Xong</button>
-                  <button class="see-btn">Xóa</button>
-                </td>
-              </tr>
-              <tr>
-                <td>DH007</td>
-                <td>Nguyễn Văn A</td>
-                <td>123 Đường ABC</td>
-                <td>15/11/2023</td>
-                <td>Chuyển khoản</td>
-                <td>Đang giao</td>
-                <td>
-                  <button class="see-btn">Xong</button>
-                  <button class="see-btn">Xóa</button>
-                </td>
-              </tr>
-              <tr>
-                <td>DH008</td>
-                <td>Trần Thị B</td>
-                <td>456 Đường XYZ</td>
-                <td>14/11/2023</td>
-                <td>Thanh toán khi nhận hàng</td>
-                <td>Mới đặt</td>
-                <td>
-                  <button class="see-btn">Duyệt</button>
-                  <button class="see-btn">Xóa</button>
-                </td>
-              </tr>
-              <tr>
-                <td>DH009</td>
-                <td>Nguyễn Văn A</td>
-                <td>123 Đường ABC</td>
-                <td>15/11/2023</td>
-                <td>Chuyển khoản</td>
-                <td>Đã giao</td>
-                <td>
-                  <button class="see-btn">Xong</button>
-                  <button class="see-btn">Xóa</button>
-                </td>
-              </tr>
-              <tr>
-                <td>DH010</td>
-                <td>Trần Thị B</td>
-                <td>456 Đường XYZ</td>
-                <td>14/11/2023</td>
-                <td>Thanh toán khi nhận hàng</td>
-                <td>Đã giao</td>
-                <td>
-                  <button class="see-btn">Xong</button>
-                  <button class="see-btn">Xóa</button>
-                </td>
-              </tr>
-              </tbody>
+            <table id="order-table" width="100%">
+                <thead>
+                    <tr>
+                        <th>Mã đơn hàng</th>
+                        <th>Mã khách hàng</th>
+                        <th>Địa chỉ giao xe</th>
+                        <th>Ngày đặt xe</th>
+                        <th>Ngày trả xe</th>
+                        <th>Biển số xe</th>
+                        <th>Trạng thái</th>
+                        <th>Hành động</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <c:forEach var="o" items="${orders}">
+                    <tr>
+                      <td>${o.id}</td>
+                      <td>${o.customerId}</td>
+                      <td>${o.deliveryAddress}</td>
+                      <td>${o.retalStarDate}</td>
+                      <td>${o.expectedReturnDate}</td>
+                      <td>${o.orderDetail.licensePlate}</td>
+                      <td>${o.status}</td>
+                      <td>
+                          <button class="see-btn">Sửa</button>
+                           <form action="admin?action=deleteOrder" method="POST" style="display:inline;">
+                              <input type="hidden" name="orderId" value="${o.id}"/>
+                              <button type="submit" class="see-btn">Xóa</button>
+                          </form>
+                      </td>
+                     </tr>
+                    </c:forEach>
+                </tbody>
             </table>
           </div>
         </div>
@@ -246,5 +143,26 @@
   </main>
 
 </div>
+
+<script>
+    $(document).ready(function () {
+        $('#vehicleTable').DataTable({
+            "pageLength": 10, // Hiển thị 10 sản phẩm mỗi trang
+            "language": {
+                "lengthMenu": "Hiển thị _MENU_ sản phẩm mỗi trang",
+                "zeroRecords": "Không tìm thấy đơn hàng nào",
+                "info": "Hiển thị trang _PAGE_ của _PAGES_",
+                "infoEmpty": "Không có đơn hàng nào",
+                "infoFiltered": "(lọc từ _MAX_ sản phẩm)",
+                "search": "Tìm kiếm:",
+                "paginate": {
+                    "next": "Trang tiếp",
+                    "previous": "Trang trước"
+                }
+            }
+        });
+    });
+</script>
+
 </body>
 </html>

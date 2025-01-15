@@ -122,7 +122,7 @@
               <span>Quản lý xe máy</span></a>
       </li>
       <li>
-        <a href="orders.jsp"><span class="las la-shopping-bag"></span>
+        <a href="/DoAnCuoiKi/admin?action=managerOrder"><span class="las la-shopping-bag"></span>
           <span>Quản lý đơn hàng</span></a>
       </li>
       <li>
