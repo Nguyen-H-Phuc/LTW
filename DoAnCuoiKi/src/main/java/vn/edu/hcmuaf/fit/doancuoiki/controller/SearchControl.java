@@ -16,7 +16,7 @@ public class SearchControl extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String txtSearch = request.getParameter("txt");
         ProductDao dao = new ProductDao();
-        List<Product> list = dao.searchUnbookedProductByName(txtSearch);
+        List<Product> list = dao.searchByName(txtSearch);
 
         request.setAttribute("listA", list);
         request.getRequestDispatcher("page-product.jsp").forward(request, response);
