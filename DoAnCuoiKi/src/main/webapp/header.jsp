@@ -18,7 +18,6 @@
     <link rel="stylesheet" href="assets/css/base.css">
     <link rel="stylesheet" href="assets/css/header.css">
 
-
 </head>
 <body>
 <form action="SearchControl" method="get">
@@ -27,7 +26,7 @@
         <nav class="header__navbar">
             <ul class="header__navbar-list">
                 <li class="header__navbar-item ">
-                    <a class="header__navbar-item-link" href="index.jsp">Trang chủ</a>
+                    <a class="header__navbar-item-link" href="">Trang chủ</a>
                 </li>
                 <li class="header__navbar-item ">
                     <a class="header__navbar-item-link" href="PagingProduct">Xe</a>
@@ -112,7 +111,7 @@
             <!--Cart Layout -->
             <div class="header__cart">
                 <div class="header__cart-wrap">
-                    <i class="header__cart-icon fa-solid fa-cart-shopping"></i>
+                    <a href="cart2.jsp"><i class="header__cart-icon fa-solid fa-cart-shopping"></i></a>
                     <span class="header__cart-notice">1</span>
 
                     <!--              No cart: header__cart-list--no-cart-->

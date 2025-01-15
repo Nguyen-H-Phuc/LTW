@@ -22,7 +22,7 @@ public class Cart {
     }
 
     public boolean update(int id, int quantity){
-        if(data.containsKey(id)){
+        if(!data.containsKey(id)){
             return false;
         }
         CartProduct cartProduct = data.get(id);
@@ -36,7 +36,7 @@ public class Cart {
         return data.remove(id)!=null;
     }
 
-    public List<CartProduct> list(){
+    public List<CartProduct> getList(){
         return new ArrayList<>(data.values());
     }
 
@@ -47,8 +47,8 @@ public class Cart {
     }
 
     public Double getTotal(){
-        AtomicReference<Double> i = new AtomicReference<>(0.0);
-        data.values().forEach(cp->i.updateAndGet(v -> (double) (v+(cp.getQuantity()*cp.getQuantity()))));
+        AtomicReference<Double> i= new AtomicReference<>(0.0);
+        data.values().forEach(cp -> i.updateAndGet(v -> (v + (cp.getQuantity() * cp.getQuantity()))));
         return i.get();
     }
 
@@ -58,7 +58,7 @@ public class Cart {
         re.setTitle(p.getName());
         re.setPrice(p.getPrice());
         re.setImg(p.getImg());
-        re.setQuantity(p.getQuantity());
+        re.setQuantity(1);
         return re;
     }
 }

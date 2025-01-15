@@ -17,6 +17,9 @@ public class AdminController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
         switch (action) {
+            case "dashboard":
+                managerDashboard(request, response);
+                break;
             case "managerCustomer":
                 managerCustomer(request, response);
                 break;
@@ -43,6 +46,10 @@ public class AdminController extends HttpServlet {
                 updateVehicleType(request, response);
                 break;
         }
+    }
+
+    private void managerDashboard(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.getRequestDispatcher("admin/admin.jsp").forward(request, response);
     }
 
     private void managerCustomer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
