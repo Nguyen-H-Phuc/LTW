@@ -7,13 +7,18 @@ public class Product implements Serializable {
     private int id;
     private String name;
     private int year;
+    private int number;
     private String brand;
     private String type;
     private double price;
     private String description;
     private String img;
+    private int quantity;
 
     private String numberPlate;
+    public int getQuantity() {
+        return quantity;
+    }
 
     public int getId() {
         return id;
@@ -101,6 +106,7 @@ public class Product implements Serializable {
         this.numberPlate = numberPlate;
     }
 
+
     public Product() {
     }
 
@@ -129,6 +135,20 @@ public class Product implements Serializable {
         this.img = img;
         this.number = number;
     }
+
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public int getNumber() {
+        return number;
+    }
+
+    public void setNumber(int number) {
+        this.number = number;
+    }
+
 }
 
 

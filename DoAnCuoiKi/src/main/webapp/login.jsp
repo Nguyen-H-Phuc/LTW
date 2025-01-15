@@ -69,7 +69,7 @@
                     <!-- Links -->
                     <div class="auth-form__aside">
                         <div class="auth-form__helps">
-                            <a href="#" class="auth-form__helps-link auth-form__helps-forgot">Quên mật khẩu</a>
+                            <a href="forgot_password.jsp" class="auth-form__helps-link auth-form__helps-forgot">Quên mật khẩu</a>
                             <span class="auth-form__helps-separate"></span>
                             <a href="#" class="auth-form__helps-link">Cần trợ giúp?</a>
                         </div>
@@ -81,7 +81,7 @@
                         <button
                             type="button"
                             class="btn btn--normal auth-form__controls-back"
-                            onclick="window.location.href='home_page.html'">
+                            onclick="window.location.href='index.jsp'">
                             TRỞ LẠI
                         </button>
 

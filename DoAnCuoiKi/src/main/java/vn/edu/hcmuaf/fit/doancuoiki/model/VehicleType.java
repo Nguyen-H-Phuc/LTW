@@ -14,7 +14,22 @@ public class VehicleType {
     private String description;
     private String image;
     private int totalVehicles;
-    private int isAvailable;
+    private int available;
+
+    public VehicleType() {
+    }
+
+    public VehicleType(int id, String name, String brand, String category, double totalPrice, String description, String image, int totalVehicles, int available) {
+        this.id = id;
+        this.name = name;
+        this.brand = brand;
+        this.category = category;
+        this.totalPrice = totalPrice;
+        this.description = description;
+        this.image = image;
+        this.totalVehicles = totalVehicles;
+        this.available = available;
+    }
 
     public VehicleType(String name) {
         this.name = name;
@@ -108,11 +123,19 @@ public class VehicleType {
         this.totalVehicles = totalVehicles;
     }
 
-    public int getIsAvailable() {
-        return isAvailable;
+
+    public int getAvailable() {
+        return available;
     }
 
-    public void setIsAvailable(int isAvailable) {
-        this.isAvailable = isAvailable;
+    public void setAvailable(int available) {
+        this.available = available;
+    }
+
+    @Override
+    public String toString() {
+        return "VehicleType{" +
+                "description='" + description + '\'' +
+                '}';
     }
 }

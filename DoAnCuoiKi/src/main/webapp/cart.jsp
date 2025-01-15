@@ -31,15 +31,13 @@
     List<CartItem> cartItems = shoppingCart.getCartItemList();
     NumberFormat numberFormat = NumberFormat.getCurrencyInstance();
     String e = request.getAttribute("error")==null?"":(String) request.getAttribute("error");
-
-
 %>
 <header id="header"></header>
 <!-- section 1 -->
 <div id="sec1">
     <hr>
     <div class="container border">
-        <h1><strong>Giỏ Hàng Của Bạn (5 Sản Phẩm)</strong></h1>
+        <h1><strong>Giỏ Hàng Của Bạn </strong></h1>
 
         <!-- Giỏ hàng -->
         <div class="row">
@@ -48,17 +46,15 @@
             <div class="col-left">
                 <div class="cart-item">
                     <div class="cart-item__product">
-                        <%
-                            for (CartItem cartItem : cartItems) {
-                        %>
-                        <img src="<%=cartItem.getProduct().getImg()%>" class="cart-img">
-                        <p><strong><%=cartItem.getProduct().getName()%></strong></p>
-                        <i class="cart-icon fa-regular fa-pen-to-square fa-xl"></i>
-                        <input type="number" class="form-control" value="<%=cartItem.getQuanlity()%>" min="1" max="5">
 
-                        <p><strong><%=cartItem.getProduct().getPrice()%></strong></p>
+                        <img src="${p.img}" class="cart-img">
+                        <p><strong>${p.name}</strong></p>
+                        <i class="cart-icon fa-regular fa-pen-to-square fa-xl"></i>
+                        <input type="number" class="form-control" value="${p.quantity}" min="1" max="5">
+
+                        <p><strong>${p.price}</strong></p>
                         <i class="cart-icon fa-solid fa-trash fa-xl"></i>
-                        <% }%>
+
                     </div>
                 </div>
             </div>
@@ -94,12 +90,12 @@
 <footer id="footer"></footer>
 <script>
     // Chèn header
-    fetch('header.html')
+    fetch('header.jsp')
         .then(response => response.text())
         .then(data => document.getElementById('header').innerHTML = data);
 
     // Chèn footer
-    fetch('footer.html')
+    fetch('footer.jsp')
         .then(response => response.text())
         .then(data => document.getElementById('footer').innerHTML = data);
 </script>

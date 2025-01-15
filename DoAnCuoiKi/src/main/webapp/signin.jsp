@@ -143,8 +143,12 @@
                     </div>
 
                     <div class="auth-form__controls">
-                        <button class="btn btn--normal auth-form__controls-back">TRỞ LẠI</button>
-                        <a href=""></a>
+                        <button
+                            type="button"
+                            class="btn btn--normal auth-form__controls-back"
+                            onclick="window.location.href='index.jsp'">
+                            TRỞ LẠI
+                        </button>
                         <button type="submit" class="btn btn--primary">ĐĂNG KÝ</button>
                     </div>
                 </form>

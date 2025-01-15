@@ -121,11 +121,11 @@
                     <span>Dashboard</span></a>
             </li>
             <li>
-                <a href="customers.jsp"><span class="las la-users"></span>
+                <a href="/DoAnCuoiKi_war/admin?action=managerCustomer"><span class="las la-users"></span>
                     <span>Quản lý khách hàng</span></a>
             </li>
             <li>
-                <a href="motorbikes.jsp"><span class="las la-motorcycle"></span>
+                <a href="/DoAnCuoiKi_war/admin?action=managerVehicleType"><span class="las la-motorcycle"></span>
                     <span>Quản lý xe máy</span></a>
             </li>
             <li>

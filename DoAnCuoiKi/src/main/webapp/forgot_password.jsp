@@ -11,13 +11,15 @@
 <head>
   <meta charset="UTF-8">
   <title>Title</title>
-  <link rel="stylesheet" href="home_page/base.css">
-  <link rel="stylesheet" href="assets/header_footer/footer.css">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/login.css">
   <link rel="stylesheet" href="../assets/fonts/fontawesome-free-6.6.0-web/fontawesome-free-6.6.0-web/css/all.css">
-  <link rel="stylesheet" href="assets/css/forgot_password.css">
 </head>
 <body>
-
+<%
+    String message = (String) request.getAttribute("message");
+    message = message==null? "":message;
+%>
 <div class="login">
   <div class="header">
     <div class="header__item">
@@ -30,7 +32,7 @@
 
   <div class="content">
     <div class="content__item">
-      <img class="content__item-img" src="assets/img/home_img/xe/login_background.jpg" height="565" width="1366"/>
+      <img class="content__item-img" src="assets/img/home_img/xe/login_background.jpg" width=100%/>
     </div>
     <div class="auth-form">
       <div class="auth-form__container">
@@ -43,6 +45,7 @@
             <input type="text" name = "email" class="auth-form__input" placeholder="Email của bạn">
           </div>
         </div>
+        <div style="color: red; text-align: center; size: 1.4rem" > <%= message %></div>
         <div class="auth-form__controls">
           <button type = "button" class="btn btn--normal auth-form__controls-back">TRỞ LẠI</button>
           <button type = "submit" class="btn btn--primary">XÁC NHẬN</button>
