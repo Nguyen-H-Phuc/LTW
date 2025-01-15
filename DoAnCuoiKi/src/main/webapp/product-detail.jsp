@@ -111,6 +111,13 @@
     <div id="footer"></div>
 
 </div>
+<c:if test="${param.message == 'success'}">
+    <script>alert("Đặt xe thành công!");</script>
+</c:if>
+<c:if test="${param.message == 'fail'}">
+    <script>alert("Đặt xe thất bại. Vui lòng thử lại!");</script>
+</c:if>
+
 </body>
 </html>
 

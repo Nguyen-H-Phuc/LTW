@@ -3,8 +3,10 @@ package vn.edu.hcmuaf.fit.doancuoiki.controller;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
+import vn.edu.hcmuaf.fit.doancuoiki.dao.OrderDao;
 import vn.edu.hcmuaf.fit.doancuoiki.dao.UserDao;
 import vn.edu.hcmuaf.fit.doancuoiki.dao.VehicleTypeDao;
+import vn.edu.hcmuaf.fit.doancuoiki.model.Order;
 import vn.edu.hcmuaf.fit.doancuoiki.model.User;
 import vn.edu.hcmuaf.fit.doancuoiki.model.VehicleType;
 
@@ -32,8 +34,8 @@ public class AdminController extends HttpServlet {
             case "managerVehicleType":
                 managerVehicleType(request, response);
                 break;
-            case "updateVehicleType":
-                updateVehicleType(request, response);
+            case "managerOrder":
+                managerOrder(request, response);
                 break;
         }
     }
@@ -45,7 +47,28 @@ public class AdminController extends HttpServlet {
             case "updateVehicleType":
                 updateVehicleType(request, response);
                 break;
+            case "addVehicleType":
+                addVehicleType(request, response);
+                break;
+            case "deleteOrder":
+                deleteOrder(request, response);
+                break;
         }
+    }
+
+
+    private void managerOrder(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        OrderDao orderDao = new OrderDao();
+        List<Order> orders = orderDao.getAllOrder();
+        request.setAttribute("orders", orders);
+        request.getRequestDispatcher("admin/orders.jsp").forward(request, response);
+    }
+
+    private void deleteOrder(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int orderId = Integer.parseInt(request.getParameter("orderId"));
+        OrderDao orderDao = new OrderDao();
+        orderDao.deleteOrder(orderId);
+        managerOrder(request,response);
     }
 
     private void managerDashboard(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -95,6 +118,21 @@ public class AdminController extends HttpServlet {
 
         VehicleTypeDao dao = new VehicleTypeDao();
         dao.updateVehicleType(id, name, brand, category, totalPrice, description, image, totalVehicles, available);
+        managerVehicleType(request, response);
+    }
+
+    private void addVehicleType(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {;
+        String name = request.getParameter("addName");
+        String brand = request.getParameter("addBrand");
+        String category = request.getParameter("addCategory");
+        double totalPrice = Double.parseDouble(request.getParameter("addTotalPrice"));
+        String description = request.getParameter("addDescription");
+        String image = request.getParameter("addImage");
+        int totalVehicles = Integer.parseInt(request.getParameter("addTotalVehicles"));
+        int available = Integer.parseInt(request.getParameter("addAvailable"));
+
+        VehicleTypeDao dao = new VehicleTypeDao();
+        dao.addVehicleType(name, brand, category, totalPrice, description, image, totalVehicles, available);
         managerVehicleType(request, response);
     }
 }
