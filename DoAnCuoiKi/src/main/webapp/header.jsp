@@ -29,7 +29,7 @@
                     <a class="header__navbar-item-link" href="">Trang chủ</a>
                 </li>
                 <li class="header__navbar-item ">
-                    <a class="header__navbar-item-link" href="">Xe</a>
+                    <a class="header__navbar-item-link" href="PagingProduct">Xe</a>
                 </li>
                 <li class="header__navbar-item ">
                     <a class="header__navbar-item-link" href="">Tin tức</a>
