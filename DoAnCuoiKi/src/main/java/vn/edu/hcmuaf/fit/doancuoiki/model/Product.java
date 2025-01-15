@@ -3,6 +3,7 @@ package vn.edu.hcmuaf.fit.doancuoiki.model;
 import java.io.Serializable;
 
 public class Product implements Serializable {
+    private int number;
     private int id;
     private String name;
     private int year;
@@ -135,6 +136,7 @@ public class Product implements Serializable {
         this.number = number;
     }
 
+
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
@@ -146,6 +148,7 @@ public class Product implements Serializable {
     public void setNumber(int number) {
         this.number = number;
     }
+
 }
 
 

@@ -6,6 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix = "f" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,7 +15,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0">
     <title>Trang admin</title>
     <link rel= "stylesheet" href= "https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css" >
-    <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/admin/admin.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
     <style>
         .modal {
             display: none; /* Hidden by default */
@@ -119,12 +124,11 @@
                     <span>Dashboard</span></a>
             </li>
             <li>
-                <a href="customers.jsp"><span class="las la-users"></span>
+                <a href="/DoAnCuoiKi_war/admin?action=managerCustomer"><span class="las la-users"></span>
                     <span>Quản lý khách hàng</span></a>
             </li>
-
             <li>
-                <a href="motorbikes.jsp" class="motorbikes-active"><span class="las la-motorcycle"></span>
+                <a href="/DoAnCuoiKi_war/admin?action=managerVehicleType"><span class="las la-motorcycle"></span>
                     <span>Quản lý xe máy</span></a>
             </li>
             <li>
@@ -193,86 +197,36 @@
                     </div>
 
                     <div class="card-body">
-                        <table width="100%">
+                        <table id="vehicleTable" width="100%" class="display">
                             <thead>
-                            <tr>
-                                <th>ID Xe</th>
-                                <th>Tên xe</th>
-                                <th>Loại xe</th>
-                                <th>Giá thuê</th>
-                                <th>Mô tả</th>
-                                <th>Hãng sản xuất</th>
-                            </tr>
+                                <tr>
+                                    <th>ID Xe</th>
+                                    <th>Tên xe</th>
+                                    <th>Loại xe</th>
+                                    <th>Giá thuê</th>
+                                    <th>Tổng số xe</th>
+                                    <th>Trạng thái</th>
+                                    <th>Thao tác</th>
+                                </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td>XM001</td>
-                                <td>Honda Vision</td>
-                                <td>Xe tay ga</td>
-                                <td>120,000 VND/ngày</td>
-                                <td>Dễ lái, tiết kiệm xăng</td>
-                                <td>Honda</td>
-                            </tr>
-                            <tr>
-                                <td>XM002</td>
-                                <td>Yamaha Exciter</td>
-                                <td>Xe số</td>
-                                <td>150,000 VND/ngày</td>
-                                <td>Phong cách thể thao</td>
-                                <td>Yamaha</td>
-                            </tr>
-                            <tr>
-                                <td>XM003</td>
-                                <td>Honda Vision</td>
-                                <td>Xe tay ga</td>
-                                <td>120,000 VND/ngày</td>
-                                <td>Dễ lái, tiết kiệm xăng</td>
-                                <td>Honda</td>
-                            </tr>
-                            <tr>
-                                <td>XM004</td>
-                                <td>Yamaha Exciter</td>
-                                <td>Xe số</td>
-                                <td>150,000 VND/ngày</td>
-                                <td>Phong cách thể thao</td>
-                                <td>Yamaha</td>
-                            </tr>
-                            <tr>
-                                <td>XM005</td>
-                                <td>Honda Vision</td>
-                                <td>Xe tay ga</td>
-                                <td>120,000 VND/ngày</td>
-                                <td>Dễ lái, tiết kiệm xăng</td>
-                                <td>Honda</td>
-                            </tr>
-                            <tr>
-                                <td>XM006</td>
-                                <td>Yamaha Exciter</td>
-                                <td>Xe số</td>
-                                <td>150,000 VND/ngày</td>
-                                <td>Phong cách thể thao</td>
-                                <td>Yamaha</td>
-                            </tr>
-                            <tr>
-                                <td>XM007</td>
-                                <td>Honda Vision</td>
-                                <td>Xe tay ga</td>
-                                <td>120,000 VND/ngày</td>
-                                <td>Dễ lái, tiết kiệm xăng</td>
-                                <td>Honda</td>
-                            </tr>
-                            <tr>
-                                <td>XM008</td>
-                                <td>Yamaha Exciter</td>
-                                <td>Xe số</td>
-                                <td>150,000 VND/ngày</td>
-                                <td>Phong cách thể thao</td>
-                                <td>Yamaha</td>
-                            </tr>
-
+                                <c:forEach var="v" items="${vehicleTypeList}">
+                                    <tr>
+                                        <td>${v.id}</td>
+                                        <td>${v.name}</td>
+                                        <td>${v.category}</td>
+                                        <td>${v.totalPrice}</td>
+                                        <td>${v.totalVehicles}</td>
+                                        <td>${v.available==1? "Hien" : "An"}</td>
+                                        <td>
+                                            <button type="button" onclick="showEditForm('${v.id}', '${v.name}', '${v.brand}', '${v.category}', '${v.totalPrice}', '${v.description}', '${v.image}', '${v.totalVehicles}', '${v.available}')">Sửa</button>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
                             </tbody>
                         </table>
                     </div>
+
                 </div>
             </div>
         </div>
@@ -324,17 +278,89 @@
                 </div>
             </div>
         </div>
-    </main>
+        <!-- Form sửa thông tin -->
+        <div id="editForm" style="display:none;">
+            <form action="admin?action=updateVehicleType" method="post">
+                <input type="hidden" name="id" id="id" />
+                <label for="name">Tên xe:</label>
+                <input type="text" id="name" name="name" /><br/>
+
+                <label for="brand">Hãng xe:</label>
+                <input type="text" id="brand" name="brand" /><br/>
+
+                <label for="category">Loại xe:</label>
+                <input type="text" id="category" name="category" /><br/>
+
+                <label for="totalPrice">Giá thuê:</label>
+                <input type="text" id="totalPrice" name="totalPrice" /><br/>
+
+                <label for="description">Mô tả:</label>
+                <textarea id="description" name="description"></textarea><br/>
+
+                <label for="image">Hình ảnh</label>
+                <input type="text" id="image" name="image" /><br/>
+
+                <label for="totalVehicles">Số lượng xe:</label>
+                <input type="number" id="totalVehicles" name="totalVehicles" /><br/>
+
+                <label for="available">Có sẵn:</label>
+                <select id="available" name="available">
+                    <option value="1">Có sẵn</option>
+                    <option value="0">Không có sẵn</option>
+                </select><br/>
+
+                <button type="submit">Cập nhật</button>
+                <button type="button" onclick="hideEditForm()">Hủy</button>
+            </form>
+        </div>
+
+
+        <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+        <script>
+            function showEditForm(id, name, brand, category, totalPrice, description, image, totalVehicles, isAvailable) {
+                // Điền thông tin vào form
+                document.getElementById("id").value = id;
+                document.getElementById("name").value = name;
+                document.getElementById("brand").value = brand;
+                document.getElementById("category").value = category;
+                document.getElementById("totalPrice").value = totalPrice;
+                document.getElementById("description").value = description;
+                document.getElementById("image").value = image;
+                document.getElementById("totalVehicles").value = totalVehicles;
+                document.getElementById("available").value = isAvailable;
+
+                // Hiển thị form
+                document.getElementById("editForm").style.display = "block";
+            }
+
+            function hideEditForm() {
+                // Ẩn form khi hủy
+                document.getElementById("editForm").style.display = "none";
+                tinymce.remove("#description"); // Xóa TinyMCE khi đóng form
+            }
+        </script>
+
+
     <script>
-        function openConfig() {
-            document.getElementById('configModal').style.display = 'flex';
-        }
-
-        function closeConfig() {
-            document.getElementById('configModal').style.display = 'none';
-        }
-
+        $(document).ready(function () {
+            $('#vehicleTable').DataTable({
+                "pageLength": 10, // Hiển thị 10 sản phẩm mỗi trang
+                "language": {
+                    "lengthMenu": "Hiển thị _MENU_ sản phẩm mỗi trang",
+                    "zeroRecords": "Không tìm thấy xe nào",
+                    "info": "Hiển thị trang _PAGE_ của _PAGES_",
+                    "infoEmpty": "Không có xe nào",
+                    "infoFiltered": "(lọc từ _MAX_ xe)",
+                    "search": "Tìm kiếm:",
+                    "paginate": {
+                        "next": "Trang tiếp",
+                        "previous": "Trang trước"
+                    }
+                }
+            });
+        });
     </script>
+
 </div>
 </body>
 </html>

@@ -33,6 +33,26 @@
     <title>Danh Sách Sản Phẩm</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="csssp.css" rel="stylesheet">
+    <style>
+        .product-item {
+            width: 220px; /* Cố định kích thước của mỗi item */
+            height: auto;
+            text-align: center; /* Căn giữa nội dung */
+            margin: 10px; /* Khoảng cách giữa các sản phẩm */
+        }
+
+        .product-thumb img {
+            width: 200px; /* Chiều rộng cố định */
+            height: 100px; /* Chiều cao cố định */
+            object-fit: cover; /* Đảm bảo ảnh không bị kéo dãn */
+            display: block;
+            margin: 0 auto; /* Canh giữa */
+            border-radius: 5px; /* Bo tròn góc (tuỳ chọn) */
+        }
+
+
+
+    </style>
     <script>
         function sortProducts() {
             const priceFilter = document.getElementById('price-filter').value;
