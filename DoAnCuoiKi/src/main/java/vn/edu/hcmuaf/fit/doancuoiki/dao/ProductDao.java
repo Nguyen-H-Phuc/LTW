@@ -630,15 +630,16 @@ public List<Product> getTop8ProductNew() {
     }
     return productList;
 }
-    public List<Product> getLast8BetSeller() {
+    public List<Product> getLast8BestSeller() {
         List<Product> productList = new ArrayList<>();
-        String query = "SELECT * FROM products " +
-                "WHERE id NOT IN ( " +
-                "    SELECT DISTINCT productId FROM orders " +
-                "    JOIN orderDetails ON orders.id = orderDetails.orderId " +
-                ") " +
-                "ORDER BY id DESC " + // Sắp xếp theo id giảm dần
-                "LIMIT 8"; // Lấy 8 sản phẩm cuối cùng
+        String query = "SELECT vt.id, vt.name, vt.brand, vt.category, vt.rentalPrice, vt.image, vt.totalVehicles, vt.description " +
+                "FROM vehicleTypes vt " +
+                "LEFT JOIN vehicles v ON vt.id = v.typeId " +
+                "LEFT JOIN orderDetails od ON v.licensePlate = od.licensePlate " +
+                "LEFT JOIN orders o ON od.orderId = o.id " +
+                "WHERE o.id IS NULL " +  // Lọc sản phẩm chưa có đơn đặt
+                "ORDER BY vt.id DESC " +  // Sắp xếp theo id giảm dần (sản phẩm mới nhất)
+                "LIMIT 8";  // Lấy 8 sản phẩm cuối cùng
 
         try {
             conn = new DBContext().getConnection();
@@ -649,13 +650,13 @@ public List<Product> getTop8ProductNew() {
                 Product product = new Product(
                         rs.getInt("id"),
                         rs.getString("name"),
-                        rs.getInt("year"), // Năm sản xuất
+                        0,  // Giá trị mặc định, có thể thay đổi nếu cần
                         rs.getString("brand"),
-                        rs.getString("type"),
-                        rs.getDouble("price"),
+                        rs.getString("category"),
+                        rs.getDouble("rentalPrice"),
                         rs.getString("description"),
-                        rs.getString("img"),
-                        rs.getString("numberPlate") // Biển số xe (nếu có)
+                        rs.getString("image"),
+                        rs.getInt("totalVehicles")
                 );
                 productList.add(product);
             }
@@ -675,15 +676,18 @@ public List<Product> getTop8ProductNew() {
 
 
 
+
     public static void main(String[] args) {
         ProductDao dao = new ProductDao();
 //        int id = 5;
 //        Product product = dao.getUnbookedProductById(id);
 //        System.out.println(product);
 //        System.out.println(dao.countProducts("2025-01-01","2025-01-31",2));
-        List<Product> lis = dao.searchUnbookedProductByName("RSX");
-        for (Product product : lis) {
-            System.out.println(product);
-        }
+//        dao.countProducts()
+//        for (Product product : lis) {
+//            System.out.println(product);
+        dao.countProducts("2025-01-01","2025-01-31",2);
+        System.out.println(dao.countProducts("2025-01-01","2025-01-31",3));
+//        }
     }
 }
