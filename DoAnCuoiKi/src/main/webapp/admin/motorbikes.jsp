@@ -119,16 +119,16 @@
     <div class="sidebar-menu">
         <ul>
             <li>
-                <a href="admin.jsp">
+                <a href="/DoAnCuoiKi/admin?action=dashboard">
                     <span class="las la-igloo"></span>
                     <span>Dashboard</span></a>
             </li>
             <li>
-                <a href="/DoAnCuoiKi_war/admin?action=managerCustomer"><span class="las la-users"></span>
+                <a href="/DoAnCuoiKi/admin?action=managerCustomer"><span class="las la-users"></span>
                     <span>Quản lý khách hàng</span></a>
             </li>
             <li>
-                <a href="/DoAnCuoiKi_war/admin?action=managerVehicleType"><span class="las la-motorcycle"></span>
+                <a href="/DoAnCuoiKi/admin?action=managerVehicleType"><span class="las la-motorcycle"></span>
                     <span>Quản lý xe máy</span></a>
             </li>
             <li>

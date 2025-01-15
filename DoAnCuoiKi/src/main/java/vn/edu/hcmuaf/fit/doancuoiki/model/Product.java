@@ -7,7 +7,6 @@ public class Product implements Serializable {
     private int id;
     private String name;
     private int year;
-    private int number;
     private String brand;
     private String type;
     private double price;
