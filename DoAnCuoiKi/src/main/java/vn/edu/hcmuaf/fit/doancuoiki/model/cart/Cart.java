@@ -1,5 +1,6 @@
 package vn.edu.hcmuaf.fit.doancuoiki.model.cart;
 
+import vn.edu.hcmuaf.fit.doancuoiki.model.CartItem;
 import vn.edu.hcmuaf.fit.doancuoiki.model.Product;
 
 import java.util.ArrayList;
@@ -12,6 +13,7 @@ import java.util.concurrent.atomic.AtomicReference;
 public class Cart {
 
     Map<Integer, CartProduct> data = new HashMap<>();
+    private List<CartProduct> items;
 
     public boolean add(Product p){
         if(data.containsKey(p.getId())){
@@ -30,6 +32,15 @@ public class Cart {
         cartProduct.setQuantity(quantity);
         data.put(id, cartProduct);
         return true;
+    }
+
+    public void update2(int id, int quantity){
+        for(CartProduct c : items){
+            if(c.getProduct().getId()==id){
+                c.setQuantity(quantity);
+                return;
+            }
+        }
     }
 
     public boolean remove(int id){

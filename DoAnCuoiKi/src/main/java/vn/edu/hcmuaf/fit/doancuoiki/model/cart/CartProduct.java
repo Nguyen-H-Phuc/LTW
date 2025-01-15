@@ -1,11 +1,22 @@
 package vn.edu.hcmuaf.fit.doancuoiki.model.cart;
 
+import vn.edu.hcmuaf.fit.doancuoiki.model.Product;
+
 public class CartProduct {
     private int id;
     private String title;
     private double price;
     private String img;
     private int quantity;
+    private Product product;
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
 
     public CartProduct() {
 
