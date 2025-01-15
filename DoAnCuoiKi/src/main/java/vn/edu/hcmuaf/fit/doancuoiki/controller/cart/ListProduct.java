@@ -15,7 +15,7 @@ public class ListProduct extends HttpServlet {
         ProductService service = new ProductService();
         List<Product> all = service.getAll();
         request.setAttribute("data", all);
-        request.getRequestDispatcher("list-product.jsp").forward(request, response);
+        request.getRequestDispatcher("page-product.jsp").forward(request, response);
     }
 
     @Override

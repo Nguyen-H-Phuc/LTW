@@ -32,7 +32,7 @@
         <div class="cart-items">
           <div class="cart-item__products">
             <h2>Giỏ hàng</h2>
-            <a href="list-product"><button class="btn btn-primary">Tiếp tục mua hàng</button></a>
+            <a href="PagingProduct"><button class="btn btn-primary">Tiếp tục mua hàng</button></a>
             <table class="table">
               <thread>
                 <tr>
@@ -58,6 +58,7 @@
                   <td>${cp.price * cp.quantity}VND</td>
                   <td>
                     <a href="del-cart?pid=${cp.id}"><button class="btn btn-danger btn-sm">xóa</button></a>
+                    <a href="update-cart?pid=${cp.id}"><button class="btn btn-danger btn-sm">Cập nhật</button></a>
                   </td>
                 </tr>
               </c:forEach>
