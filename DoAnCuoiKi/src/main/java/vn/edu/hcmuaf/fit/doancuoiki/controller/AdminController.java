@@ -56,6 +56,7 @@ public class AdminController extends HttpServlet {
         }
     }
 
+
     private void managerOrder(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         OrderDao orderDao = new OrderDao();
         List<Order> orders = orderDao.getAllOrder();

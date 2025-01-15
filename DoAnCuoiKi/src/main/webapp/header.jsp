@@ -111,7 +111,7 @@
             <!--Cart Layout -->
             <div class="header__cart">
                 <div class="header__cart-wrap">
-                    <i class="header__cart-icon fa-solid fa-cart-shopping"></i>
+                    <a href="cart2.jsp"><i class="header__cart-icon fa-solid fa-cart-shopping"></i></a>
                     <span class="header__cart-notice">1</span>
 
                     <!--              No cart: header__cart-list--no-cart-->
