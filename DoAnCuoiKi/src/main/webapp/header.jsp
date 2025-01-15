@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="assets/css/base.css">
     <link rel="stylesheet" href="assets/css/header.css">
 
+
 </head>
 <body>
 <form action="SearchControl" method="get">
@@ -26,10 +27,10 @@
         <nav class="header__navbar">
             <ul class="header__navbar-list">
                 <li class="header__navbar-item ">
-                    <a class="header__navbar-item-link" href="">Trang chủ</a>
+                    <a class="header__navbar-item-link" href="index.jsp">Trang chủ</a>
                 </li>
                 <li class="header__navbar-item ">
-                    <a class="header__navbar-item-link" href="">Xe</a>
+                    <a class="header__navbar-item-link" href="PagingProduct">Xe</a>
                 </li>
                 <li class="header__navbar-item ">
                     <a class="header__navbar-item-link" href="">Tin tức</a>
