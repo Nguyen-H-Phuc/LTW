@@ -1,6 +1,8 @@
 package vn.edu.hcmuaf.fit.doancuoiki.dao;
 
+import org.jdbi.v3.core.Jdbi;
 import vn.edu.hcmuaf.fit.doancuoiki.db.DBContext;
+import vn.edu.hcmuaf.fit.doancuoiki.db.JDBIConnector;
 import vn.edu.hcmuaf.fit.doancuoiki.model.Product;
 
 import java.sql.Connection;
@@ -9,6 +11,7 @@ import java.sql.ResultSet;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ProductDao {
     Connection conn = null;
@@ -260,85 +263,89 @@ public List<Product> getLast8Products() {
     // phan moi de up date
 
 // * danh sach sp ch dat
-public List<Product> listPro1(String sdate, String edate, int a, int pageIndex) {
-    List<Product> list = new ArrayList<>();
-    String query = "SELECT \n" +
-            "    vt.id,\n" +
-            "    vt.name AS name,\n" +
-            "    vt.brand, \n" +
-            "    vt.category,\n" +
-            "    vt.rentalPrice,\n" +
-            "    vt.image,\n" +
-            "    vt.totalVehicles,\n" +
-            "    vt.description, \n" +
-            "    vt.totalVehicles - COUNT(od.licensePlate) AS availableVehicles\n" +
-            "FROM \n" +
-            "    vehicleTypes vt\n" +
-            "LEFT JOIN \n" +
-            "    vehicles v ON vt.id = v.typeId\n" +
-            "LEFT JOIN \n" +
-            "    orderDetails od ON v.licensePlate = od.licensePlate\n" +
-            "LEFT JOIN \n" +
-            "    orders o ON od.orderId = o.id\n" +
-            "WHERE \n" +
-            "    vt.isAvailable = 1 \n" +
-            "    AND (\n" +
-            "        (o.rentalStartDate <= ? OR o.rentalStartDate BETWEEN ? AND ?) \n" +
-            "        AND (o.expectedReturnDate BETWEEN ? AND ? OR o.expectedReturnDate > ?)\n" +
-            "        OR o.id IS NULL -- Đảm bảo lấy các loại xe không có đơn thuê\n" +
-            "    )\n" +
-            "GROUP BY \n" +
-            "    vt.id, vt.name, vt.brand, vt.category, vt.rentalPrice, vt.image, vt.totalVehicles, vt.description\n" +
-            "HAVING \n" +
-            "    availableVehicles > ?\n" +
-            "LIMIT 8 OFFSET ?;"; // Phân trang với LIMIT 8 và OFFSET dựa trên pageIndex
+    public List<Product> listPro1(String sdate, String edate, int a, int pageIndex) {
+        List<Product> list = new ArrayList<>();
+        String query = "SELECT \n" +
+                "    vt.id,\n" +
+                "    vt.name AS name,\n" +
+                "    vt.brand, \n" +
+                "    vt.category,\n" +
+                "    vt.rentalPrice,\n" +
+                "    vt.image,\n" +
+                "    vt.totalVehicles,\n" +
+                "    vt.description, \n" +
+                "    vt.totalVehicles - COUNT(od.licensePlate) AS availableVehicles\n" +
+                "FROM \n" +
+                "    vehicleTypes vt\n" +
+                "LEFT JOIN \n" +
+                "    vehicles v ON vt.id = v.typeId\n" +
+                "LEFT JOIN \n" +
+                "    orderDetails od ON v.licensePlate = od.licensePlate\n" +
+                "LEFT JOIN \n" +
+                "    orders o ON od.orderId = o.id\n" +
+                "WHERE \n" +
+                "    vt.isAvailable = 1 \n" +
+                "    AND (\n" +
+                "        (o.rentalStartDate <= ? OR o.rentalStartDate BETWEEN ? AND ?) \n" +
+                "        AND (o.expectedReturnDate BETWEEN ? AND ? OR o.expectedReturnDate > ?)\n" +
+                "        OR o.id IS NULL -- Đảm bảo lấy các loại xe không có đơn thuê\n" +
+                "    )\n" +
+                "GROUP BY \n" +
+                "    vt.id, vt.name, vt.brand, vt.category, vt.rentalPrice, vt.image, vt.totalVehicles, vt.description\n" +
+                "HAVING \n" +
+                "    availableVehicles > ?\n" +
+                "LIMIT 8 OFFSET ?;"; // Phân trang với LIMIT 8 và OFFSET dựa trên pageIndex
 
-    try {
-        conn = new DBContext().getConnection();
-        ps = conn.prepareStatement(query);
-        ps.setString(1, sdate);
-        ps.setString(2, sdate);
-        ps.setString(3, edate);
-        ps.setString(4, sdate);
-        ps.setString(5, edate);
-        ps.setString(6, edate);
-        ps.setInt(7, a);
-        ps.setInt(8, (pageIndex - 1) * 8); // Tính toán OFFSET dựa trên trang hiện tại
-        rs = ps.executeQuery();
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, sdate);
+            ps.setString(2, sdate);
+            ps.setString(3, edate);
+            ps.setString(4, sdate);
+            ps.setString(5, edate);
+            ps.setString(6, edate);
+            ps.setInt(7, a);
+            ps.setInt(8, (pageIndex - 1) * 8); // Tính toán OFFSET dựa trên trang hiện tại
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                list.add(new Product(
+                        rs.getInt("id"),
+                        rs.getString("name"),
+                        0,
+                        rs.getString("brand"),
+                        rs.getString("category"),
+                        rs.getDouble("rentalPrice"),
+                        rs.getString("description"),
+                        rs.getString("image"),
+                        rs.getInt("totalVehicles")
+                ));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (rs != null) rs.close();
+                if (ps != null) ps.close();
+                if (conn != null) conn.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return list;
+    }
 
 
     public List<Product> findALl() {
         Jdbi jdbi = JDBIConnector.getJdbi();
         List<Product> products = jdbi.withHandle(handle -> {
-            String sql = "SELECT * FROM products";
+            String sql = "SELECT * FROM vehicletypes";
             return handle.createQuery(sql).mapToBean(Product.class).stream().collect(Collectors.toList());
 
-        while (rs.next()) {
-            list.add(new Product(
-                    rs.getInt("id"),
-                    rs.getString("name"),
-                    0,
-                    rs.getString("brand"),
-                    rs.getString("category"),
-                    rs.getDouble("rentalPrice"),
-                    rs.getString("description"),
-                    rs.getString("image"),
-                    rs.getInt("totalVehicles")
-            ));
-        }
-    } catch (Exception e) {
-        e.printStackTrace();
-    } finally {
-        try {
-            if (rs != null) rs.close();
-            if (ps != null) ps.close();
-            if (conn != null) conn.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        });
+        return products;
     }
-    return list;
-}
 // * ham count chua dc dat
 public int countProducts(String sdate, String edate, int a) {
     String countQuery = "SELECT COUNT(*) AS rowCount FROM ("
@@ -418,13 +425,6 @@ public int countProducts(String sdate, String edate, int a) {
             ps.setInt(1, id);
             rs = ps.executeQuery();
 
-
-    public List<Product> findById(int id) {
-        Jdbi jdbi = JDBIConnector.getJdbi();
-        List<Product> products = jdbi.withHandle(handle -> {
-            String sql = "SELECT * FROM products where id =?";
-            return handle.createQuery(sql).bind(0,id).mapToBean(Product.class).stream().collect(Collectors.toList());
-
             if (rs.next()) {
                 product = new Product(
                         rs.getInt("id"),
@@ -450,8 +450,18 @@ public int countProducts(String sdate, String edate, int a) {
             }
         }
 
-
         return product;
+    }
+
+
+    public List<Product> findById(int id) {
+        Jdbi jdbi = JDBIConnector.getJdbi();
+        List<Product> products = jdbi.withHandle(handle -> {
+            String sql = "SELECT * FROM vehicletypes where id =?";
+            return handle.createQuery(sql).bind(0,id).mapToBean(Product.class).stream().collect(Collectors.toList());
+
+        });
+        return products;
     }
 
     public List<Product> listPro(String sdate, String edate ,int a ) {
