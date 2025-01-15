@@ -64,4 +64,16 @@ public class Vehicle {
     public void setIsInUse(int isInUse) {
         this.isInUse = isInUse;
     }
+
+    @Override
+    public String toString() {
+        return "Vehicle{" +
+                "id='" + id + '\'' +
+                ", typeId=" + typeId +
+                ", licensePlate='" + licensePlate + '\'' +
+                ", status='" + status + '\'' +
+                ", rentalCount=" + rentalCount +
+                ", isInUse=" + isInUse +
+                '}';
+    }
 }
