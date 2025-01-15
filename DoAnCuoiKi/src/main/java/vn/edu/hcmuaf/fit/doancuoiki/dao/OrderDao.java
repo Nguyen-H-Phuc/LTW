@@ -1,9 +1,13 @@
 package vn.edu.hcmuaf.fit.doancuoiki.dao;
 
 import vn.edu.hcmuaf.fit.doancuoiki.db.DBContext;
+import vn.edu.hcmuaf.fit.doancuoiki.model.Order;
+import vn.edu.hcmuaf.fit.doancuoiki.model.OrderDetail;
 
 import java.sql.*;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 public class OrderDao {
 
@@ -77,31 +81,43 @@ public class OrderDao {
         return licensePlate;
     }
 
-    public static void main(String[] args) {
-        OrderDao orderDao = new OrderDao();
-        try {
-            // Chuyển đổi chuỗi ngày tháng thành java.sql.Date
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    public List<Order> getAllOrder(){
+        List<Order> orders = new ArrayList<Order>();
+        String sql = "SELECT * \n" +
+                "FROM orders \n" +
+                "JOIN orderdetails ON orders.id = orderdetails.orderId\n" +
+                "JOIN vehicles ON orderdetails.licensePlate = vehicles.licensePlate\n" +
+                "JOIN vehicletypes ON vehicletypes.id = vehicles.typeId;";
+        try(Connection con = new DBContext().getConnection();
+        PreparedStatement pre = con.prepareStatement(sql)){
+            ResultSet rs = pre.executeQuery();
+            while(rs.next()){
+                OrderDetail orderDetail = new OrderDetail(rs.getInt("orderId"), rs.getString("licensePlate"), rs.getString("name"), rs.getDouble("priceAtOrder"));
+                Order order = new Order();
+                order.setId(rs.getInt("id"));
+                order.setCustomerId(rs.getInt("customerId"));
+                order.setDeliveryAddress(rs.getString("deliveryAddress"));
+                order.setExpectedReturnDate(rs.getDate("expectedReturnDate"));
+                order.setRetalStarDate(rs.getDate("rentalStartDate"));
+                order.setStatus(rs.getString("status"));
 
-            // Parse chuỗi ngày tháng thành java.util.Date
-            java.util.Date startDate = dateFormat.parse("2025-01-02");
-            java.util.Date endDate = dateFormat.parse("2025-02-01");
-
-            // Chuyển java.util.Date thành java.sql.Date
-            Date rentalStartDate = new Date(startDate.getTime());
-            Date expectedReturnDate = new Date(endDate.getTime());
-
-            // Gọi phương thức createOrder
-            String liencep= orderDao.getLicensePlate(1, rentalStartDate, expectedReturnDate);
-            boolean success = orderDao.createOrder(1, "a", rentalStartDate, expectedReturnDate, liencep, 1000.0 );
-            if (success) {
-                System.out.println("Order created successfully!");
-            } else {
-                System.out.println("Failed to create order.");
+                order.setOrderDetail(orderDetail);
+                 orders.add(order);
             }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return orders;
+    }
 
-        } catch (Exception e) {
-            e.printStackTrace();
+    public void deleteOrder(int orderId){
+        String sql = "DELETE FROM orders WHERE id = ?";
+        try(Connection conn = new DBContext().getConnection();
+            PreparedStatement pre = conn.prepareStatement(sql)){
+            pre.setInt(1, orderId);
+            pre.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
 }

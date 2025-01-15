@@ -3,13 +3,13 @@ package vn.edu.hcmuaf.fit.doancuoiki.model;
 public class OrderDetail {
     private int orderId;
     private String licensePlate;
-    private int quanlity;
+    private String vehicleName;
     private double priceAtOrder;
 
-    public OrderDetail(int orderId, String licensePlate, int quanlity, double priceAtOrder) {
+    public OrderDetail(int orderId, String licensePlate, String name, double priceAtOrder) {
         this.orderId = orderId;
         this.licensePlate = licensePlate;
-        this.quanlity = quanlity;
+        this.vehicleName = name;
         this.priceAtOrder = priceAtOrder;
     }
 
@@ -29,12 +29,12 @@ public class OrderDetail {
         this.licensePlate = licensePlate;
     }
 
-    public int getQuanlity() {
-        return quanlity;
+    public String getVehicleName() {
+        return vehicleName;
     }
 
-    public void setQuanlity(int quanlity) {
-        this.quanlity = quanlity;
+    public void setVehicleName(String vehicleName) {
+        this.vehicleName = vehicleName;
     }
 
     public double getPriceAtOrder() {
