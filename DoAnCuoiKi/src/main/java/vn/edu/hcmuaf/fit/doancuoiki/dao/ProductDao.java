@@ -20,7 +20,7 @@ public class ProductDao {
 // lấy tất cả sản phẩm
     public List<Product> getAllProducts() {
         List<Product> list = new ArrayList<Product>();
-        String sqery = "select * from products";
+        String sqery = "select * from vehicletypes";
         try {
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(sqery);
@@ -45,7 +45,7 @@ public class ProductDao {
     }
 //    đếm có bao nhiêu sản phẩm
     public int getTatolProduct(){
-        String query = "select count(*) from products";
+        String query = "select count(*) from vehicletypes";
         try {
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(query);
@@ -59,7 +59,7 @@ public class ProductDao {
 //    chia sản phẩm cho từng trang
 public List<Product> getPageProduct(int pageIndex) {
     List<Product> list = new ArrayList<>();
-    String query = "SELECT * FROM products "
+    String query = "SELECT * FROM vehicletypes "
             + "ORDER BY id "
             + "LIMIT 8 OFFSET ?";
     System.out.println("Executing SQL: " + query);
@@ -98,7 +98,7 @@ public List<Product> getPageProduct(int pageIndex) {
 // lấy id của sản phẩm
 public Product getProductById(int id) {
     Product product = null;
-    String query = "SELECT * FROM products WHERE id = ?";
+    String query = "SELECT * FROM vehicletypes WHERE id = ?";
     try {
         conn = new DBContext().getConnection();
         ps = conn.prepareStatement(query);
@@ -108,13 +108,13 @@ public Product getProductById(int id) {
             product = new Product(
                     rs.getInt("id"),
                     rs.getString("name"),
-                    rs.getInt("year"),
+                    2000,
                     rs.getString("brand"),
-                    rs.getString("type"),
-                    rs.getDouble("price"),
+                    rs.getString("category"),
+                    rs.getDouble("rentalPrice"),
                     rs.getString("description"),
-                    rs.getString("img"),
-                    rs.getString("numberPlate")
+                    rs.getString("image"),
+                    "null"
             );
         }
     } catch (Exception e) {
@@ -125,7 +125,7 @@ public Product getProductById(int id) {
     // Lấy 3 sản phẩm liên quan khi vào trang chi tiết sản phẩm
     public List<Product> getRelatedProducts(int productId) {
         List<Product> list = new ArrayList<>();
-        String query = "SELECT * FROM products " +
+        String query = "SELECT * FROM vehicletypes " +
                 "WHERE id != ? " +
                 "ORDER BY RAND() " +
                 "LIMIT 2"; // Lấy ngẫu nhiên 3 sản phẩm khác sản phẩm hiện tại
@@ -157,7 +157,7 @@ public Product getProductById(int id) {
 // product new
 public List<Product> getLast8Products() {
     List<Product> list = new ArrayList<>();
-    String query = "SELECT * FROM products ORDER BY id DESC LIMIT 8";  // Adjust the query to fetch the last 8 products
+    String query = "SELECT * FROM vehicletypes ORDER BY id DESC LIMIT 8";  // Adjust the query to fetch the last 8 products
 
     try {
         conn = new DBContext().getConnection();
@@ -210,7 +210,7 @@ public List<Product> getLast8Products() {
     }
     public List<Product> searchByType(String txtSearch) {
         List<Product> list = new ArrayList<>();
-        String query = "SELECT * FROM products WHERE type LIKE ?";
+        String query = "SELECT * FROM vehicletypes WHERE type LIKE ?";
         try {
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(query);
@@ -236,7 +236,7 @@ public List<Product> getLast8Products() {
     }
     public List<Product> searchByName(String txtSearch) {
         List<Product> list = new ArrayList<>();
-        String query = "SELECT * FROM products WHERE name LIKE ?";
+        String query = "SELECT * FROM vehicletypes WHERE name LIKE ?";
         try {
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(query);
