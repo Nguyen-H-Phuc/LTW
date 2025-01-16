@@ -26,7 +26,7 @@
         <nav class="header__navbar">
             <ul class="header__navbar-list">
                 <li class="header__navbar-item ">
-                    <a class="header__navbar-item-link" href="">Trang chủ</a>
+                    <a class="header__navbar-item-link" href="index.jsp">Trang chủ</a>
                 </li>
                 <li class="header__navbar-item ">
                     <a class="header__navbar-item-link" href="PagingProduct">Xe</a>
@@ -38,7 +38,7 @@
                     <a class="header__navbar-item-link" href="">Về chúng tôi</a>
                 </li>
                 <li class="header__navbar-item ">
-                    <a class="header__navbar-item-link" href="">Liên hệ</a>
+                    <a class="header__navbar-item-link" href="contact-us.jsp">Liên hệ</a>
                 </li>
 
             </ul>
