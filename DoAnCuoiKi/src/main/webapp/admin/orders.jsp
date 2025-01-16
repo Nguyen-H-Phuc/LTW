@@ -126,7 +126,8 @@
                       <td>${o.orderDetail.licensePlate}</td>
                       <td>${o.status}</td>
                       <td>
-                          <button class="see-btn">Sửa</button>
+                          <!-- Thêm một form sửa đơn hàng trong phần Hành động -->
+                              <button type="button" onclick="showEditOrderForm('${o.id}', '${o.customerId}', '${o.deliveryAddress}', '${o.retalStarDate}', '${o.expectedReturnDate}', '${o.orderDetail.licensePlate}', '${o.status}', '${o.orderDetail.priceAtOrder}')">Sửa</button>
                            <form action="admin?action=deleteOrder" method="POST" style="display:inline;">
                               <input type="hidden" name="orderId" value="${o.id}"/>
                               <button type="submit" class="see-btn">Xóa</button>
@@ -137,16 +138,73 @@
                 </tbody>
             </table>
           </div>
+          <!-- Form sửa đơn đặt hàng -->
+          <div id="editOrderForm" style="display:none;">
+              <form action="admin?action=updateOrder" method="post">
+                  <input type="hidden" name="orderId" id="orderId" />
+
+                  <label for="orderIdInput">Mã đơn hàng:</label>
+                  <input type="text" id="orderIdInput" name="orderIdInput" readonly /><br/>
+
+                  <label for="customerId">Mã khách hàng:</label>
+                  <input type="text" id="customerId" name="customerId" /><br/>
+
+                  <label for="deliveryAddress">Địa chỉ giao xe:</label>
+                  <input type="text" id="deliveryAddress" name="deliveryAddress" /><br/>
+
+                  <label for="rentalStartDate">Ngày thuê:</label>
+                  <input type="date" id="rentalStartDate" name="rentalStartDate" /><br/>
+
+                  <label for="expectedReturnDate">Ngày trả xe:</label>
+                  <input type="date" id="expectedReturnDate" name="expectedReturnDate" /><br/>
+
+                  <label for="licensePlate">Biển số xe:</label>
+                  <input type="text" id="licensePlate" name="licensePlate" /><br/>
+
+                  <label for="rentalPrice">Giá thuê xe:</label>
+                  <input type="text" id="rentalPrice" name="rentalPrice" /><br/>
+
+                  <label for="status">Trạng thái đơn:</label>
+                  <input type="text" id="status" name="status" /><br/>
+
+                  <button type="submit">Cập nhật</button>
+                  <button type="button" onclick="hideEditOrderForm()">Hủy</button>
+              </form>
+          </div>
         </div>
       </div>
-
   </main>
-
 </div>
+
+
+
+<script>
+    function showEditOrderForm(orderId, customerId, deliveryAddress, rentalStartDate, expectedReturnDate, licensePlate, status, priceAtOrder) {
+        // Điền thông tin vào form
+        document.getElementById("orderId").value = orderId;
+        document.getElementById("orderIdInput").value = orderId; // Mã đơn hàng không thể chỉnh sửa
+        document.getElementById("customerId").value = customerId;
+        document.getElementById("deliveryAddress").value = deliveryAddress;
+        document.getElementById("rentalStartDate").value = rentalStartDate;
+        document.getElementById("expectedReturnDate").value = expectedReturnDate;
+        document.getElementById("licensePlate").value = licensePlate;
+        document.getElementById("status").value = status;
+        document.getElementById("rentalPrice").value = priceAtOrder;
+
+        // Hiển thị form
+        document.getElementById("editOrderForm").style.display = "block";
+    }
+
+    function hideEditOrderForm() {
+        // Ẩn form khi hủy
+        document.getElementById("editOrderForm").style.display = "none";
+    }
+</script>
+
 
 <script>
     $(document).ready(function () {
-        $('#vehicleTable').DataTable({
+        $('#order-table').DataTable({ // Đổi 'vehicleTable' thành 'order-table'
             "pageLength": 10, // Hiển thị 10 sản phẩm mỗi trang
             "language": {
                 "lengthMenu": "Hiển thị _MENU_ sản phẩm mỗi trang",
@@ -162,6 +220,7 @@
             }
         });
     });
+
 </script>
 
 </body>

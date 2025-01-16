@@ -11,6 +11,8 @@ import vn.edu.hcmuaf.fit.doancuoiki.model.User;
 import vn.edu.hcmuaf.fit.doancuoiki.model.VehicleType;
 
 import java.io.IOException;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 @WebServlet(name = "AdminController", value = "/admin")
@@ -53,6 +55,9 @@ public class AdminController extends HttpServlet {
             case "deleteOrder":
                 deleteOrder(request, response);
                 break;
+            case "updateOrder":
+                updateOrder(request, response);
+                break;
         }
     }
 
@@ -70,6 +75,35 @@ public class AdminController extends HttpServlet {
         orderDao.deleteOrder(orderId);
         managerOrder(request,response);
     }
+
+    private void updateOrder(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try {
+            // Lấy các tham số từ form
+            int orderId = Integer.parseInt(request.getParameter("orderId")); // Lấy ID đơn hàng
+            int customerId = Integer.parseInt(request.getParameter("customerId")); // Lấy mã khách hàng
+            String deliveryAddress = request.getParameter("deliveryAddress"); // Lấy địa chỉ giao xe
+            String rentalStartDate = request.getParameter("rentalStartDate"); // Lấy ngày thuê
+            String expectedReturnDate = request.getParameter("expectedReturnDate"); // Lấy ngày trả dự kiến
+            String licensePlate = request.getParameter("licensePlate"); // Lấy biển số xe
+            double rentalPrice = Double.parseDouble(request.getParameter("rentalPrice")); // Lấy giá thuê xe
+            String status = request.getParameter("status"); // Lấy trạng thái đơn hàng
+
+            // Chuyển đổi ngày từ String sang Date
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            Date startDate = new Date(dateFormat.parse(rentalStartDate).getTime());
+            Date endDate = new Date(dateFormat.parse(expectedReturnDate).getTime());
+            // Tạo đối tượng OrderDao để thực hiện cập nhật đơn hàng
+            OrderDao dao = new OrderDao();
+            // Cập nhật đơn hàng
+            dao.updateOrder(orderId, customerId, deliveryAddress, startDate, endDate, licensePlate, rentalPrice, status);
+            managerOrder(request,response);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Thông tin không hợp lệ.");
+        }
+    }
+
 
     private void managerDashboard(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.getRequestDispatcher("admin/admin.jsp").forward(request, response);

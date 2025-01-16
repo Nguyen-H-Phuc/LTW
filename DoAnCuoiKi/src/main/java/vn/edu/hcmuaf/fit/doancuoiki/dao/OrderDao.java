@@ -120,4 +120,35 @@ public class OrderDao {
             throw new RuntimeException(e);
         }
     }
+
+    public void updateOrder(int id, int customerId, String location, Date rentalStartDate, Date expectedReturnDate, String licensePlate, double priceAtOrder, String status) {
+        // SQL để cập nhật thông tin đơn hàng
+        String sql1 = "UPDATE orders SET customerId = ?, rentalStartDate = ?, expectedReturnDate = ?, deliveryAddress = ?, status = ? WHERE id = ?";
+        // SQL để cập nhật thông tin chi tiết đơn hàng
+        String sql2 = "UPDATE orderdetails SET licensePlate = ?, priceAtOrder = ? WHERE orderId = ?";
+
+        try (Connection conn = new DBContext().getConnection()) {
+            // Cập nhật đơn hàng
+            try (PreparedStatement pre1 = conn.prepareStatement(sql1)) {
+                pre1.setInt(1, customerId);
+                pre1.setDate(2, rentalStartDate);
+                pre1.setDate(3, expectedReturnDate);
+                pre1.setString(4, location);
+                pre1.setString(5, status);
+                pre1.setInt(6, id);  // Sử dụng customerId làm khóa để tìm đơn hàng cần cập nhật
+                pre1.executeUpdate();
+
+                // Cập nhật chi tiết đơn hàng
+                try (PreparedStatement pre2 = conn.prepareStatement(sql2)) {
+                    pre2.setString(1, licensePlate);
+                    pre2.setDouble(2, priceAtOrder);
+                    pre2.setInt(3, id);  // Cập nhật order details dựa trên orderId
+                    pre2.executeUpdate();
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
