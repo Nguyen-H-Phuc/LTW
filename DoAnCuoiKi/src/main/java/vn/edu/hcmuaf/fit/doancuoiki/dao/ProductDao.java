@@ -20,44 +20,7 @@ public class    ProductDao {
 // lấy tất cả sản phẩm
 
     //    chia sản phẩm cho từng trang
-    public List<Product> getPageProduct(int pageIndex) {
-        List<Product> list = new ArrayList<>();
-        String query = "SELECT * FROM products "
-                + "ORDER BY id "
-                + "LIMIT 8 OFFSET ?";
-        System.out.println("Executing SQL: " + query);
 
-        try {
-            conn = new DBContext().getConnection();
-            ps = conn.prepareStatement(query);
-            ps.setInt(1, (pageIndex - 1) * 8); // Tính toán OFFSET
-            rs = ps.executeQuery();
-            while (rs.next()) {
-                list.add(new Product(
-                        rs.getInt("id"),
-                        rs.getString("name"),
-                        rs.getInt("year"),
-                        rs.getString("brand"),
-                        rs.getString("type"),
-                        rs.getDouble("price"),
-                        rs.getString("description"),
-                        rs.getString("img"),
-                        rs.getString("numberPlate")
-                ));
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if (rs != null) rs.close();
-                if (ps != null) ps.close();
-                if (conn != null) conn.close();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        return list;
-    }
     // lấy id của sản phẩm
     public Product getProductById(int id) {
         Product product = null;
@@ -218,48 +181,17 @@ public class    ProductDao {
         });
         return products;
     }
-    public List<Product> listPro(String sdate, String edate ,int a ) {
+    public List<Product> listPro(int pageIndex) {
         List<Product> list = new ArrayList<>();
-        String query = "SELECT \n" +
-                "    vt.id,\n" +
-                "    vt.name AS name,\n" +
-                "    vt.brand, \n" +
-                "    vt.category,\n" +
-                "    vt.rentalPrice,\n" +
-                "vt.image,\n" +
-                "    vt.totalVehicles,\n" +
-                "    vt.description, \n" +
-                "--     COUNT(od.licensePlate) AS totalRentals, \n" +
-                "    vt.totalVehicles - COUNT(od.licensePlate) AS availableVehicles\n" +
-                "FROM \n" +
-                "    vehicleTypes vt\n" +
-                "LEFT JOIN \n" +
-                "    vehicles v ON vt.id = v.typeId\n" +
-                "LEFT JOIN \n" +
-                "    orderDetails od ON v.licensePlate = od.licensePlate\n" +
-                "LEFT JOIN \n" +
-                "    orders o ON od.orderId = o.id\n" +
-                "WHERE \n" +
-                "    vt.isAvailable = 1 \n" +
-                "    AND (\n" +
-                "        (o.rentalStartDate <= ? OR o.rentalStartDate BETWEEN ? AND ?) \n" +
-                "        AND (o.expectedReturnDate BETWEEN ? AND ? OR o.expectedReturnDate > ?)\n" +
-                "        OR o.id IS NULL -- Đảm bảo lấy các loại xe không có đơn thuê\n" +
-                "    )\n" +
-                "GROUP BY \n" +
-                "    vt.name, vt.totalVehicles\n" +
-                "HAVING \n" +
-                "    availableVehicles > ?;";
-        try{
+        String query = "SELECT *\n" +
+                "FROM vehicletypes\n" +
+                "WHERE isAvailable > 0\n" +
+                "ORDER BY id\n" +
+                "LIMIT 8 OFFSET ?;";
+        try {
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(query);
-            ps.setString(1, sdate);
-            ps.setString(2, sdate);
-            ps.setString(3, edate);
-            ps.setString(4, sdate);
-            ps.setString(5, edate);
-            ps.setString(6, edate);
-            ps.setInt(7, a);
+            ps.setInt(1, (pageIndex - 1) * 8);
             rs = ps.executeQuery();
             while (rs.next()) {
                 list.add(new Product(
@@ -276,11 +208,12 @@ public class    ProductDao {
             }
 
 
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return list;
     }
+
     public int countProducts(String sdate, String edate, int a) {
         String countQuery = "SELECT COUNT(*) AS rowCount FROM ("
                 + "SELECT \n"
@@ -343,150 +276,8 @@ public class    ProductDao {
         }
         return 0; // Trả về 0 nếu có lỗi
     }
-    public List<Product> listPro(String sdate, String edate, int a, int pageIndex) {
-        List<Product> list = new ArrayList<>();
-        String query = "SELECT \n" +
-                "    vt.id,\n" +
-                "    vt.name AS name,\n" +
-                "    vt.brand, \n" +
-                "    vt.category,\n" +
-                "    vt.rentalPrice,\n" +
-                "    vt.image,\n" +
-                "    vt.totalVehicles,\n" +
-                "    vt.description, \n" +
-                "    vt.totalVehicles - COUNT(od.licensePlate) AS availableVehicles\n" +
-                "FROM \n" +
-                "    vehicleTypes vt\n" +
-                "LEFT JOIN \n" +
-                "    vehicles v ON vt.id = v.typeId\n" +
-                "LEFT JOIN \n" +
-                "    orderDetails od ON v.licensePlate = od.licensePlate\n" +
-                "LEFT JOIN \n" +
-                "    orders o ON od.orderId = o.id\n" +
-                "WHERE \n" +
-                "    vt.isAvailable = 1 \n" +
-                "    AND (\n" +
-                "        (o.rentalStartDate <= ? OR o.rentalStartDate BETWEEN ? AND ?) \n" +
-                "        AND (o.expectedReturnDate BETWEEN ? AND ? OR o.expectedReturnDate > ?)\n" +
-                "        OR o.id IS NULL -- Đảm bảo lấy các loại xe không có đơn thuê\n" +
-                "    )\n" +
-                "GROUP BY \n" +
-                "    vt.id, vt.name, vt.brand, vt.category, vt.rentalPrice, vt.image, vt.totalVehicles, vt.description\n" +
-                "HAVING \n" +
-                "    availableVehicles > ?\n" +
-                "LIMIT 8 OFFSET ?;"; // Phân trang với LIMIT 8 và OFFSET dựa trên pageIndex
 
-        try {
-            conn = new DBContext().getConnection();
-            ps = conn.prepareStatement(query);
-            ps.setString(1, sdate);
-            ps.setString(2, sdate);
-            ps.setString(3, edate);
-            ps.setString(4, sdate);
-            ps.setString(5, edate);
-            ps.setString(6, edate);
-            ps.setInt(7, a);
-            ps.setInt(8, (pageIndex - 1) * 8); // Tính toán OFFSET dựa trên trang hiện tại
-            rs = ps.executeQuery();
 
-            while (rs.next()) {
-                list.add(new Product(
-                        rs.getInt("id"),
-                        rs.getString("name"),
-                        0,
-                        rs.getString("brand"),
-                        rs.getString("category"),
-                        rs.getDouble("rentalPrice"),
-                        rs.getString("description"),
-                        rs.getString("image"),
-                        rs.getInt("totalVehicles")
-                ));
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if (rs != null) rs.close();
-                if (ps != null) ps.close();
-                if (conn != null) conn.close();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        return list;
-    }
-    public List<Product> listPro1(String sdate, String edate, int a, int pageIndex) {
-        List<Product> list = new ArrayList<>();
-        String query = "SELECT \n" +
-                "    vt.id,\n" +
-                "    vt.name AS name,\n" +
-                "    vt.brand, \n" +
-                "    vt.category,\n" +
-                "    vt.rentalPrice,\n" +
-                "    vt.image,\n" +
-                "    vt.totalVehicles,\n" +
-                "    vt.description, \n" +
-                "    vt.totalVehicles - COUNT(od.licensePlate) AS availableVehicles\n" +
-                "FROM \n" +
-                "    vehicleTypes vt\n" +
-                "LEFT JOIN \n" +
-                "    vehicles v ON vt.id = v.typeId\n" +
-                "LEFT JOIN \n" +
-                "    orderDetails od ON v.licensePlate = od.licensePlate\n" +
-                "LEFT JOIN \n" +
-                "    orders o ON od.orderId = o.id\n" +
-                "WHERE \n" +
-                "    vt.isAvailable = 1 \n" +
-                "    AND (\n" +
-                "        (o.rentalStartDate <= ? OR o.rentalStartDate BETWEEN ? AND ?) \n" +
-                "        AND (o.expectedReturnDate BETWEEN ? AND ? OR o.expectedReturnDate > ?)\n" +
-                "        OR o.id IS NULL -- Đảm bảo lấy các loại xe không có đơn thuê\n" +
-                "    )\n" +
-                "GROUP BY \n" +
-                "    vt.id, vt.name, vt.brand, vt.category, vt.rentalPrice, vt.image, vt.totalVehicles, vt.description\n" +
-                "HAVING \n" +
-                "    availableVehicles > ?\n" +
-                "LIMIT 8 OFFSET ?;"; // Phân trang với LIMIT 8 và OFFSET dựa trên pageIndex
-
-        try {
-            conn = new DBContext().getConnection();
-            ps = conn.prepareStatement(query);
-            ps.setString(1, sdate);
-            ps.setString(2, sdate);
-            ps.setString(3, edate);
-            ps.setString(4, sdate);
-            ps.setString(5, edate);
-            ps.setString(6, edate);
-            ps.setInt(7, a);
-            ps.setInt(8, (pageIndex - 1) * 8); // Tính toán OFFSET dựa trên trang hiện tại
-            rs = ps.executeQuery();
-
-            while (rs.next()) {
-                list.add(new Product(
-                        rs.getInt("id"),
-                        rs.getString("name"),
-                        0,
-                        rs.getString("brand"),
-                        rs.getString("category"),
-                        rs.getDouble("rentalPrice"),
-                        rs.getString("description"),
-                        rs.getString("image"),
-                        rs.getInt("totalVehicles")
-                ));
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if (rs != null) rs.close();
-                if (ps != null) ps.close();
-                if (conn != null) conn.close();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        return list;
-    }
     public Product getUnbookedProductById(int id) {
         Product product = null;
         String query = "SELECT vt.id, vt.name, vt.brand, vt.category, vt.rentalPrice, vt.image, vt.totalVehicles, vt.description " +
@@ -630,7 +421,7 @@ public List<Product> getTop8ProductNew() {
     }
     return productList;
 }
-    public List<Product> getLast8BetSeller() {
+    public List<Product> getLast8BestSeller() {
         List<Product> productList = new ArrayList<>();
         String query = "SELECT * FROM products " +
                 "WHERE id NOT IN ( " +
@@ -681,9 +472,25 @@ public List<Product> getTop8ProductNew() {
 //        Product product = dao.getUnbookedProductById(id);
 //        System.out.println(product);
 //        System.out.println(dao.countProducts("2025-01-01","2025-01-31",2));
-        List<Product> lis = dao.searchUnbookedProductByName("RSX");
-        for (Product product : lis) {
-            System.out.println(product);
-        }
+//        List<Product> lis = dao.searchUnbookedProductByName("RSX");
+//        for (Product product : lis) {
+//            System.out.println(product);
+//        }
+        System.out.println(dao.getTatolProduct());
+    }
+
+    public int getTatolProduct() {
+        String query = "SELECT COUNT(*) AS totalAvailableProducts\n" +
+                "FROM vehicletypes " +
+                "WHERE isAvailable != 0";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            while(rs.next()) {
+                return rs.getInt(1);
+            }
+        }catch (Exception e) {}
+        return 0;
     }
 }

@@ -50,8 +50,6 @@
                 </div>
                 <div class="fill-in-info">
                     <div class="fill-in-item">
-                        <label for="coupon">Mã giảm giá</label>
-                        <input type="text" id="coupon" name="coupon">
                         <label for="delivery-location">Địa điểm giao xe</label>
                         <input type="text" id="delivery-location" name="delivery-location" required>
                         <label for="delivery-time">Thời gian nhận xe</label>
