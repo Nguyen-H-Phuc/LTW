@@ -13,6 +13,69 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Giỏ hàng</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Tùy chỉnh tiêu đề */
+        h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        /* Hiệu ứng hover cho bảng */
+        table tbody tr:hover {
+            background-color: #f8f9fa;
+        }
+
+        /* Tùy chỉnh nút */
+        .btn-danger {
+            background-color: #e74c3c;
+            border-color: #e74c3c;
+        }
+
+        .btn-danger:hover {
+            background-color: #c0392b;
+            border-color: #c0392b;
+        }
+
+        .btn-success {
+            background-color: #27ae60;
+            border-color: #27ae60;
+        }
+
+        .btn-success:hover {
+            background-color: #1e8449;
+            border-color: #1e8449;
+        }
+
+        .btn-secondary:hover {
+            background-color: #7f8c8d;
+            border-color: #7f8c8d;
+        }
+
+        /* Tùy chỉnh bảng */
+        table {
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table th,
+        table td {
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        tfoot td {
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* Tùy chỉnh ô nhập số lượng */
+        input[type="number"] {
+            width: 70px;
+            margin: auto;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
 <div class="container my-5">
