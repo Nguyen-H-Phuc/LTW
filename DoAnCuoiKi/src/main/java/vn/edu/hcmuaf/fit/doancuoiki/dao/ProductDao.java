@@ -18,6 +18,15 @@ public class ProductDao {
     PreparedStatement ps = null;
     ResultSet rs    = null;
 // lấy tất cả sản phẩm
+
+
+    //    chia sản phẩm cho từng trang
+
+    // lấy id của sản phẩm
+    public Product getProductById(int id) {
+        Product product = null;
+        String query = "SELECT * FROM products WHERE id = ?";
+
     public List<Product> getAllProducts() {
         List<Product> list = new ArrayList<Product>();
         String sqery = "select * from vehicletypes";
@@ -46,6 +55,7 @@ public class ProductDao {
 //    đếm có bao nhiêu sản phẩm
     public int getTatolProduct(){
         String query = "select count(*) from vehicletypes";
+
         try {
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(query);
@@ -262,6 +272,97 @@ public List<Product> getLast8Products() {
     }
     // phan moi de up date
 
+
+    public List<Product> findALl() {
+        Jdbi jdbi = JDBIConnector.getJdbi();
+        List<Product> products = jdbi.withHandle(handle -> {
+            String sql = "SELECT * FROM vehicletypes";
+            return handle.createQuery(sql).mapToBean(Product.class).stream().collect(Collectors.toList());
+
+        });
+        return products;
+    }
+
+
+    public List<Product> findById(int id) {
+        Jdbi jdbi = JDBIConnector.getJdbi();
+        List<Product> products = jdbi.withHandle(handle -> {
+            String sql = "SELECT * FROM vehicletypes where id =?";
+            return handle.createQuery(sql).bind(0,id).mapToBean(Product.class).stream().collect(Collectors.toList());
+
+        });
+        return products;
+    }
+    public List<Product> listPro(int pageIndex) {
+        List<Product> list = new ArrayList<>();
+        String query = "SELECT *\n" +
+                "FROM vehicletypes\n" +
+                "WHERE isAvailable > 0\n" +
+                "ORDER BY id\n" +
+                "LIMIT 8 OFFSET ?;";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setInt(1, (pageIndex - 1) * 8);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(new Product(
+                        rs.getInt("id"),
+                        rs.getString("name"),
+                        0,
+                        rs.getString("brand"),
+                        rs.getString("category"),
+                        rs.getDouble("rentalPrice"),
+                        rs.getString("description"),
+                        rs.getString("image"),
+                        rs.getInt("totalVehicles")
+                ));
+            }
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    public int countProducts(String sdate, String edate, int a) {
+        String countQuery = "SELECT COUNT(*) AS rowCount FROM ("
+                + "SELECT \n"
+                + "    vt.id,\n"
+                + "    vt.name AS name,\n"
+                + "    vt.brand, \n"
+                + "    vt.category,\n"
+                + "    vt.rentalPrice,\n"
+                + "    vt.image,\n"
+                + "    vt.totalVehicles,\n"
+                + "    vt.description, \n"
+                + "    vt.totalVehicles - COUNT(od.licensePlate) AS availableVehicles\n"
+                + "FROM \n"
+                + "    vehicleTypes vt\n"
+                + "LEFT JOIN \n"
+                + "    vehicles v ON vt.id = v.typeId\n"
+                + "LEFT JOIN \n"
+                + "    orderDetails od ON v.licensePlate = od.licensePlate\n"
+                + "LEFT JOIN \n"
+                + "    orders o ON od.orderId = o.id\n"
+                + "WHERE \n"
+                + "    vt.isAvailable = 1 \n"
+                + "    AND (\n"
+                + "        (o.rentalStartDate <= ? OR o.rentalStartDate BETWEEN ? AND ?) \n"
+                + "        AND (o.expectedReturnDate BETWEEN ? AND ? OR o.expectedReturnDate > ?)\n"
+                + "        OR o.id IS NULL \n"
+                + "    )\n"
+                + "GROUP BY \n"
+                + "    vt.name, vt.totalVehicles\n"
+                + "HAVING \n"
+                + "    availableVehicles > ?"
+                + ") AS subquery";
+
+        try {
+            conn = new DBContext().getConnection(); // Kết nối DB
+            ps = conn.prepareStatement(countQuery); // Chuẩn bị truy vấn
+
 // * danh sach sp ch dat
     public List<Product> listPro1(String sdate, String edate, int a, int pageIndex) {
         List<Product> list = new ArrayList<>();
@@ -299,12 +400,57 @@ public List<Product> getLast8Products() {
         try {
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(query);
+
             ps.setString(1, sdate);
             ps.setString(2, sdate);
             ps.setString(3, edate);
             ps.setString(4, sdate);
             ps.setString(5, edate);
             ps.setString(6, edate);
+
+            ps.setInt(7, a); // Thiết lập tham số cuối
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                int rowCount = rs.getInt("rowCount"); // Lấy kết quả đếm
+                return rowCount;
+            }
+        } catch (Exception e) {
+            e.printStackTrace(); // Debug lỗi
+        } finally {
+            // Đóng các tài nguyên (ResultSet, PreparedStatement, Connection)
+            try {
+                if (rs != null) rs.close();
+                if (ps != null) ps.close();
+                if (conn != null) conn.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return 0; // Trả về 0 nếu có lỗi
+    }
+
+
+    public Product getUnbookedProductById(int id) {
+        Product product = null;
+        String query = "SELECT vt.id, vt.name, vt.brand, vt.category, vt.rentalPrice, vt.image, vt.totalVehicles, vt.description " +
+                "FROM vehicleTypes vt " +
+                "LEFT JOIN vehicles v ON vt.id = v.typeId " +
+                "LEFT JOIN orderDetails od ON v.licensePlate = od.licensePlate " +
+                "LEFT JOIN orders o ON od.orderId = o.id " +
+                "WHERE vt.id = ? AND o.id IS NULL";
+
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setInt(1, id);
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+                product = new Product(
+                        rs.getInt("id"),
+                        rs.getString("name"),
+                        0, // Bạn có thể thay đổi số liệu nếu cần
+
             ps.setInt(7, a);
             ps.setInt(8, (pageIndex - 1) * 8); // Tính toán OFFSET dựa trên trang hiện tại
             rs = ps.executeQuery();
@@ -314,13 +460,16 @@ public List<Product> getLast8Products() {
                         rs.getInt("id"),
                         rs.getString("name"),
                         0,
+
                         rs.getString("brand"),
                         rs.getString("category"),
                         rs.getDouble("rentalPrice"),
                         rs.getString("description"),
                         rs.getString("image"),
                         rs.getInt("totalVehicles")
-                ));
+
+                );
+
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -333,6 +482,58 @@ public List<Product> getLast8Products() {
                 e.printStackTrace();
             }
         }
+
+
+        return product;
+    }
+// * search
+public List<Product> searchUnbookedProductByName(String name) {
+    List<Product> productList = new ArrayList<>();
+    String query = "SELECT vt.id, vt.name, vt.brand, vt.category, vt.rentalPrice, vt.image, vt.totalVehicles, vt.description " +
+            "FROM vehicleTypes vt " +
+            "LEFT JOIN vehicles v ON vt.id = v.typeId " +
+            "LEFT JOIN orderDetails od ON v.licensePlate = od.licensePlate " +
+            "LEFT JOIN orders o ON od.orderId = o.id " +
+            "WHERE vt.name LIKE ? AND vt.totalVehicles > ( " +
+            "    SELECT COUNT(od.licensePlate) " +
+            "    FROM orderDetails od " +
+            "    LEFT JOIN orders o ON od.orderId = o.id " +
+            "    WHERE o.rentalStartDate <= NOW() AND o.expectedReturnDate >= NOW() " +
+            "    AND od.licensePlate = v.licensePlate " +
+            ") " +
+            "GROUP BY vt.id, vt.name, vt.brand, vt.category, vt.rentalPrice, vt.image, vt.totalVehicles, vt.description";
+
+    try {
+        conn = new DBContext().getConnection();
+        ps = conn.prepareStatement(query);
+        ps.setString(1, "%" + name + "%");
+        rs = ps.executeQuery();
+
+        while (rs.next()) {
+            Product product = new Product(
+                    rs.getInt("id"),
+                    rs.getString("name"),
+                    0, // Giá trị mặc định, sửa nếu cần
+                    rs.getString("brand"),
+                    rs.getString("category"),
+                    rs.getDouble("rentalPrice"),
+                    rs.getString("description"),
+                    rs.getString("image"),
+                    rs.getInt("totalVehicles")
+            );
+            productList.add(product);
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
+    } finally {
+        try {
+            if (rs != null) rs.close();
+            if (ps != null) ps.close();
+            if (conn != null) conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         return list;
     }
 
@@ -345,6 +546,7 @@ public List<Product> getLast8Products() {
 
         });
         return products;
+
     }
 // * ham count chua dc dat
 public int countProducts(String sdate, String edate, int a) {
@@ -380,7 +582,6 @@ public int countProducts(String sdate, String edate, int a) {
             + "    availableVehicles > ?"
             + ") AS subquery";
 
-
     try {
         conn = new DBContext().getConnection(); // Kết nối DB
         ps = conn.prepareStatement(countQuery); // Chuẩn bị truy vấn
@@ -410,6 +611,17 @@ public int countProducts(String sdate, String edate, int a) {
     }
     return 0; // Trả về 0 nếu có lỗi
 }
+
+    public List<Product> getLast8BestSeller() {
+        List<Product> productList = new ArrayList<>();
+        String query = "SELECT * FROM products " +
+                "WHERE id NOT IN ( " +
+                "    SELECT DISTINCT productId FROM orders " +
+                "    JOIN orderDetails ON orders.id = orderDetails.orderId " +
+                ") " +
+                "ORDER BY id DESC " + // Sắp xếp theo id giảm dần
+                "LIMIT 8"; // Lấy 8 sản phẩm cuối cùng
+
     public Product getUnbookedProductById(int id) {
         Product product = null;
         String query = "SELECT vt.id, vt.name, vt.brand, vt.category, vt.rentalPrice, vt.image, vt.totalVehicles, vt.description " +
@@ -419,23 +631,32 @@ public int countProducts(String sdate, String edate, int a) {
                 "LEFT JOIN orders o ON od.orderId = o.id " +
                 "WHERE vt.id = ? AND o.id IS NULL";
 
+
         try {
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(query);
             ps.setInt(1, id);
             rs = ps.executeQuery();
 
+
+            while (rs.next()) {
+                Product product = new Product(
+                        rs.getInt("id"),
+                        rs.getString("name"),
+                        rs.getInt("year"), // Năm sản xuất
+
             if (rs.next()) {
                 product = new Product(
                         rs.getInt("id"),
                         rs.getString("name"),
                         0, // Bạn có thể thay đổi số liệu nếu cần
+
                         rs.getString("brand"),
-                        rs.getString("category"),
-                        rs.getDouble("rentalPrice"),
+                        rs.getString("type"),
+                        rs.getDouble("price"),
                         rs.getString("description"),
-                        rs.getString("image"),
-                        rs.getInt("totalVehicles")
+                        rs.getString("img"),
+                        rs.getString("numberPlate") // Biển số xe (nếu có)
                 );
             }
         } catch (Exception e) {
@@ -450,8 +671,10 @@ public int countProducts(String sdate, String edate, int a) {
             }
         }
 
-        return product;
+        return productList;
+
     }
+
 
 
     public List<Product> findById(int id) {
@@ -532,6 +755,7 @@ public int countProducts(String sdate, String edate, int a) {
 
 
 
+
     public static void main(String[] args) {
       ProductDao dao = new ProductDao();
 //      List<Product> list = dao.listPro1("2025-01-01","2025-01-31",2,1);
@@ -539,5 +763,27 @@ public int countProducts(String sdate, String edate, int a) {
 //          System.out.println(p);
 //      }
 //        System.out.println(dao.countProducts("2025-01-01","2025-01-31",2));
+
+//        List<Product> lis = dao.searchUnbookedProductByName("RSX");
+//        for (Product product : lis) {
+//            System.out.println(product);
+//        }
+        System.out.println(dao.getTatolProduct());
+    }
+
+    public int getTatolProduct() {
+        String query = "SELECT COUNT(*) AS totalAvailableProducts\n" +
+                "FROM vehicletypes " +
+                "WHERE isAvailable != 0";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            while(rs.next()) {
+                return rs.getInt(1);
+            }
+        }catch (Exception e) {}
+        return 0;
+
     }
 }
