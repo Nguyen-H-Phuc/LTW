@@ -5,17 +5,21 @@ import vn.edu.hcmuaf.fit.doancuoiki.model.Product;
 
 import java.util.List;
 
-public class ProductService implements IProductService {
+public class ProductService {
 
-    private ProductDao productDAO = new ProductDao();
-    @Override
-    public List<Product> findAll() {
+    static ProductDao dao = new ProductDao();
 
-        return productDAO.findALl();
+    public List<Product> getAll() {
+        return dao.getAllProducts();
     }
 
-    @Override
-    public Product findById(int id) {
-        return productDAO.findById(id).stream().findFirst().get();
+    public Product getDetail(String in) {
+        try {
+            int id = Integer.parseInt(in);
+            return dao.getProductById(id);
+        }
+        catch (NumberFormatException e) {
+            return null;
+        }
     }
 }

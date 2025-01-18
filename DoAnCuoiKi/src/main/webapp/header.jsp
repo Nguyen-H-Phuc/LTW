@@ -18,7 +18,6 @@
     <link rel="stylesheet" href="assets/css/base.css">
     <link rel="stylesheet" href="assets/css/header.css">
 
-
 </head>
 <body>
 <form action="SearchControl" method="get">
@@ -39,7 +38,7 @@
                     <a class="header__navbar-item-link" href="">Về chúng tôi</a>
                 </li>
                 <li class="header__navbar-item ">
-                    <a class="header__navbar-item-link" href="">Liên hệ</a>
+                    <a class="header__navbar-item-link" href="contact-us.jsp">Liên hệ</a>
                 </li>
 
             </ul>
@@ -112,7 +111,7 @@
             <!--Cart Layout -->
             <div class="header__cart">
                 <div class="header__cart-wrap">
-                    <i class="header__cart-icon fa-solid fa-cart-shopping"></i>
+                    <a href="cart2.jsp"><i class="header__cart-icon fa-solid fa-cart-shopping"></i></a>
                     <span class="header__cart-notice">1</span>
 
                     <!--              No cart: header__cart-list--no-cart-->

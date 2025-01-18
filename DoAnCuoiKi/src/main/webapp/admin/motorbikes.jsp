@@ -119,20 +119,20 @@
     <div class="sidebar-menu">
         <ul>
             <li>
-                <a href="admin.jsp">
+                <a href="/DoAnCuoiKi/admin?action=dashboard">
                     <span class="las la-igloo"></span>
                     <span>Dashboard</span></a>
             </li>
             <li>
-                <a href="/DoAnCuoiKi_war/admin?action=managerCustomer"><span class="las la-users"></span>
+                <a href="/DoAnCuoiKi/admin?action=managerCustomer"><span class="las la-users"></span>
                     <span>Quản lý khách hàng</span></a>
             </li>
             <li>
-                <a href="/DoAnCuoiKi_war/admin?action=managerVehicleType"><span class="las la-motorcycle"></span>
+                <a href="/DoAnCuoiKi/admin?action=managerVehicleType"><span class="las la-motorcycle"></span>
                     <span>Quản lý xe máy</span></a>
             </li>
             <li>
-                <a href="orders.jsp"><span class="las la-shopping-bag"></span>
+                <a href="/DoAnCuoiKi/admin?action=managerOrder"><span class="las la-shopping-bag"></span>
                     <span>Quản lý đơn hàng</span></a>
             </li>
             <li>
@@ -230,50 +230,43 @@
                 </div>
             </div>
         </div>
+        <!-- Form thêm thông tin xe -->
         <div id="configModal" class="modal">
             <div class="modal-content">
                 <div class="form-container">
                     <span class="close-btn" onclick="closeConfig()">&times;</span>
                     <h3>Thêm Xe</h3>
-                    <form action="#" method="POST" enctype="multipart/form-data">
-                        <div class="form-group">
-                            <label for="idXe">ID Xe</label>
-                            <input type="text" id="idXe" name="idXe" placeholder="Nhập ID xe" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="tenXe">Tên Xe</label>
-                            <input type="text" id="tenXe" name="tenXe" placeholder="Nhập tên xe" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="loaiXe">Loại Xe</label>
-                            <select id="loaiXe" name="loaiXe" required>
-                                <option value="">Chọn loại xe</option>
-                                <option value="Xe côn">Xe côn</option>
-                                <option value="Xe số">Xe số</option>
-                                <option value="Xe tay ga">Xe tay ga</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="giaThue">Giá Thuê (VND)</label>
-                            <input type="number" id="giaThue" name="giaThue" placeholder="Nhập giá thuê" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="hangXe">Hãng Xe</label>
-                            <input type="text" id="hangXe" name="hangXe" placeholder="Nhập hãng xe" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="xuatXu">Xuất Xứ</label>
-                            <input type="text" id="xuatXu" name="xuatXu" placeholder="Nhập xuất xứ" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="moTa">Mô Tả</label>
-                            <textarea id="moTa" name="moTa" placeholder="Mô tả chi tiết về xe" rows="3"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="hinhAnh">Hình Ảnh</label>
-                            <input type="file" id="hinhAnh" name="hinhAnh" accept="image/*" required>
-                        </div>
-                        <button type="submit" class="submit-btn">Thêm Xe</button>
+                    <form action="admin?action=addVehicleType" method="POST" >
+                        <label for="addName">Tên xe:</label>
+                        <input type="text" id="addName" name="addName" /><br/>
+
+                        <label for="addBrand">Hãng xe:</label>
+                        <input type="text" id="addBrand" name="addBrand" /><br/>
+
+                        <label for="addCategory">Loại xe:</label>
+                        <input type="text" id="addCategory" name="addCategory" /><br/>
+
+                        <label for="addTotalPrice">Giá thuê:</label>
+                        <input type="text" id="addTotalPrice" name="addTotalPrice" /><br/>
+
+                        <label for="addDescription">Mô tả:</label>
+                        <textarea id="addDescription" name="addDescription"></textarea><br/>
+
+                        <label for="addImage">Hình ảnh</label>
+                        <input type="text" id="addImage" name="addImage" /><br/>
+
+                        <label for="addTotalVehicles">Số lượng xe:</label>
+                        <input type="number" id="addTotalVehicles" name="addTotalVehicles" /><br/>
+
+                        <label for="addAvailable">Có sẵn:</label>
+                        <select id="addAvailable" name="addAvailable">
+                            <option value="1">Có sẵn</option>
+                            <option value="0">Không có sẵn</option>
+                        </select><br/>
+
+                        <button type="submit">Thêm</button>
+                        <button type="button" onclick="hideEditForm()">Hủy</button>
+                    </form>
                     </form>
                 </div>
             </div>
@@ -337,6 +330,14 @@
                 // Ẩn form khi hủy
                 document.getElementById("editForm").style.display = "none";
                 tinymce.remove("#description"); // Xóa TinyMCE khi đóng form
+            }
+
+             function openConfig() {
+                document.getElementById("configModal").style.display = "block";
+            }
+
+            function closeConfig() {
+                document.getElementById("configModal").style.display = "none";
             }
         </script>
 

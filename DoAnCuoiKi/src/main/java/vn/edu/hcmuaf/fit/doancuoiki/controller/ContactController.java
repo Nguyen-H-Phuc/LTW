@@ -22,7 +22,7 @@ public class ContactController extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
 
-        String fullName = request.getParameter("name");
+        String fullName = request.getParameter("fullName");
         String email = request.getParameter("email");
         String message = request.getParameter("message");
 

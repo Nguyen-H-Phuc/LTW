@@ -118,6 +118,7 @@
                             </thead>
                             <tbody>
                             <c:forEach var="v" items="vehicles">
+
                             <tr>
 <%--                                <td>${v.id}</td>--%>
                                 <td>${v.typeId}</td>
@@ -130,6 +131,20 @@
                                     <button class="see-btn">Xóa</button>
                                 </td>
                             </tr>
+
+                                <tr>
+                                        <%--                                <td>${v.id}</td>--%>
+                                    <td>${v.typeId}</td>
+                                        <%--                                <td>${v.licensePlate}</td>--%>
+                                        <%--                                <td>${v.status}</td>--%>
+                                        <%--                                <td>${v.rentalCount}</td>--%>
+                                        <%--                                <td>${v.isInUse }</td>--%>
+                                    <td>
+                                        <button class="see-btn">Duyệt</button>
+                                        <button class="see-btn">Xóa</button>
+                                    </td>
+                                </tr>
+
                             </c:forEach>
 
                             </tbody>

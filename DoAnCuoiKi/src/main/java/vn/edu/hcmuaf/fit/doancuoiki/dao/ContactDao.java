@@ -16,7 +16,7 @@ public class ContactDao {
     ResultSet rs = null;
 
     public boolean createContact(Contact contact) throws SQLException {
-        String query = "insert into contacts (fullName, email, message, processingStatus) values(?,?,?,?)";
+        String query = "insert into contacts (fullName, email, subject, processingStatus) values(?,?,?,?)";
         try (Connection conn = new DBContext().getConnection();
              PreparedStatement ps = conn.prepareStatement(query)) {
 
