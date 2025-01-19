@@ -1,5 +1,6 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ include file="header.jsp" %> <!-- Nhúng file header.jsp -->
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix = "f" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
@@ -27,9 +28,7 @@
             products.forEach(product => productList.appendChild(product));
         }
         // Chèn header
-        fetch('header.jsp')
-            .then(response => response.text())
-            .then(data => document.getElementById('header').innerHTML = data);
+
 
         // Chèn footer
         fetch('footer.jsp')

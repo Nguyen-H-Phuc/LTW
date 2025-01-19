@@ -12,30 +12,20 @@ import java.util.List;
 public class PagingProduct extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String sdate = request.getParameter("sdate"); // Ngày bắt đầu
-        String edate = request.getParameter("edate"); // Ngày kết thúc
-        String minAvailableStr = request.getParameter("minAvailable"); // Số lượng xe tối thiểu
-        String indexPageStr = request.getParameter("index"); // Chỉ số trang
 
-        if (sdate == null || edate == null || minAvailableStr == null) {
-            sdate = "2023-01-01"; // Mặc định
-            edate = "2025-01-01";
-            minAvailableStr = "1";
+
+        String indexPage =request.getParameter("index");
+        if(indexPage==null){
+            indexPage="1";
         }
-
-        int minAvailable = Integer.parseInt(minAvailableStr);
-        int indexPage = (indexPageStr == null) ? 1 : Integer.parseInt(indexPageStr);
-
-        // Gọi DAO để lấy dữ liệu
+        int index = Integer.parseInt(indexPage);
         ProductDao dao = new ProductDao();
-        List<Product> list = dao.listPro1(sdate, edate, minAvailable, indexPage);
-
-        // Tổng số sản phẩm để tính số trang
-        int totalProducts = dao.countProducts(sdate, edate, minAvailable);
-        int endPage = totalProducts / 8;
-        if (totalProducts % 8 != 0) {
+        int count = dao.getTatolProduct();
+        int endPage = count/8;
+        if(count % 8 !=0){
             endPage++;
         }
+        List<Product> list = dao.listPro(index);
 
         // Đưa dữ liệu lên request để hiển thị
         request.setAttribute("listA", list);

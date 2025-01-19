@@ -49,6 +49,13 @@
                 </div>
                 <div class="fill-in-info">
                     <div class="fill-in-item">
+                        <label for="delivery-location">Địa điểm giao xe</label>
+                        <input type="text" id="delivery-location" name="delivery-location" required>
+                        <label for="delivery-time">Thời gian nhận xe</label>
+                        <input type="date" id="delivery-time" name="delivery-time" required>
+                        <label for="return-time">Thời gian trả xe</label>
+                        <input type="date" id="return-time" name="return-time" required>
+
                         <label for="coupon">Mã giảm giá</label>
                         <input type="text" id="coupon" name="coupon">
                         <label for="location">Địa điểm giao xe</label>
@@ -57,6 +64,7 @@
                         <input type="date" id="rentalStartDate" name="rentalStartDate" required>
                         <label for="expectedReturnDate">Thời gian trả xe</label>
                         <input type="date" id="expectedReturnDate" name="expectedReturnDate" required>
+
                     </div>
                     <div class="button">
                         <button type="submit">Đặt xe</button>
@@ -111,6 +119,13 @@
     <div id="footer"></div>
 
 </div>
+<c:if test="${param.message == 'success'}">
+    <script>alert("Đặt xe thành công!");</script>
+</c:if>
+<c:if test="${param.message == 'fail'}">
+    <script>alert("Đặt xe thất bại. Vui lòng thử lại!");</script>
+</c:if>
+
 </body>
 </html>
 

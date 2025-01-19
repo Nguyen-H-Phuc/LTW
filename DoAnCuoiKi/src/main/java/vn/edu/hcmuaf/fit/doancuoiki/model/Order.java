@@ -15,6 +15,11 @@ public class Order {
     private String status;
     private double additionalFee;
     private String additionalFeeNote;
+    private OrderDetail orderDetail;
+
+
+    public Order() {
+    }
 
     public Order(int id, int customerId, Date createdDate, Date retalStarDate, Date expectedReturnDate, Date actualReturnDate, String deliveryAddress, String paymentMethod, int promotionId, String status, double additionalFee, String additionalFeeNote) {
         this.id = id;
@@ -125,5 +130,13 @@ public class Order {
 
     public void setAdditionalFeeNote(String additionalFeeNote) {
         this.additionalFeeNote = additionalFeeNote;
+    }
+
+    public OrderDetail getOrderDetail() {
+        return orderDetail;
+    }
+
+    public void setOrderDetail(OrderDetail orderDetail) {
+        this.orderDetail = orderDetail;
     }
 }
