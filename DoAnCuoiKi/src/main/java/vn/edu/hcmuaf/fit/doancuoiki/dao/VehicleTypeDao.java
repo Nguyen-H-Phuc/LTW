@@ -55,6 +55,24 @@ public class VehicleTypeDao {
         }
     }
 
+    public void addVehicleType(String name, String brand, String category, double totalPrice, String description, String image, int totalVehicles, int available) {
+        String squery = "INSERT INTO vehicletypes (name, brand, category, rentalPrice, description, image, totalVehicles, isAvailable) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        try (Connection conn = new DBContext().getConnection();
+             PreparedStatement pre = conn.prepareStatement(squery)) {
+            pre.setString(1, name);
+            pre.setString(2, brand);
+            pre.setString(3, category);
+            pre.setDouble(4, totalPrice);
+            pre.setString(5, description);
+            pre.setString(6, image);
+            pre.setInt(7, totalVehicles);
+            pre.setInt(8, available);
+            pre.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public static void main(String[] args) {
         VehicleTypeDao vehicleTypeDao = new VehicleTypeDao();
         for(VehicleType vehicleType : vehicleTypeDao.getAllVehicleType()) {
