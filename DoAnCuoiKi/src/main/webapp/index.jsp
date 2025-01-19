@@ -1,16 +1,38 @@
 <%@ page import="vn.edu.hcmuaf.fit.doancuoiki.model.User" %>
 
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix = "f" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
-<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Trang chủ</title>
-    <link rel="stylesheet" href="assets/css/main.css">
-    <link rel="stylesheet" href="assets/css/base.css">
+  <meta charset="UTF-8">
+  <title>Trang chủ</title>
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/base.css">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
-    <link rel="stylesheet" href="fontawesome-free-6.6.0/css/all.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+  <link rel="stylesheet" href="fontawesome-free-6.6.0/css/all.css">
+<%--  <style>--%>
+<%--    .container__content-list {--%>
+<%--      width: 23%;  /* Mỗi sản phẩm chiếm 1/4 chiều rộng */--%>
+<%--      margin-bottom: 20px;  /* Khoảng cách giữa các hàng */--%>
+<%--    }--%>
+
+<%--    .container__content-list-link {--%>
+<%--      display: block;--%>
+<%--      text-align: center;--%>
+<%--    }--%>
+
+<%--    .container__content-list-img {--%>
+<%--      max-width: 100%;  /* Đảm bảo ảnh không vượt quá chiều rộng của sản phẩm */--%>
+<%--      height: auto;--%>
+<%--    }--%>
+
+<%--    .price {--%>
+<%--      color: red;--%>
+<%--      font-size: 16px;--%>
+<%--    }--%>
+<%--  </style>--%>
 </head>
 <body>
 <body>
@@ -26,91 +48,52 @@
       <h2 class="container__title">CÁC DÒNG XE MÁY</h2>
 
 
-      <div class="container__content-list">
-        <a href="#" class="container__content-list-link">
-          <img class="container__content-list-img" src="assets/img/home_img/xe/xe1.jpg">
-          <span class="container__content-list-span">YAMAHA NOZZA</span>
-          <p class="price">Giá chỉ từ: 80,000đ</p>
-        </a>
+        <div class="container__content-list">
+          <c:forEach var="p" items="${listA}">
+          <a href="#" class="container__content-list-link">
+            <img class="container__content-list-img" src="${p.img}" alt="">
+            <span class="container__content-list-span">${p.name}</span>
+            <p class="price">Giá chỉ từ: 80,000đ</p>
+          </a>
+          </c:forEach>
+          <!-- Add more items as needed -->
+        </div>
 
-        <a href="#" class="container__content-list-link">
-          <img class="container__content-list-img" src="assets/img/home_img/xe/xe2.jpg">
-          <span class="container__content-list-span">HONDA VISION</span>
-          <p class="price">Giá chỉ từ: 90,000đ</p>
-        </a>
-
-        <a href="#" class="container__content-list-link">
-          <img class="container__content-list-img" src="assets/img/home_img/xe/xe3.jpg">
-          <span class="container__content-list-span">HONDA WAVE RSX</span>
-          <p class="price">Giá chỉ từ: 50,000đ</p>
-        </a>
-
-        <a href="#" class="container__content-list-link">
-          <img class="container__content-list-img" src="assets/img/home_img/xe/xe4.jpg">
-          <span class="container__content-list-span">SIRIUS RC</span>
-          <p class="price">Giá chỉ từ: 50,000đ</p>
-        </a>
-
-        <a href="#" class="container__content-list-link">
-          <img class="container__content-list-img" src="assets/img/home_img/xe/xe5.jpg">
-          <span class="container__content-list-span">LIBERTY</span>
-          <p class="price">Giá chỉ từ: 90,000đ</p>
-        </a>
-
-        <a href="#" class="container__content-list-link">
-          <img class="container__content-list-img" src="assets/img/home_img/xe/xe6.jpg">
-          <span class="container__content-list-span">PIAGO VESPA</span>
-          <p class="price">Giá chỉ từ: 90,000đ</p>
-        </a>
-
-        <a href="#" class="container__content-list-link">
-          <img class="container__content-list-img" src="assets/img/home_img/xe/xe7.jpg">
-          <span class="container__content-list-span">HONDA SH</span>
-          <p class="price">Giá chỉ từ: 180,000đ</p>
-        </a>
-        <a href="#" class="container__content-list-link">
-          <img class="container__content-list-img" src="assets/img/home_img/xe/xe8.jpg">
-          <span class="container__content-list-span">LEAD 125CC</span>
-          <p class="price">Giá chỉ từ: 80,000đ</p>
-        </a>
-        <!-- Add more items as needed -->
-      </div>
-      <h3><a href="trangsanpham.html" style="text-decoration: none">Xem thêm</a></h3>
 
     </div>
   </div>
+
 </div>
 <footer id="footer"></footer>
- <script>
-        // Chèn header
-        fetch('header.jsp')
-            .then(response => response.text())
-            .then(data => document.getElementById('header').innerHTML = data);
+<script>
+  // Chèn header
+  fetch('header.jsp')
+          .then(response => response.text())
+          .then(data => document.getElementById('header').innerHTML = data);
 
-        // Chèn footer
-        fetch('footer.jsp')
-            .then(response => response.text())
-            .then(data => document.getElementById('footer').innerHTML = data);
+  // Chèn footer
+  fetch('footer.jsp')
+          .then(response => response.text())
+          .then(data => document.getElementById('footer').innerHTML = data);
 
-        // Get the button
-        let mybutton = document.getElementById("myBtn");
+  // Get the button
+  let mybutton = document.getElementById("myBtn");
 
-        // When the user scrolls down 20px from the top of the document, show the button
-        window.onscroll = function() {scrollFunction()};
+  // When the user scrolls down 20px from the top of the document, show the button
+  window.onscroll = function() {scrollFunction()};
 
-        function scrollFunction() {
-            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-                mybutton.style.display = "block";
-            } else {
-                mybutton.style.display = "none";
-            }
-        }
+  function scrollFunction() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+      mybutton.style.display = "block";
+    } else {
+      mybutton.style.display = "none";
+    }
+  }
 
-        // When the user clicks on the button, scroll to the top of the document
-        function topFunction() {
-            document.body.scrollTop = 0;
-            document.documentElement.scrollTop = 0;
-        }
-    </script>
+  // When the user clicks on the button, scroll to the top of the document
+  function topFunction() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+  }
+</script>
 </body>
-</html>

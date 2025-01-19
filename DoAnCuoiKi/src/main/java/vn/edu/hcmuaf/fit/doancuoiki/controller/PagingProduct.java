@@ -34,6 +34,7 @@ public class PagingProduct extends HttpServlet {
 
         // Forward đến trang JSP
         request.getRequestDispatcher("page-product.jsp").forward(request, response);
+
     }
 
     @Override
