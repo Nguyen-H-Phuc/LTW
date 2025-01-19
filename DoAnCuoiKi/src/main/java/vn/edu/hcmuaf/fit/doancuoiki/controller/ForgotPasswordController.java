@@ -25,7 +25,7 @@ public class ForgotPasswordController extends HttpServlet {
             String token = UUID.randomUUID().toString();
             long expiryTime = System.currentTimeMillis() + 30 * 60 * 1000; // Token hết hạn sau 30 phút
             dao.createToken(token, expiryTime, email);
-            String resetLink = "http://localhost:8080/DoAnCuoiKi_war/ResetPasswordController?token=" + token;
+            String resetLink = "http://localhost:8080/DoAnCuoiKi/ResetPasswordController?token=" + token;
             Email.send(email, "Thuê xe máy - Đặt lại mật khẩu", "Click vào link để đặt lại mật khẩu "+ resetLink+"\nLink sẽ hết hạn sau 30 phút.");
             message = "Link đặt lại mật khẩu đã được gửi vào email của bạn";
             request.setAttribute("message", message);

@@ -16,6 +16,9 @@
   <title>Trang admin</title>
   <link rel= "stylesheet" href= "https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css" >
   <link rel="stylesheet" href="${pageContext.request.contextPath}/admin/admin.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
 
   <style>
     .modal {
@@ -188,57 +191,57 @@
           </div>
 
           <div class="card-body">
-            <table width="100%">
+            <table id="customerTable" width="100%">
               <thead>
-              <tr>
-                <th>ID</th>
-                <th>Họ tên</th>
-                <th>Ngày sinh</th>
-                <th>Email</th>
-                <th>Số điện thoại</th>
-                <th>Địa chỉ</th>
-                <th>Vai trò</th>
-                <th>Trạng thái</th>
-              </tr>
+                <tr>
+                  <th>ID</th>
+                  <th>Họ tên</th>
+                  <th>Ngày sinh</th>
+                  <th>Email</th>
+                  <th>Số điện thoại</th>
+                  <th>Địa chỉ</th>
+                  <th>Vai trò</th>
+                  <th>Trạng thái</th>
+                </tr>
               </thead>
               <tbody>
-                  <c:if test="${not empty users}">
-                      <c:forEach var="u" items="${users}">
-                          <tr>
-                              <td>${u.id}</td>
-                              <td>${u.userInfo.fullName}</td>
-                              <td>${u.userInfo.birthday}</td>
-                              <td>${u.email}</td>
-                              <td>${u.userInfo.phoneNumber}</td>
-                              <td>${u.userInfo.address}</td>
-                              <td>
-                                  <form action="admin" method="get">
-                                      <input type="hidden" name="action" value="changeRoleUser" />
-                                      <input type="hidden" name="userId" value="${u.id}" />
-                                      <select name="roleId" onchange="this.form.submit()">
-                                          <option value="1" ${u.roleId == 1 ? 'selected' : ''}>Admin</option>
-                                          <option value="2" ${u.roleId == 2 ? 'selected' : ''}>Người dùng thường</option>
-                                      </select>
-                                  </form>
-                              </td>
-                              <td>
-                                  <form action="admin" method="get">
-                                      <input type="hidden" name="action" value="changeStatusUser" />
-                                      <input type="hidden" name="userId" value="${u.id}" />
-                                      <select name="status" onchange="this.form.submit()">
-                                          <option value="1" ${u.active ? 'selected' : ''}>Đang hoạt động</option>
-                                          <option value="0" ${!u.active ? 'selected' : ''}>Bị khoá</option>
-                                      </select>
-                                  </form>
-                              </td>
-                          </tr>
-                      </c:forEach>
-                  </c:if>
-                  <c:if test="${empty users}">
-                      <tr>
-                          <td colspan="8">Không có khách hàng nào</td>
-                      </tr>
-                  </c:if>
+                <c:if test="${not empty users}">
+                  <c:forEach var="u" items="${users}">
+                    <tr>
+                      <td>${u.id}</td>
+                      <td>${u.userInfo.fullName}</td>
+                      <td>${u.userInfo.birthday}</td>
+                      <td>${u.email}</td>
+                      <td>${u.userInfo.phoneNumber}</td>
+                      <td>${u.userInfo.address}</td>
+                      <td>
+                        <form action="admin" method="get">
+                          <input type="hidden" name="action" value="changeRoleUser" />
+                          <input type="hidden" name="userId" value="${u.id}" />
+                          <select name="roleId" onchange="this.form.submit()">
+                            <option value="1" ${u.roleId == 1 ? 'selected' : ''}>Admin</option>
+                            <option value="2" ${u.roleId == 2 ? 'selected' : ''}>Người dùng thường</option>
+                          </select>
+                        </form>
+                      </td>
+                      <td>
+                        <form action="admin" method="get">
+                          <input type="hidden" name="action" value="changeStatusUser" />
+                          <input type="hidden" name="userId" value="${u.id}" />
+                          <select name="status" onchange="this.form.submit()">
+                            <option value="1" ${u.active ? 'selected' : ''}>Đang hoạt động</option>
+                            <option value="0" ${!u.active ? 'selected' : ''}>Bị khoá</option>
+                          </select>
+                        </form>
+                      </td>
+                    </tr>
+                  </c:forEach>
+                </c:if>
+                <c:if test="${empty users}">
+                  <tr>
+                    <td colspan="8">Không có khách hàng nào</td>
+                  </tr>
+                </c:if>
               </tbody>
             </table>
           </div>
@@ -255,6 +258,18 @@
     function closeConfig() {
       document.getElementById('configModal').style.display = 'none';
     }
+
+      $(document).ready(function() {
+        $('#customerTable').DataTable({
+          paging: true,        // Bật phân trang
+          searching: true,     // Bật tìm kiếm
+          ordering: true,      // Bật sắp xếp
+          info: true,          // Hiển thị thông tin số bản ghi
+          language: {
+            url: "//cdn.datatables.net/plug-ins/1.13.6/i18n/vi.json" // Hiển thị tiếng Việt
+          }
+        });
+      });
 
   </script>
 </div>

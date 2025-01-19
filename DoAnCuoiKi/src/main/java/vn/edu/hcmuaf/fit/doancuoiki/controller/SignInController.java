@@ -4,11 +4,13 @@ import jakarta.servlet.annotation.*;
 import vn.edu.hcmuaf.fit.doancuoiki.dao.UserDao;
 import vn.edu.hcmuaf.fit.doancuoiki.model.User;
 import vn.edu.hcmuaf.fit.doancuoiki.model.UserInfo;
+import vn.edu.hcmuaf.fit.doancuoiki.util.Email;
 import vn.edu.hcmuaf.fit.doancuoiki.util.Encrypt;
 
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
+import java.util.UUID;
 
 @WebServlet(name = "SignInController", value = "/SignIn")
 public class SignInController extends HttpServlet {
@@ -69,9 +71,16 @@ public class SignInController extends HttpServlet {
         String passwordEncrypt = Encrypt.encrypt(password);
         UserInfo userInfo = new UserInfo(name, phone, address, birthday);
         User user = new User(email, passwordEncrypt, userInfo, true);
-
+        String message = "";
         if (userDao.addUser(user)) {
-            url = "login.jsp"; // Chuyển hướng tới trang chính nếu thành công
+            String token = UUID.randomUUID().toString();
+            long expiryTime = System.currentTimeMillis() + 30 * 60 * 1000; // Token hết hạn sau 30 phút
+            userDao.createToken(token, expiryTime, email);
+            String verifyLink = "http://localhost:8080/DoAnCuoiKi/verify_email?token=" + token;
+            Email.send(email, "Thuê xe máy - Xác thực email", "Click vào link để xác thực tài khoản "+ verifyLink+"\nLink sẽ hết hạn vào 2 giờ sáng hôm sau");
+            message = "Link xác thực đã được gửi tới email của bạn. Vui lòng kiểm tra email và bấm vào link để xác thực";
+            request.setAttribute("message", message);
+            url = "resend_email.jsp"; // Chuyển hướng tới trang chính nếu thành công
         } else {
             request.setAttribute("error", "Đăng ký thất bại. Vui lòng thử lại.");
             setRequestAttributes(request, email, name, password, birthdayStr, address);

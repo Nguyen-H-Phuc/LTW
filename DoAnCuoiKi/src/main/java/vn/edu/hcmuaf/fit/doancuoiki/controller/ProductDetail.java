@@ -16,11 +16,6 @@ public class ProductDetail extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            HttpSession session = request.getSession();
-            User user = (User) session.getAttribute("user");
-            if(user == null) {
-                response.sendRedirect("login.jsp");
-            }else{
             String pidParam = request.getParameter("pid");
             if (pidParam == null || pidParam.isEmpty()) {
                 throw new IllegalArgumentException("Tham số 'pid' là bắt buộc.");
@@ -42,7 +37,7 @@ public class ProductDetail extends HttpServlet {
             request.setAttribute("p", product);
             request.setAttribute("relatedProducts", relatedProducts);
 
-            request.getRequestDispatcher("product-detail.jsp").forward(request, response);}
+            request.getRequestDispatcher("product-detail.jsp").forward(request, response);
         } catch (NumberFormatException e) {
             response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Tham số 'pid' phải là một số nguyên hợp lệ.");
         } catch (IllegalArgumentException e) {
