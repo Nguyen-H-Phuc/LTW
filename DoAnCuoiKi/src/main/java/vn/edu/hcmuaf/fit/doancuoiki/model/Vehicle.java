@@ -64,4 +64,4 @@ public class Vehicle {
     public void setIsInUse(int isInUse) {
         this.isInUse = isInUse;
     }
-}
+
