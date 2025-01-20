@@ -8,9 +8,9 @@ import java.util.List;
 public class ProductService2 {
     static ProductDao productDao = new ProductDao();
 
-    public List<Product> getAll() {
-        return productDao.getAllProducts();
-    }
+//    public List<Product> getAll() {
+//        return productDao.getAllProducts();
+//    }
 
     public Product getDetail(String in){
         try{
