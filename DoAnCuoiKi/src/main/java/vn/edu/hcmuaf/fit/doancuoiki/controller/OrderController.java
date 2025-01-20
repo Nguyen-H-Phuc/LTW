@@ -47,17 +47,6 @@ public class OrderController extends HttpServlet {
             User user = (User) session.getAttribute("user");
             int userId = user.getId();
 
-            // Tạo đối tượng OrderDao và gọi phương thức createOrder để lưu đơn hàng vào cơ sở dữ liệu
-            OrderDao dao = new OrderDao();
-            dao.createOrder(userId, location, startDate, endDate, pid);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            // Xử lý lỗi nếu có vấn đề trong quá trình chuyển đổi ngày tháng
-            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Ngày tháng không hợp lệ.");
-        }
-    }
-
             OrderDao dao = new OrderDao();
             String licensePlate = dao.getLicensePlate(pid, startDate, endDate);
             boolean success = dao.createOrder(userId, location, startDate, endDate, licensePlate, price);
@@ -77,6 +66,5 @@ public class OrderController extends HttpServlet {
             response.sendRedirect("product?pid=" + pid + "&message=fail");
         }
     }
-
 
 }
