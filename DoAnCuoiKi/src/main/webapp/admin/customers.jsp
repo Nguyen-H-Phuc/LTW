@@ -248,6 +248,47 @@
         </div>
       </div>
     </div>
+
+    <form class="auth-form__group" method="post" action="SignIn" >
+        <div class="auth-form__form">
+            <div class="auth-form__group">
+                <label for="email">Email </label>
+                <input type="email" id="email" name="email" class="auth-form__input" placeholder="Email của bạn" required>
+            </div>
+            <div class="auth-form__group">
+                <label for="name">Họ và tên của bạn</label>
+                <input type="text" id ="name" name="name" class="auth-form__input" placeholder="Họ và tên của bạn" required>
+            </div>
+            <div class="auth-form__group">
+                <label for="birthday">Sinh nhật</label>
+                <input type="date" id="birthday" name="birthday" class="auth-form__input" required>
+            </div>
+            <div class="auth-form__group">
+                <label for="address">Địa chỉ</label>
+                <input type="text" id="address" name="address" class="auth-form__input" placeholder="Địa chỉ của bạn"  required>
+            </div>
+            <div class="auth-form__group">
+                <label for="password">Mật khẩu</label>
+                <input type="password" id="password" name="password" class="auth-form__input" placeholder="Mật khẩu của bạn" required>
+            </div>
+            <div class="auth-form__group">
+                <select name="roleId">
+                  <option value="1" ${u.roleId == 1 ? 'selected' : ''}>Admin</option>
+                  <option value="2" ${u.roleId == 2 ? 'selected' : ''}>Người dùng thường</option>
+                </select>
+            </div>
+            <div class="auth-form__group">
+                <select name="status">
+                    <option value="1" ${u.active ? 'selected' : ''}>Đang hoạt động</option>
+                    <option value="0" ${!u.active ? 'selected' : ''}>Bị khoá</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="auth-form__controls">
+            <button type="submit" class="btn btn--primary">Thêm khách hàng</button>
+        </div>
+    </form>
   </main>
 
   <script>
