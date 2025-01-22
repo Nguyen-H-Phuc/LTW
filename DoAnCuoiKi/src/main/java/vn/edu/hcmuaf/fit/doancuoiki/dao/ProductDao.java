@@ -627,10 +627,38 @@ public List<Product> searchUnbookedProductByName(String name) {
         }
         return list;
     }
-
+    public List<Product> getTopExpensiveProducts() {
+        List<Product> list = new ArrayList<>();
+        String query = "SELECT * " +
+                "FROM vehicletypes " +
+                "WHERE isAvailable > 0 " +
+                "ORDER BY rentalPrice DESC " +
+                "LIMIT 8;";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(new Product(
+                        rs.getInt("id"),
+                        rs.getString("name"),
+                        0, // Placeholder nếu không cần giá trị cụ thể
+                        rs.getString("brand"),
+                        rs.getString("category"),
+                        rs.getDouble("rentalPrice"),
+                        rs.getString("description"),
+                        rs.getString("image"),
+                        rs.getInt("totalVehicles")
+                ));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
     public static void main(String[] args) {
         ProductDao dao = new ProductDao();
-        List<Product> list = dao.getTopAvailableVehicles();
+        List<Product> list = dao.getTopExpensiveProducts();
         for (Product product : list) {
             System.out.println(product);
         }
