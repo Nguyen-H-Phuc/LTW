@@ -249,7 +249,7 @@
       </div>
     </div>
 
-    <form class="auth-form__group" method="post" action="SignIn" >
+    <form class="auth-form__group" method="post" action="admin?action=addUser" >
         <div class="auth-form__form">
             <div class="auth-form__group">
                 <label for="email">Email </label>

@@ -8,11 +8,14 @@ import vn.edu.hcmuaf.fit.doancuoiki.dao.UserDao;
 import vn.edu.hcmuaf.fit.doancuoiki.dao.VehicleTypeDao;
 import vn.edu.hcmuaf.fit.doancuoiki.model.Order;
 import vn.edu.hcmuaf.fit.doancuoiki.model.User;
+import vn.edu.hcmuaf.fit.doancuoiki.model.UserInfo;
 import vn.edu.hcmuaf.fit.doancuoiki.model.VehicleType;
+import vn.edu.hcmuaf.fit.doancuoiki.util.Encrypt;
 
 import java.io.IOException;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.List;
 
 @WebServlet(name = "AdminController", value = "/admin")
@@ -58,6 +61,8 @@ public class AdminController extends HttpServlet {
             case "updateOrder":
                 updateOrder(request, response);
                 break;
+            case "addUser":
+                addUser(request, response);
         }
     }
 
@@ -155,7 +160,7 @@ public class AdminController extends HttpServlet {
         managerVehicleType(request, response);
     }
 
-    private void addVehicleType(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {;
+    private void addVehicleType(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String name = request.getParameter("addName");
         String brand = request.getParameter("addBrand");
         String category = request.getParameter("addCategory");
@@ -168,5 +173,23 @@ public class AdminController extends HttpServlet {
         VehicleTypeDao dao = new VehicleTypeDao();
         dao.addVehicleType(name, brand, category, totalPrice, description, image, totalVehicles, available);
         managerVehicleType(request, response);
+    }
+
+    private void addUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        UserInfo userInfo = new UserInfo();
+        userInfo.setFullName(request.getParameter("name"));
+        userInfo.setPhoneNumber(null);
+        userInfo.setAddress(request.getParameter("address"));
+        userInfo.setBirthday(LocalDate.parse(request.getParameter("brithday")));
+
+        User user = new User();
+        user.setEmail(request.getParameter("email"));
+        user.setPassword(Encrypt.encrypt(request.getParameter("password")));
+        user.setUserInfo(userInfo);
+        user.setRoleId(Integer.parseInt(request.getParameter("roleId")));
+        user.setActive(request.getParameter("status")=="1"? true : false);
+
+        UserDao dao = new UserDao();
+        dao.addUser(user);
     }
 }
