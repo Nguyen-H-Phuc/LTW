@@ -1,3 +1,5 @@
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix = "f" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page import="vn.edu.hcmuaf.fit.doancuoiki.model.User" %>
 
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
@@ -27,55 +29,17 @@
 
 
       <div class="container__content-list">
+        <c:forEach var="p" items="${listP}">
         <a href="#" class="container__content-list-link">
-          <img class="container__content-list-img" src="assets/img/home_img/xe/xe1.jpg">
-          <span class="container__content-list-span">YAMAHA NOZZA</span>
-          <p class="price">Giá chỉ từ: 80,000đ</p>
+          <img class="container__content-list-img" src="${p.img}">
+          <span class="container__content-list-span">${p.name}</span>
+          <p class="price">Giá chỉ từ: <f:formatNumber value="${p.price}"/> đ</p>
         </a>
+        </c:forEach>
 
-        <a href="#" class="container__content-list-link">
-          <img class="container__content-list-img" src="assets/img/home_img/xe/xe2.jpg">
-          <span class="container__content-list-span">HONDA VISION</span>
-          <p class="price">Giá chỉ từ: 90,000đ</p>
-        </a>
-
-        <a href="#" class="container__content-list-link">
-          <img class="container__content-list-img" src="assets/img/home_img/xe/xe3.jpg">
-          <span class="container__content-list-span">HONDA WAVE RSX</span>
-          <p class="price">Giá chỉ từ: 50,000đ</p>
-        </a>
-
-        <a href="#" class="container__content-list-link">
-          <img class="container__content-list-img" src="assets/img/home_img/xe/xe4.jpg">
-          <span class="container__content-list-span">SIRIUS RC</span>
-          <p class="price">Giá chỉ từ: 50,000đ</p>
-        </a>
-
-        <a href="#" class="container__content-list-link">
-          <img class="container__content-list-img" src="assets/img/home_img/xe/xe5.jpg">
-          <span class="container__content-list-span">LIBERTY</span>
-          <p class="price">Giá chỉ từ: 90,000đ</p>
-        </a>
-
-        <a href="#" class="container__content-list-link">
-          <img class="container__content-list-img" src="assets/img/home_img/xe/xe6.jpg">
-          <span class="container__content-list-span">PIAGO VESPA</span>
-          <p class="price">Giá chỉ từ: 90,000đ</p>
-        </a>
-
-        <a href="#" class="container__content-list-link">
-          <img class="container__content-list-img" src="assets/img/home_img/xe/xe7.jpg">
-          <span class="container__content-list-span">HONDA SH</span>
-          <p class="price">Giá chỉ từ: 180,000đ</p>
-        </a>
-        <a href="#" class="container__content-list-link">
-          <img class="container__content-list-img" src="assets/img/home_img/xe/xe8.jpg">
-          <span class="container__content-list-span">LEAD 125CC</span>
-          <p class="price">Giá chỉ từ: 80,000đ</p>
-        </a>
         <!-- Add more items as needed -->
       </div>
-      <h3><a href="trangsanpham.html" style="text-decoration: none">Xem thêm</a></h3>
+
 
     </div>
   </div>
