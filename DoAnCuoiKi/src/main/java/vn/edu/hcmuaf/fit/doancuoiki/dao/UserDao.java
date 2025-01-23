@@ -101,7 +101,7 @@ public class UserDao {
             try (PreparedStatement ps1 = conn.prepareStatement(query1, PreparedStatement.RETURN_GENERATED_KEYS)) {
                 ps1.setString(1, user.getEmail());
                 ps1.setString(2, user.getPassword());
-                ps1.setInt(3, 2);
+                ps1.setInt(3, user.getRoleId());
                 ps1.setBoolean(4, user.isActive());
                 int rowsAffected1 = ps1.executeUpdate();
 
