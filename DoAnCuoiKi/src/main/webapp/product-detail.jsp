@@ -56,8 +56,8 @@
                     </div>
                     <div class="button">
                         <button type="submit">Đặt xe</button>
-                        <a href="add-cart?pid=${p.id}"><button type="button" onclick="alert('Bạn đã thêm vào giỏ hàng thành công.')">Thêm vào giỏ hàng</button></a>
-
+<%--                        <a href="add-cart?pid=${p.id}"><button type="button" onclick="alert('Bạn đã thêm vào giỏ hàng thành công.')">Thêm vào giỏ hàng</button></a>--%>
+                        <button type="button" onclick="alert('Bạn đã thêm vào giỏ hàng thành công.')"><a href="add-cart?pid=${p.id}">Thêm vào giỏ hàng</a></button>
                     </div>
                   </div>
               </form>
