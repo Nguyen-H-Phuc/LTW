@@ -658,8 +658,8 @@ public List<Product> searchUnbookedProductByName(String name) {
     }
     public static void main(String[] args) {
         ProductDao dao = new ProductDao();
-       List<Product> list = dao.searchByName("RSC");
-//        List<Product> list = dao.listPro();
+     //  List<Product> list = dao.searchByName("RSC");
+        List<Product> list = dao.listPro(1);
         for (Product product : list) {
             System.out.println(product);
         }
