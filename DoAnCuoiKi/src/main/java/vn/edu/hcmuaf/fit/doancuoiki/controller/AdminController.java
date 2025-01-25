@@ -180,7 +180,7 @@ public class AdminController extends HttpServlet {
         userInfo.setFullName(request.getParameter("name"));
         userInfo.setPhoneNumber(null);
         userInfo.setAddress(request.getParameter("address"));
-        userInfo.setBirthday(LocalDate.parse(request.getParameter("brithday")));
+        userInfo.setBirthday(LocalDate.parse(request.getParameter("birthday")));
 
         User user = new User();
         user.setEmail(request.getParameter("email"));

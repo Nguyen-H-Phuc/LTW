@@ -22,81 +22,89 @@
 
   <style>
     .modal {
-      display: none; /* Hidden by default */
-      position: fixed;
-      z-index: 1;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      overflow: auto;
-      background-color: rgb(0,0,0); /* Fallback color */
-      background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        display: none; /* Hidden by default */
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgb(0,0,0); /* Fallback color */
+        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
     }
 
     .modal-content {
-      background-color: #fefefe;
-      margin: auto; /* Centered */
-      padding: 20px;
-      border: 1px solid #888;
-      width: 50%; /* Smaller size */
-      max-width: 500px; /* Ensures it doesn't get too wide */
+        background-color: #fefefe;
+        margin: auto; /* Centered */
+        padding: 20px;
+        border: 1px solid #888;
+        width: 50%; /* Smaller size */
+        max-width: 500px; /* Ensures it doesn't get too wide */
     }
 
-    .invoice-modal {
-      width: 100%;
-      margin: 80px auto;
-      background-color: white;
-      border-radius: 10px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-      padding: 20px;
-      position: relative;
+
+
+    .form-container {
+        margin-top: 120px;
+        width: 150%;
+        max-width: 350px; /* Giảm chiều rộng form */
+        background: #fff;
+        padding: 10px; /* Giảm padding */
+        border-radius: 5px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
     }
 
-    .invoice-header {
-      text-align: center;
-      position: relative;
+    h3 {
+        text-align: center;
+        margin-bottom: 10px; /* Giảm khoảng cách tiêu đề */
+        color: #333;
+        font-size: 1em; /* Giảm kích thước chữ */
     }
 
-    .invoice-header h2 {
-      font-size: 24px;
-      margin: 0;
+    .form-group {
+        margin-bottom: 8px; /* Giảm khoảng cách giữa các trường */
     }
 
-    .close-btn {
-      position: absolute;
-      right: 20px;
-      top: 10px;
-      font-size: 20px;
-      cursor: pointer;
-      color: #999;
+    label {
+        display: block;
+        font-size: 0.8em; /* Giảm kích thước chữ */
+        margin-bottom: 3px; /* Giảm khoảng cách giữa nhãn và input */
+        color: #555;
     }
 
-    .invoice-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin: 20px 0;
+    input, select, textarea {
+        width: 100%;
+        padding: 5px; /* Giảm padding trong input */
+        font-size: 0.8em; /* Giảm kích thước chữ */
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        box-sizing: border-box;
     }
 
-    .invoice-table th,
-    .invoice-table td {
-      color: black;
-      padding: 10px;
-      text-align: left;
-      border: 1px solid #ddd;
+    textarea {
+        resize: none;
     }
 
-    .invoice-table th {
-      background-color: #f9f9f9;
-      font-weight: bold;
+    button.submit-btn {
+        width: 100%;
+        background-color: #EE4D2D;
+        color: white;
+        border: none;
+        padding: 8px; /* Giảm kích thước nút */
+        border-radius: 3px;
+        font-size: 0.9em; /* Giảm kích thước chữ nút */
+        cursor: pointer;
     }
 
-    .invoice-total {
-      text-align: right;
-      margin-top: 20px;
-      font-size: 18px;
-      color: #ff9800;
-      font-weight: bold;
+    button.submit-btn:hover {
+        background-color: #EE4D2D;
+    }
+
+    @media (max-width: 768px) {
+        .form-container {
+            padding: 8px; /* Giảm padding cho thiết bị nhỏ */
+        }
     }
   </style>
 </head>
@@ -185,7 +193,7 @@
         <div class="card">
           <div class="card-header">
             <h3>Khách hàng</h3>
-            <button> Thêm khách hàng</button>
+            <button onclick="openConfig()">Thêm khách hàng</button>
             <button class="card-header-btn"> Xóa khách hàng</button>
 
           </div>
@@ -248,47 +256,57 @@
         </div>
       </div>
     </div>
+     <!-- form them khach hang -->
+    <div id="configModal" class="modal">
+      <div class="modal-content">
+        <div class="form-container">
+            <span class="close-btn" onclick="closeConfig()">&times;</span>
+            <h3>Thêm khách hang</h3>
+          <form id="addCustomerForm" class="auth-form__group" method="post" action="admin?action=addUser">
+                <div class="auth-form__form">
+                    <div class="auth-form__group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" class="auth-form__input" placeholder="Email của bạn" required>
+                    </div>
+                    <div class="auth-form__group">
+                        <label for="name">Họ và tên của bạn</label>
+                        <input type="text" id="name" name="name" class="auth-form__input" placeholder="Họ và tên của bạn" required>
+                    </div>
+                    <div class="auth-form__group">
+                        <label for="birthday">Sinh nhật</label>
+                        <input type="date" id="birthday" name="birthday" class="auth-form__input" required>
+                    </div>
+                    <div class="auth-form__group">
+                        <label for="address">Địa chỉ</label>
+                        <input type="text" id="address" name="address" class="auth-form__input" placeholder="Địa chỉ của bạn" required>
+                    </div>
+                    <div class="auth-form__group">
+                        <label for="password">Mật khẩu</label>
+                        <input type="password" id="password" name="password" class="auth-form__input" placeholder="Mật khẩu của bạn" required>
+                    </div>
+                    <div class="auth-form__group">
+                        <label for="roleId">Vai trò</label>
+                        <select name="roleId">
+                            <option value="1">Admin</option>
+                            <option value="2">Người dùng thường</option>
+                        </select>
+                    </div>
+                    <div class="auth-form__group">
+                        <label for="status">Trạng thái</label>
+                        <select name="status">
+                            <option value="1">Đang hoạt động</option>
+                            <option value="0">Bị khoá</option>
+                        </select>
+                    </div>
+                </div>
 
-    <form class="auth-form__group" method="post" action="admin?action=addUser" >
-        <div class="auth-form__form">
-            <div class="auth-form__group">
-                <label for="email">Email </label>
-                <input type="email" id="email" name="email" class="auth-form__input" placeholder="Email của bạn" required>
-            </div>
-            <div class="auth-form__group">
-                <label for="name">Họ và tên của bạn</label>
-                <input type="text" id ="name" name="name" class="auth-form__input" placeholder="Họ và tên của bạn" required>
-            </div>
-            <div class="auth-form__group">
-                <label for="birthday">Sinh nhật</label>
-                <input type="date" id="birthday" name="birthday" class="auth-form__input" required>
-            </div>
-            <div class="auth-form__group">
-                <label for="address">Địa chỉ</label>
-                <input type="text" id="address" name="address" class="auth-form__input" placeholder="Địa chỉ của bạn"  required>
-            </div>
-            <div class="auth-form__group">
-                <label for="password">Mật khẩu</label>
-                <input type="password" id="password" name="password" class="auth-form__input" placeholder="Mật khẩu của bạn" required>
-            </div>
-            <div class="auth-form__group">
-                <select name="roleId">
-                  <option value="1" ${u.roleId == 1 ? 'selected' : ''}>Admin</option>
-                  <option value="2" ${u.roleId == 2 ? 'selected' : ''}>Người dùng thường</option>
-                </select>
-            </div>
-            <div class="auth-form__group">
-                <select name="status">
-                    <option value="1" ${u.active ? 'selected' : ''}>Đang hoạt động</option>
-                    <option value="0" ${!u.active ? 'selected' : ''}>Bị khoá</option>
-                </select>
-            </div>
+                <div class="auth-form__controls">
+                    <button type="submit" class="btn btn--primary">Thêm khách hàng</button>
+                </div>
+          </form>
         </div>
-
-        <div class="auth-form__controls">
-            <button type="submit" class="btn btn--primary">Thêm khách hàng</button>
-        </div>
-    </form>
+      </div>
+    </div>
   </main>
 
   <script>
@@ -311,6 +329,14 @@
           }
         });
       });
+
+     function openConfig() {
+        document.getElementById("configModal").style.display = "block";
+    }
+
+    function closeConfig() {
+        document.getElementById("configModal").style.display = "none";
+    }
 
   </script>
 </div>
