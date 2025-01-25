@@ -110,6 +110,7 @@
                         <th>Địa chỉ giao xe</th>
                         <th>Ngày đặt xe</th>
                         <th>Ngày trả xe</th>
+                        <th>Tiền thuê</th>
                         <th>Biển số xe</th>
                         <th>Trạng thái</th>
                         <th>Hành động</th>
@@ -123,6 +124,7 @@
                       <td>${o.deliveryAddress}</td>
                       <td>${o.retalStarDate}</td>
                       <td>${o.expectedReturnDate}</td>
+                      <td>${100000}</td>
                       <td>${o.orderDetail.licensePlate}</td>
                       <td>${o.status}</td>
                       <td>
