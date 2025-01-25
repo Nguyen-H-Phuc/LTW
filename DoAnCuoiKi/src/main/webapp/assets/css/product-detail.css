@@ -318,6 +318,12 @@
     transform: translateY(1px); /* Hiệu ứng khi bấm */
 }
 
+.button a {
+    text-decoration: none;
+    background-color: transparent;
+    color: white;
+}
+
 
 /*test
  */

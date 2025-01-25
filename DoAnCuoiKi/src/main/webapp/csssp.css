@@ -111,9 +111,12 @@ ul.products li .product-top{
     overflow: hidden;
 }
 ul.products li .product-top .product-thumb{
+
     display: block;
 }
 ul.products li .product-top .product-thumb img{
+    height: 120px;
+    width: 172.83px;
     display: block;
 }
 ul.products li .product-top a.buy-now{

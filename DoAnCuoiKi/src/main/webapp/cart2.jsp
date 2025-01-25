@@ -36,29 +36,34 @@
             <table class="table">
               <thread>
                 <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">Sản phẩm</th>
                   <th scope="col">Ảnh</th>
-                  <th scope="col">Đơn giá</th>
+                  <th scope="col">Sản phẩm</th>
                   <th scope="col">Số lượng</th>
+                  <th scope="col">Đơn giá</th>
                   <th scope="col">Tổng</th>
-                  <th scope="col">Hành động</th>
+                  <th scope="col">icon</th>
                 </tr>
               </thread>
               <tbody>
               <c:forEach items="${sessionScope.cart.list}" var="cp">
                 <tr>
-                  <th scope="row"></th>
-                  <td>${cp.title}</td>
-                  <td><img src="${cp.img}" style=""></td>
-                  <td>${cp.price}VND</td>
+                  <td><img class="cart-img" src="${cp.img}" style=""></td>
+                  <td>
+                    <p><strong>${cp.title}</strong></p>
+                  </td>
                   <td>
                     <input type="number" class="form-control" value="${cp.quantity}" min="1" style="">
                   </td>
+                  <td>${cp.price}VND</td>
                   <td>${cp.price * cp.quantity}VND</td>
                   <td>
-                    <a href="del-cart?pid=${cp.id}"><button class="btn btn-danger btn-sm">xóa</button></a>
-                    <a href="update-cart?pid=${cp.id}"><button class="btn btn-danger btn-sm">Cập nhật</button></a>
+                    <a href="del-cart?pid=${cp.id}"><i class="cart-icon fa-solid fa-trash fa-xl"></i></a>
+                    <a href="update-cart?pid=${cp.id}"><i class="cart-icon fa-regular fa-pen-to-square fa-xl"></i></a>
+
+
+                  </td>
+                  <td>
+
                   </td>
                 </tr>
               </c:forEach>
