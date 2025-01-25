@@ -8,6 +8,8 @@
 <%@ page import="vn.edu.hcmuaf.fit.doancuoiki.model.User" %>
 <%@ page import="vn.edu.hcmuaf.fit.doancuoiki.model.UserInfo" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix = "f" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -95,7 +97,7 @@
                 <img class="header__logo-img" src="assets/img/home_img/xe/logo_xemay.png"/>
 
             </div>
-
+            <form>
             <div class="header__search">
 
                 <div class="header__search-input-wrap">
@@ -106,7 +108,7 @@
                 </button>
 
             </div>
-
+            </form>
             <!--Cart Layout -->
             <div class="header__cart">
                 <div class="header__cart-wrap">
