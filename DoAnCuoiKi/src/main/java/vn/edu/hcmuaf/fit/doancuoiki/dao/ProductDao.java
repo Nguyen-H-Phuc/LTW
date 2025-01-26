@@ -213,7 +213,7 @@ public List<Product> getLast8Products() {
     }
     public List<Product> searchByType(String txtSearch) {
         List<Product> list = new ArrayList<>();
-        String query = "SELECT * FROM vehicletypes WHERE type LIKE ?";
+        String query = "SELECT * FROM vehicletypes WHERE type LIKE ?;";
         try {
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(query);
@@ -239,7 +239,7 @@ public List<Product> getLast8Products() {
     }
     public List<Product> searchByName(String txtSearch) {
         List<Product> list = new ArrayList<>();
-        String query = "SELECT * FROM vehicletypes WHERE name LIKE ? AND isAvailable > 0";
+        String query = "SELECT * FROM vehicletypes WHERE name LIKE ? AND isAvailable > 0 ;";
         try {
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(query);
@@ -658,7 +658,7 @@ public List<Product> searchUnbookedProductByName(String name) {
     }
     public static void main(String[] args) {
         ProductDao dao = new ProductDao();
-     //  List<Product> list = dao.searchByName("RSC");
+//       List<Product> list = dao.searchByName("RSC");
         List<Product> list = dao.listPro(1);
         for (Product product : list) {
             System.out.println(product);
