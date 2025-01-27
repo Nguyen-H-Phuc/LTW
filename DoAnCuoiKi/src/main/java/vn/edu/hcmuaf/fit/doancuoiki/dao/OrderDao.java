@@ -112,6 +112,7 @@ public class OrderDao {
     public List<Order> getAllOrder(){
         List<Order> orders = new ArrayList<Order>();
         String sql = "SELECT * \n" +
+                "DATEDIFF(orders.expectedReturnDate, orders.rentalStartDate) * orderdetails.priceAtOrder AS totalCost" +
                 "FROM orders \n" +
                 "JOIN orderdetails ON orders.id = orderdetails.orderId\n" +
                 "JOIN vehicles ON orderdetails.licensePlate = vehicles.licensePlate\n" +
