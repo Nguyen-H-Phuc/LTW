@@ -58,6 +58,8 @@
             margin-top: 20px;
         }
 
+
+
         table th,
         table td {
             text-align: center;
