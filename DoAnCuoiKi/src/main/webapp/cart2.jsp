@@ -104,6 +104,7 @@
   </div>
 
 </div>
+<footer id="footer"></footer>
 <script>
     // Chèn header
     fetch('header.jsp')
