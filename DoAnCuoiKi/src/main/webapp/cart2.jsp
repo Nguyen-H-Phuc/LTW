@@ -19,6 +19,7 @@
 
 
 <!-- section 1 -->
+<header id="header"></header>
 <div id="sec1">
   <hr>
   <div class="container border">
