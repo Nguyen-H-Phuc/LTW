@@ -7,51 +7,68 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
 import vn.edu.hcmuaf.fit.doancuoiki.model.Order;
 import vn.edu.hcmuaf.fit.doancuoiki.model.OrderDetail;
-
 import java.sql.*;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 public class OrderDao {
 
     public boolean createOrder(int id, String location, Date rentalStartDate, Date expectedReturnDate, String licensePlate, double priceAtOrder) {
-        String sql1 = "insert into orders (customerId, rentalStartDate, expectedReturnDate, deliveryAddress) values(?,?,?,?)";
-        String sql2 = "INSERT INTO orderdetails (orderId, licensePlate, priceAtOrder) values(?,?,?)";
-        if(licensePlate.equals(""))return false;
-        try(Connection conn = new DBContext().getConnection();
-            PreparedStatement pre = conn.prepareStatement(sql1)){
-            pre.setInt(1, id);
-            pre.setDate(2, rentalStartDate);
-            pre.setDate(3, expectedReturnDate);
-            pre.setString(4, location);
+        if (licensePlate.isEmpty()) return false;
 
-            pre.executeUpdate();
+        String sql1 = "INSERT INTO orders (customerId, rentalStartDate, expectedReturnDate, deliveryAddress) VALUES (?, ?, ?, ?)";
+        String sql2 = "INSERT INTO orderdetails (orderId, licensePlate, priceAtOrder) VALUES (?, ?, ?)";
 
-            int rowsAffected1 = pre.executeUpdate();
+        try (Connection conn = new DBContext().getConnection()) {
+            // Enable transaction management
+            conn.setAutoCommit(false);
 
-            // Lấy user_id vừa được sinh ra
             int orderId = 0;
-            if (rowsAffected1 > 0) {
-                try (ResultSet rs = pre.getGeneratedKeys()) {
-                    if (rs.next()) {
-                        orderId = rs.getInt(1);
+
+            // Insert into 'orders' table and retrieve generated order ID
+            try (PreparedStatement pre = conn.prepareStatement(sql1, Statement.RETURN_GENERATED_KEYS)) {
+                pre.setInt(1, id);
+                pre.setDate(2, rentalStartDate);
+                pre.setDate(3, expectedReturnDate);
+                pre.setString(4, location);
+
+                int rowsAffected1 = pre.executeUpdate();
+
+                if (rowsAffected1 > 0) {
+                    try (ResultSet rs = pre.getGeneratedKeys()) {
+                        if (rs.next()) {
+                            orderId = rs.getInt(1);
+                        }
                     }
+                }
+
+                // Ensure orderId was retrieved
+                if (orderId == 0) {
+                    conn.rollback();
+                    return false;
                 }
             }
 
-            int rowsAffected2;
-            try (PreparedStatement pre2 = conn.prepareStatement(sql2, Statement.RETURN_GENERATED_KEYS)) {
+            // Insert into 'orderdetails' table
+            try (PreparedStatement pre2 = conn.prepareStatement(sql2)) {
                 pre2.setInt(1, orderId);
                 pre2.setString(2, licensePlate);
                 pre2.setDouble(3, priceAtOrder);
-                rowsAffected2 = pre2.executeUpdate();
-            }
-            if (rowsAffected1 > 0 && rowsAffected2 > 0){
-                return true;
+
+                int rowsAffected2 = pre2.executeUpdate();
+
+                if (rowsAffected2 > 0) {
+                    // Commit the transaction
+                    conn.commit();
+                    return true;
+                } else {
+                    conn.rollback();
+                }
+            } catch (SQLException e) {
+                conn.rollback();
+                e.printStackTrace();
             }
 
         }catch (SQLException e){
@@ -95,6 +112,7 @@ public class OrderDao {
     public List<Order> getAllOrder(){
         List<Order> orders = new ArrayList<Order>();
         String sql = "SELECT * \n" +
+                "DATEDIFF(orders.expectedReturnDate, orders.rentalStartDate) * orderdetails.priceAtOrder AS totalCost" +
                 "FROM orders \n" +
                 "JOIN orderdetails ON orders.id = orderdetails.orderId\n" +
                 "JOIN vehicles ON orderdetails.licensePlate = vehicles.licensePlate\n" +

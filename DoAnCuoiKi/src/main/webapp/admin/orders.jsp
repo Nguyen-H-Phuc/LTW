@@ -201,10 +201,7 @@
         // Ẩn form khi hủy
         document.getElementById("editOrderForm").style.display = "none";
     }
-</script>
 
-
-<script>
     $(document).ready(function () {
         $('#order-table').DataTable({ // Đổi 'vehicleTable' thành 'order-table'
             "pageLength": 10, // Hiển thị 10 sản phẩm mỗi trang
@@ -222,7 +219,6 @@
             }
         });
     });
-
 </script>
 
 </body>

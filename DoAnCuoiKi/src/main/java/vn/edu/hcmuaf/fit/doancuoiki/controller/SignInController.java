@@ -53,35 +53,13 @@ public class SignInController extends HttpServlet {
             return;
         }
 
-//        String passwordPattern = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{8,}$";
-//        if (!password.matches(passwordPattern)) {
-//            request.setAttribute("error", "Mật khẩu phải chứa ít nhất 8 ký tự, bao gồm 1 chữ thường, 1 chữ hoa và 1 chữ số.");
-//            setRequestAttributes(request, email, name, password, birthdayStr, address);
-//            forwardToPage(request, response, url);
-//            return;
-//        }
-
-//        if (phone == null || phone.isEmpty() || !phone.matches("\\d{10,11}")) {
-//            request.setAttribute("error", "Số điện thoại không hợp lệ. Vui lòng nhập đúng định dạng.");
-//            setRequestAttributes(request, email, name, phone, birthdayStr, address);
-//            forwardToPage(request, response, url);
-//            return;
-//        }
-
         String passwordEncrypt = Encrypt.encrypt(password);
         UserInfo userInfo = new UserInfo(name, phone, address, birthday);
         User user = new User(email, passwordEncrypt, userInfo, true);
         user.setRoleId(2);
         String message = "";
         if (userDao.addUser(user)) {
-            String token = UUID.randomUUID().toString();
-            long expiryTime = System.currentTimeMillis() + 30 * 60 * 1000; // Token hết hạn sau 30 phút
-            userDao.createToken(token, expiryTime, email);
-            String verifyLink = "http://localhost:8080/DoAnCuoiKi/verify_email?token=" + token;
-            Email.send(email, "Thuê xe máy - Xác thực email", "Click vào link để xác thực tài khoản "+ verifyLink+"\nLink sẽ hết hạn vào 2 giờ sáng hôm sau");
-            message = "Link xác thực đã được gửi tới email của bạn. Vui lòng kiểm tra email và bấm vào link để xác thực";
-            request.setAttribute("message", message);
-            url = "resend_email.jsp"; // Chuyển hướng tới trang chính nếu thành công
+            url = "index.jsp"; // Chuyển hướng tới trang chính nếu thành công
         } else {
             request.setAttribute("error", "Đăng ký thất bại. Vui lòng thử lại.");
             setRequestAttributes(request, email, name, password, birthdayStr, address);
