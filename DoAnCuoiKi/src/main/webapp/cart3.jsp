@@ -60,11 +60,7 @@
 
 
 
-        table th,
-        table td {
-            text-align: center;
-            vertical-align: middle;
-        }
+
 
         tfoot td {
             font-weight: bold;
